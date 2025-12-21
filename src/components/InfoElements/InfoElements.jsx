@@ -34,7 +34,7 @@ function InfoElements() {
 
     return (
         <div id="elementos" className="content-block content-block-elements">
-            <div className="section-elements section-content-blocks" ref={containerRef}>
+            <div className="section-elements content-group" ref={containerRef}>
                 <div className="epic-block">
                     <img className="epic-image" src={epicsImage} alt="quebra-cabeça" />
                     <div className="epic-content">

@@ -120,10 +120,6 @@ h5.metric-title {
     text-align: justify;
 }
 
-.user-story-content p, .metric-value-container p {
-    text-indent: 0;
-}
-
 ul, ol  {
     margin-left: 20px;
 }

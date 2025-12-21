@@ -20,7 +20,7 @@
   padding: 0;
   position: absolute;
   margin: 30px 0;
-  background-color: #141414;
+  background-color: #212121;
   border-radius: 5px;
 }
 
@@ -37,7 +37,7 @@
 }
 
 .nav-item:hover {
-  color: #141414;
+  color: #212121;
   transition: 0.3s;
 }
 

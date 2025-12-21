@@ -1,44 +1,62 @@
-import './InfoContext.css';
+import { contextLinks } from "@/config/contextLinks";
+import { contextImages } from "@/config/contextImages";
 
-import skoobLogo from '@/assets/image-icons/skoob-logo.png';
-import skeeloLogo from '@/assets/image-icons/skeelo-logo.png';
-import pokemonSurprise from '@/assets/image-icons/pokemon-surprise.jpg';
+import "./InfoContext.css";
 
 function Contexto() {
     return (
         <div id="contexto" className="content-block">
             <div className="context-section content-section">
-                <div className="block-context">
-                    <div className="grid mobile-section section-content-blocks">
-                        <div className="section-content-blocks first-column">
-                            <div id="header-block">
-                                <h3 className="section-title context-title">Contexto</h3>
-                                <h4 className="subtitle">O início</h4>
-                            </div>
-                            <div>
-                                <div className="p-block text-blocks">
-                                    <p className="text-indent">Em agosto de 2024, o Skeelo concluiu a aquisição da rede social literária Skoob, que pertencia à Americanas, e a transação foi aprovada pelo Cade. De acordo com declarações oficiais, o valor da negociação foi de aproximadamente R$ 1,5 milhão.</p>
-                                    <p className="text-indent">Com a aquisição, o Skeelo anunciou um plano de modernização tecnológica do Skoob, incluindo melhorias na interface do app e o desenvolvimento de uma versão web responsiva, atendendo a sua base de cerca de 11 milhões de usuários cadastrados, dos quais aproximadamente 1,3 milhão são ativos por mês (MAUs).</p>
-                                    <p className="text-indent">Até então, os apps e sites das duas marcas continuam operando separadamente, mas integrando progressivamente funcionalidades.</p>
-                                </div>
-                            </div>
-                            <div className="btns-block">
-                                <button className="btn btn-skoob btn-twhite" onClick={() => window.open('https://www.skoob.com.br/', '_blank', 'noreferrer')}>Skoob</button>
-                                <button className="btn btn-skeelo btn-twhite" onClick={() => window.open('https://skeelo.com/pt/', '_blank', 'noreferrer')}>Skeelo</button>
-                                <button className="btn btn-publishenews btn-twhite" onClick={() => window.open('https://www.publishnews.com.br/materias/2024/08/20/skeelo-completa-a-aquisicao-do-skoob-e-quer-atualizar-o-ambiente-da-rede-social', '_blank', 'noreferrer')}>Publishenews</button>
-                            </div>
+                <article className="grid content-group">
+                    <div className="article-content">
+                        <header className="article-header">
+                            <h3 className="section-title">
+                                Contexto
+                            </h3>
+                            <h4 className="subtitle">
+                                O início
+                            </h4>
+                        </header>
+
+                        <div className="text-group">
+                            <p>
+                                Em <span className="w-600">agosto de 2024</span>, o <span className="w-600">Skeelo</span> concluiu a <span className="w-600">aquisição da rede social literária Skoob</span>, que pertencia à <span className="w-600">Americanas</span>. De acordo com declarações oficiais, o valor da negociação foi de aproximadamente <span className="w-600">R$&#160;1,5&#160;milhão</span>.
+                            </p>
+                            <p>
+                                Com a aquisição, o Skeelo anunciou um <span className="w-600">plano de modernização tecnológica do Skoob</span>, incluindo <span className="w-600">melhorias na interface do aplicativo</span> e o desenvolvimento de uma <span className="w-600">versão web responsiva</span>, atendendo à sua base de cerca de <span className="w-600">11 milhões</span> de usuários cadastrados, dos quais aproximadamente <span className="w-600">1,3 milhão</span> são ativos por mês <abbr title="Monthly Active Users">(MAUs)</abbr>.
+                            </p>
+                            <p>
+                                Até então, as aplicações continuam <span className="w-600">operando separadamente</span>, mas há <span className="w-600">planos de integração</span> entre as plataformas.
+                            </p>
                         </div>
 
-                        <div className="images-block">
-                            <div className="img-circle-container"><img className='img' src={skoobLogo} alt="skoob logo"></img></div>
-                            <div className="img-circle-container"><img className='img' src={skeeloLogo} alt="skeelo logo"></img></div>
-                            <div className="img-circle-container"><img className='img' src={pokemonSurprise} alt="pokemon surprise intro"></img></div>
+                        <div className="btn-group">
+                            {contextLinks.map(({ label, url, className }) => (
+                                <button
+                                    key={label}
+                                    className={`btn ${className} text-white`}
+                                    onClick={() => window.open(url, "_blank", "noreferrer")}
+                                >
+                                    {label}
+                                </button>
+                            ))}
                         </div>
                     </div>
-                </div>
+
+                    <div className="img-group">
+                        {contextImages.map(({ src, className, alt }, index) => (
+                            <div className="img-circle-container" key={index}>
+                                <img
+                                    className={`img ${className ?? ""}`}
+                                    src={src}
+                                    alt={alt}
+                                />
+                            </div>
+                        ))}
+                    </div>
+                </article>
             </div>
         </div>
-
     );
 }
 

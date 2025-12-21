@@ -28,10 +28,6 @@
     margin-bottom: -20px;
 }
 
-.typing-container p {
-    text-indent: 0;
-}
-
 .blinking-cursor {
   animation: blink 1s step-end infinite;
 }

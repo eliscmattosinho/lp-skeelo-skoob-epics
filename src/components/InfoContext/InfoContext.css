@@ -1,37 +1,35 @@
-.btns-block {
+.btn-group {
     display: flex;
     flex-direction: row;
-    gap: 2rem;
+    justify-content: space-between;
 }
 
 .btn-skoob {
-    background-color: #2C7FA3;
+    background-color: #2c7fa3;
 }
+
 .btn-skeelo {
-    background-color: #2DA44A;
+    background-color: #2da44a;
 }
-.btn-publishenews {
-    background-color: #113E1C;
+
+.btn-publishnews {
+    background-color: #113e1c;
 }
 
 .btn-skoob,
 .btn-skeelo,
-.btn-publishenews {
+.btn-publishnews {
     text-transform: uppercase;
     transition: transform 0.3s ease-in-out;
 }
 
 .btn-skoob:hover,
 .btn-skeelo:hover,
-.btn-publishenews:hover {
+.btn-publishnews:hover {
     transform: scale(1.1);
 }
 
-.btn-twhite {
-    color: #efefef;
-}
-
-.images-block {
+.img-group {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -40,7 +38,15 @@
     position: relative;
 }
 
-.images-block::before {
+img.skoob,
+img.skeelo,
+img.pokemon {
+    background: #efefef;
+    width: 80px;
+    height: 80px;
+}
+
+.img-group::before {
     content: "";
     position: absolute;
     width: 4px;
@@ -49,7 +55,7 @@
     bottom: 0;
     left: 50%;
     transform: translateX(-50%);
-    box-shadow: 4px 0 6px rgba(0, 0, 0, 0.25);
+    box-shadow: 6px 6px 6px rgba(33, 33, 33, 0.251);
 }
 
 .img-circle-container {
@@ -60,66 +66,75 @@
     background: linear-gradient(90deg, #2da44a 0%, #3dd6b3 50%, #2c7fa3 100%);
 
     z-index: 1;
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    box-shadow: 6px 6px 6px rgba(0, 0, 0, 0.25);
 }
 
 .img-circle-container .img {
     display: block;
     border-radius: 50%;
+    transition: transform 0.3s ease-in-out;
+    cursor: zoom-in;
 }
 
-.p-block {
+.img-circle-container .img:hover {
+    transform: scale(1.2);
+}
+
+.text-group {
     max-width: 600px;
 }
 
-@keyframes float {
-    0% {
-        transform: translateY(0);
-    }
-    50% {
-        transform: translateY(-10px);
-    }
-    100% {
-        transform: translateY(0);
-    }
-}
-
-.images-block .img-circle-container {
+.img-group .img-circle-container {
     animation: float 3s ease-in-out infinite;
 }
 
-
 @media (min-width: 320px) and (max-width: 768px) {
-    .btns-block, .images-block {
+    .btn-group,
+    .img-group {
         display: flex;
         flex-direction: row;
         margin: 0 auto;
         justify-content: space-between;
     }
 
-    .images-block {
-        gap: 3rem;
+    .img-group {
+        gap: 4rem;
+        margin-top: 1rem;
     }
 
-    .images-block::before {
+    .img-group::before {
         height: 4px;
-        width: 100%;
+        width: 80%;
         background: linear-gradient(90deg, #2da44a 0%, #3dd6b3 50%, #2c7fa3 100%);
         top: 50%;
-        left: 0;
-        transform: translateY(-50%);
-        box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+        left: 50%;
+        transform: translate(-50%, -50%);
     }
 
-    .btns-block {
+    .btn-group {
         display: flex;
         flex-wrap: wrap;
         justify-content: center;
         align-items: center;
-        width: 100%; 
+        width: 100%;
+        gap: 1rem;
     }
 
     .context-section {
         padding: 0 30px;
+    }
+}
+
+@keyframes float {
+    0% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-15px);
+    }
+
+    100% {
+        transform: translateY(0);
     }
 }
