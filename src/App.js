@@ -6,7 +6,7 @@ import LandingPage from "./pages/LandingPage.js";
 
 function App() {
   return (
-    <Router basename="/Skeelo-Skoob-Epics">
+    <Router basename="/lp-skeelo-skoob-epics">
       <div className="App">
         <div id="main">
           <Routes>

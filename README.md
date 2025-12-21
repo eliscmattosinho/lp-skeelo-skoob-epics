@@ -27,7 +27,7 @@ This project aims to provide a clear and dynamic experience to visualize the Ske
 
 You can access the live landing page here:
 
-- [Live Demo](https://eliscmattosinho.github.io/Skeelo-Skoob-Epics/)
+- [Live Demo](https://eliscmattosinho.github.io/lp-skeelo-skoob-epics/)
 
 <br />
 
