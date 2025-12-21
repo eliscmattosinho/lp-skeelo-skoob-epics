@@ -24,6 +24,13 @@
     z-index: 1;
 }
 
+.email-button {
+    border: none;
+    background: none;
+    color: #efefef;
+    font-weight: 600;
+}
+
 .img-contact {
     position: relative;
 }

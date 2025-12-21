@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import EpicSection from './EpicSection.js';
+import EpicSection from './EpicSection.jsx';
 import './Skeelo.css';
 
 import skeeLogo from '../assets/image-icons/skee-icon.png';

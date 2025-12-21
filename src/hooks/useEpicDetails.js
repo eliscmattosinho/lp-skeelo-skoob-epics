@@ -7,7 +7,10 @@ export function useEpicDetails(productName) {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await fetch(process.env.PUBLIC_URL + "/epics.json");
+                const response = await fetch(
+                    import.meta.env.BASE_URL + "epics.json"
+                );
+
                 const data = await response.json();
                 const product = data[productName];
 

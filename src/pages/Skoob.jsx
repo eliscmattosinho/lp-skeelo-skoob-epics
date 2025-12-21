@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import EpicSection from './EpicSection.js';
+import EpicSection from './EpicSection.jsx';
 import './Skoob.css';
 import skoobLogo from '../assets/image-icons/skoob-icon.png';
 import skeeloMoc from '../assets/image-icons/skoob-epics.png';

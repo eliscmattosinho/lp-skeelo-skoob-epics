@@ -4,11 +4,11 @@ import { useEpicDetails } from '../hooks/useEpicDetails.js';
 import { RiExpandDiagonalLine } from "react-icons/ri";
 import { GrPrevious, GrNext } from "react-icons/gr";
 
-import { initializeNavigation, initializeUserStoryNavigation } from '../js/EpicDinamicElements';
-import { useModal } from '../js/ModalManipulation';
-import Modal from '../components/Modal.js';
+import { initializeNavigation, initializeUserStoryNavigation } from '../js/EpicDinamicElements.js';
+import { useModal } from '../js/ModalManipulation.js';
+import Modal from '../components/Modal.jsx';
 
-import useExpandHandler from '../hooks/useExpandHandler';
+import useExpandHandler from '../hooks/useExpandHandler.js';
 
 function EpicContext({ context }) {
     return (
