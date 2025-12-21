@@ -1,23 +1,27 @@
 import React from "react";
-import Header from "./Header";
-import Sobre from "./Sobre";
-import Contexto from "./Contexto";
-import Elementos from "./Elementos";
-import Skeelo from "./Skeelo";
-import Skoob from "./Skoob";
-import Contato from "./Contato";
-import Footer from "./Footer";
+
+import Header from "@/components/Header/Header";
+import About from "@/components/About/About";
+
+import InfoContext from "@/components/InfoContext/InfoContext";
+import InfoElements from "@/components/InfoElements/InfoElements";
+
+import Skeelo from "@/components/Skeelo/Skeelo";
+import Skoob from "@/components/Skoob/Skoob";
+
+import Contact from "@/components/Contact/Contact";
+import Footer from "@/components/Footer/Footer";
 
 const LandingPage = () => {
   return (
     <div>
       <Header />
-      <Sobre />
-      <Contexto />
-      <Elementos />
+      <About />
+      <InfoContext />
+      <InfoElements />
       <Skeelo />
       <Skoob />
-      <Contato />
+      <Contact />
       <Footer />
     </div>
   );

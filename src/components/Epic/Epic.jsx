@@ -1,14 +1,14 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { CiLock } from "react-icons/ci";
 import { IoIosCloseCircleOutline } from "react-icons/io";
-import './EpicSection.css';
-import EpicDetailsSection from "./EpicDetailsSection";
-import { handleEpicDetails, restoreEpicElements, addMediaQueryListeners } from "../js/EpicDinamicDetails";
-import { initAutoScroll } from "../js/DinamicEpics";
+import './Epic.css';
+import EpicDetails from "@/components/EpicDetails/EpicDetails";
+import { handleEpicDetails, restoreEpicElements, addMediaQueryListeners } from "@/js/EpicDinamicDetails";
+import { initAutoScroll } from "@/js/DinamicEpics";
 
-import { enableDragScroll } from "../js/DragScroll";
+import { enableDragScroll } from "@/js/DragScroll";
 
-function EpicSection({ logo, title, description, mocImage, rangeItems, epics, theme }) {
+function Epic({ logo, title, description, mocImage, rangeItems, epics, theme }) {
     const [selectedEpics, setSelectedEpics] = useState({});
     const [clicked, setClicked] = useState(false);
     const [isEpicVisible, setIsEpicVisible] = useState(false);
@@ -145,7 +145,7 @@ function EpicSection({ logo, title, description, mocImage, rangeItems, epics, th
                             </div>
                             <div id={`${theme}-elements`} className={`block-elements-details ${isEpicVisible ? '' : 'hide'}`}>
                                 {selectedEpics[theme] && (
-                                    <EpicDetailsSection
+                                    <EpicDetails
                                         key={selectedEpics[theme]}
                                         productName={theme}
                                         epicId={selectedEpics[theme]}
@@ -161,4 +161,4 @@ function EpicSection({ logo, title, description, mocImage, rangeItems, epics, th
     );
 }
 
-export default EpicSection;
+export default Epic;

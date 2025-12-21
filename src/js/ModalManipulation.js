@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { initializeUserStoryNavigation } from '../js/EpicDinamicElements';
+import { initializeUserStoryNavigation } from '@/js/EpicDinamicElements';
 
 export function useModal() {
     const [isOpen, setIsOpen] = useState(false);

@@ -1,12 +1,11 @@
 import { useState } from "react";
-import '../styles/App.css';
-import "./Contato.css";
+import "./Contact.css";
 
-import contactCardBlue from '../assets/image-icons/contact-card-blue.svg';
-import contactCardRed from '../assets/image-icons/contact-card-red.svg';
-import contactCardDark from '../assets/image-icons/contact-card.svg';
+import contactCardBlue from '@/assets/image-icons/contact-card-blue.svg';
+import contactCardRed from '@/assets/image-icons/contact-card-red.svg';
+import contactCardDark from '@/assets/image-icons/contact-card.svg';
 
-function Contato() {
+function Contact() {
     const email = "eliscmattosinho@gmail.com";
     const [copiado, setCopiado] = useState(false);
 
@@ -77,4 +76,4 @@ function Contato() {
     );
 }
 
-export default Contato;
+export default Contact;

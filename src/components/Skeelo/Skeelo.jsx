@@ -1,15 +1,17 @@
 import { useEffect, useState } from 'react';
-import EpicSection from './EpicSection.jsx';
+import Epic from '@/components/Epic/Epic';
 import './Skeelo.css';
 
-import skeeLogo from '../assets/image-icons/skee-icon.png';
-import skeeloMoc from '../assets/image-icons/skeelo-epics.png';
-import skeeEpicOne from '../assets/image-icons/skee-epi-1.png';
-import skeeEpicTwo from '../assets/image-icons/skee-epi-2.png';
-import skeeEpicThree from '../assets/image-icons/skee-epi-3.png';
-import skeeEpicFour from '../assets/image-icons/skee-epi-4.png';
+import skeeLogo from '@/assets/image-icons/skee-icon.png';
 
-import { useEpicDetails } from '../hooks/useEpicDetails.js';
+import skeeloMoc from '@/assets/image-icons/skeelo-epics.png';
+
+import skeeEpicOne from '@/assets/image-icons/skee-epi-1.png';
+import skeeEpicTwo from '@/assets/image-icons/skee-epi-2.png';
+import skeeEpicThree from '@/assets/image-icons/skee-epi-3.png';
+import skeeEpicFour from '@/assets/image-icons/skee-epi-4.png';
+
+import { useEpicDetails } from '@/hooks/useEpicDetails';
 
 const skeeloDescription = [
     "O Skeelo é uma empresa que democratiza o acesso aos livros por meio de parcerias com serviços de assinatura.",
@@ -41,7 +43,7 @@ function Skeelo() {
     }
 
     return (
-        <EpicSection
+        <Epic
             logo={skeeLogo}
             title="Skeelo"
             description={skeeloDescription}

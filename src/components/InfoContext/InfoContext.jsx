@@ -1,9 +1,8 @@
-import '../styles/App.css';
-import './Contexto.css';
+import './InfoContext.css';
 
-import skoobLogo from '../assets/image-icons/skoob-logo.png';
-import skeeloLogo from '../assets/image-icons/skeelo-logo.png';
-import pokemonSurprise from '../assets/image-icons/pokemon-surprise.jpg';
+import skoobLogo from '@/assets/image-icons/skoob-logo.png';
+import skeeloLogo from '@/assets/image-icons/skeelo-logo.png';
+import pokemonSurprise from '@/assets/image-icons/pokemon-surprise.jpg';
 
 function Contexto() {
     return (

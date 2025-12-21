@@ -1,6 +1,4 @@
-import '../styles/App.css';
 import "./Footer.css";
-
 
 function Footer() {
     return (

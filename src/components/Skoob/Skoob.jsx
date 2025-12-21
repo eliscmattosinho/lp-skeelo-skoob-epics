@@ -1,13 +1,13 @@
 import { useEffect, useState } from 'react';
-import EpicSection from './EpicSection.jsx';
+import Epic from '@/components/Epic/Epic';
 import './Skoob.css';
-import skoobLogo from '../assets/image-icons/skoob-icon.png';
-import skeeloMoc from '../assets/image-icons/skoob-epics.png';
-import skoobEpicOne from '../assets/image-icons/skoob-epi-1.png';
-import skoobEpicTwo from '../assets/image-icons/skoob-epi-2.png';
-import skoobEpicThree from '../assets/image-icons/skoob-epi-3.png';
+import skoobLogo from '@/assets/image-icons/skoob-icon.png';
+import skeeloMoc from '@/assets/image-icons/skoob-epics.png';
+import skoobEpicOne from '@/assets/image-icons/skoob-epi-1.png';
+import skoobEpicTwo from '@/assets/image-icons/skoob-epi-2.png';
+import skoobEpicThree from '@/assets/image-icons/skoob-epi-3.png';
 
-import { useEpicDetails } from '../hooks/useEpicDetails.js';
+import { useEpicDetails } from '@/hooks/useEpicDetails';
 
 const skoobDescription = [
     "O Skoob é uma rede social literária com funcionalidades de gerenciamento de leituras que permite aos leitores compartilharem opiniões e descobrir novos livros."
@@ -38,7 +38,7 @@ function Skoob() {
     }
 
     return (
-        <EpicSection
+        <Epic
             logo={skoobLogo}
             title="Skoob"
             description={skoobDescription}

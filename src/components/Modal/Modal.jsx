@@ -1,12 +1,12 @@
 import React, { useEffect, useRef } from 'react';
 import './Modal.css';
 import { IoIosCloseCircleOutline } from "react-icons/io";
-import { initializeUserStoryNavigation } from '../js/EpicDinamicElements';
+import { initializeUserStoryNavigation } from '@/js/EpicDinamicElements';
 
-import USSkeelo from "../assets/modal/us-modal-skeelo.svg";
-import DoDSkeelo from "../assets/modal/dod-modal-skeelo.svg";
-import USSkoob from "../assets/modal/us-modal-skoob.svg";
-import DoDSkoob from "../assets/modal/dod-modal-skoob.svg";
+import USSkeelo from "@/assets/modal/us-modal-skeelo.svg";
+import DoDSkeelo from "@/assets/modal/dod-modal-skeelo.svg";
+import USSkoob from "@/assets/modal/us-modal-skoob.svg";
+import DoDSkoob from "@/assets/modal/dod-modal-skoob.svg";
 
 const imageMap = {
     skeelo: {

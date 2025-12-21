@@ -144,7 +144,7 @@ summary:hover {
     justify-content: center;
 }
 
-.block-elements {
+.block-elements.content-section {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;

@@ -1,14 +1,14 @@
 import React, { useLayoutEffect, useRef, useState } from 'react';
-import './EpicDetailsSection.css';
-import { useEpicDetails } from '../hooks/useEpicDetails.js';
+import './EpicDetails.css';
+import { useEpicDetails } from '@/hooks/useEpicDetails';
 import { RiExpandDiagonalLine } from "react-icons/ri";
 import { GrPrevious, GrNext } from "react-icons/gr";
 
-import { initializeNavigation, initializeUserStoryNavigation } from '../js/EpicDinamicElements.js';
-import { useModal } from '../js/ModalManipulation.js';
-import Modal from '../components/Modal.jsx';
+import { initializeNavigation, initializeUserStoryNavigation } from '@/js/EpicDinamicElements';
+import { useModal } from '@/js/ModalManipulation';
+import Modal from '@/components/Modal/Modal';
 
-import useExpandHandler from '../hooks/useExpandHandler.js';
+import useExpandHandler from '@/hooks/useExpandHandler';
 
 function EpicContext({ context }) {
     return (
@@ -144,7 +144,7 @@ function Metrics({ metrics, productName }) {
     );
 }
 
-function EpicDetailsSection({ productName, epicId, epicTitle }) {
+function EpicDetails({ productName, epicId, epicTitle }) {
     const [currentBlock, setCurrentBlock] = useState(0);
     const data = useEpicDetails(productName);
 
@@ -223,4 +223,4 @@ function EpicDetailsSection({ productName, epicId, epicTitle }) {
     );
 }
 
-export default EpicDetailsSection;
+export default EpicDetails;

@@ -1,11 +1,10 @@
-import '../styles/App.css';
-import "./Sobre.css";
+import "./About.css";
 
-import TypingEffect from '../js/TypingEffect';
+import TypingEffect from '@/js/TypingEffect';
 
-import booksImage from '../assets/image-icons/books.svg';
+import booksImage from '@/assets/image-icons/books.svg';
 
-function Sobre() {
+function About() {
     return (
         <div id="bg-tgreen" className="content-block">
             <div id="sobre" className="content">
@@ -29,4 +28,4 @@ function Sobre() {
     );
 }
 
-export default Sobre;
+export default About;
