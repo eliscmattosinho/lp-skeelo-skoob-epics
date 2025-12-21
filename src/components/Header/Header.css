@@ -1,4 +1,4 @@
-#header-bar {
+.header-bar {
   padding: 30px 0;
   background: linear-gradient(90deg, #2da44a 0%, #3dd6b3 50%, #2c7fa3 100%);
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
@@ -7,10 +7,6 @@
 #header {
   display: flex;
   justify-content: space-between;
-}
-
-#logo-icon {
-  color: #efefef;
 }
 
 #sub-items {
@@ -32,56 +28,50 @@
   margin: 20px 0;
 }
 
-.header-item,
-.header-sub-item {
+.nav-item,
+.nav-sub-item {
   cursor: pointer;
   text-decoration: none;
   font-weight: 600;
   color: #efefef;
 }
 
-.header-item:hover {
+.nav-item:hover {
   color: #141414;
   transition: 0.3s;
 }
 
-.header-sub-item:hover {
-  background-image: linear-gradient(
-    90deg,
-    #2da44a 0%,
-    #3dd6b3 50%,
-    #2c7fa3 100%
-  );
+.nav-sub-item:hover {
+  background-image: linear-gradient(90deg,
+      #2da44a 0%,
+      #3dd6b3 50%,
+      #2c7fa3 100%);
   color: transparent;
   background-clip: text;
   transition: 0.3s;
 }
 
-h3 a {
-  color: #efefef;
-}
-
-#header-items {
+.nav-items {
   display: flex;
   flex-direction: row;
 }
 
-#header-items a {
+.nav-items a {
   margin: 0 20px;
 }
 
-.header-item {
+.nav-item {
   display: flex;
   align-items: center;
 }
 
-.header-item svg {
+.nav-item svg {
   margin-top: 5px;
   margin-left: 8px;
 }
 
 /* Ícone do menu hambúrguer */
-#menu-button {
+.menu-btn {
   background: none;
   border: none;
   color: #efefef;
@@ -117,9 +107,9 @@ h3 a {
 .mobile-sub-item:hover {
   background-image: linear-gradient(
     90deg,
-    #2da44a 0%,
-    #3dd6b3 50%,
-    #2c7fa3 100%
+      #2da44a 0%,
+      #3dd6b3 50%,
+      #2c7fa3 100%
   );
   color: transparent;
   background-clip: text;
@@ -142,11 +132,11 @@ h3 a {
     font-size: 14px;
   }
 
-  #menu-button {
+  .menu-btn {
     display: block;
   }
 
-  #header-items {
+  .nav-items {
     display: none;
   }
 
