@@ -20,13 +20,13 @@ function Contact() {
     };
 
     return (
-        <div id="bg-cgreen" className="content-block">
+        <div id="bg-green-bottom" className="content-block">
             <div id="contato" className="content">
                 <div className="content-blocks">
-                    <div className="block-title">
+                    <div className="title-container">
                         <div className='contact-block'>
                             <h3 className="section-title">Contato</h3>
-                            <h4 className="sub-title">Quer saber onde me encontrar?</h4>
+                            <h4 className="subtitle">Quer saber onde me encontrar?</h4>
                         </div>
                     </div>
 
