@@ -1,29 +1,38 @@
 import "./About.css";
 
-import TypingEffect from '@/js/TypingEffect';
+import TypingEffect from "@/js/TypingEffect";
 
-import booksImage from '@/assets/image-icons/books.svg';
+import booksImage from "@/assets/image-icons/books.svg";
 
 function About() {
     return (
-        <div id="bg-tgreen" className="content-block">
-            <div id="sobre" className="content">
-                <div className="content-blocks">
-                    <div className="block-title">
-                        <h4 id="block-sub" className="sub-title">Ecossistema de leitura digital</h4>
-                        <h2 id="block-h2">Skeelo-Skoob</h2>
+        <div id="bg-green-top" className="content-block">
+            <section id="sobre" className="content">
+                <article className="content-blocks">
+                    <div className="title-container">
+                        <h4 className="subtitle">
+                            Ecossistema de leitura digital
+                        </h4>
+                        <h2 className="title">Skeelo-Skoob</h2>
                     </div>
-                    <div id="block-image-p" className="center">
-                        <div className="alone-p">
-                            <TypingEffect text="A mudança no mercado literário começa aqui." speed={50} />
-                        </div>
-                        <div className="block-image">
-                            <img id="image-books" src={booksImage} loading="eager" alt="illustration of green books in a stack" />
-                        </div>
-                    </div>
-                </div>
 
-            </div>
+                    <div className="center">
+                        <div className="typing-container">
+                            <TypingEffect
+                                text="A mudança no mercado literário começa aqui."
+                                speed={60}
+                            />
+                        </div>
+                        <figure className="img-container">
+                            <img
+                                src={booksImage}
+                                loading="eager"
+                                alt="Ilustração de livros verdes empilhados."
+                            />
+                        </figure>
+                    </div>
+                </article>
+            </section>
         </div>
     );
 }

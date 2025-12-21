@@ -1,4 +1,4 @@
-#bg-cgreen {
+#bg-green-bottom {
     margin-right: 20px;
     margin-left: 20px;
     padding: 60px;
@@ -53,7 +53,7 @@
         gap: 2rem;
     }
 
-    #bg-cgreen {
+    #bg-green-bottom {
         margin: 60px 10px;
         padding: 30px;
     }

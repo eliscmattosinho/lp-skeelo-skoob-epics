@@ -13,7 +13,7 @@ function Contexto() {
                         <div className="section-content-blocks first-column">
                             <div id="header-block">
                                 <h3 className="section-title context-title">Contexto</h3>
-                                <h4 className="sub-title">O início</h4>
+                                <h4 className="subtitle">O início</h4>
                             </div>
                             <div>
                                 <div className="p-block text-blocks">
@@ -30,9 +30,9 @@ function Contexto() {
                         </div>
 
                         <div className="images-block">
-                            <div className="img-container"><img className='img' src={skoobLogo} alt="skoob logo"></img></div>
-                            <div className="img-container"><img className='img' src={skeeloLogo} alt="skeelo logo"></img></div>
-                            <div className="img-container"><img className='img' src={pokemonSurprise} alt="pokemon surprise intro"></img></div>
+                            <div className="img-circle-container"><img className='img' src={skoobLogo} alt="skoob logo"></img></div>
+                            <div className="img-circle-container"><img className='img' src={skeeloLogo} alt="skeelo logo"></img></div>
+                            <div className="img-circle-container"><img className='img' src={pokemonSurprise} alt="pokemon surprise intro"></img></div>
                         </div>
                     </div>
                 </div>
