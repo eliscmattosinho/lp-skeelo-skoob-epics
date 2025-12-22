@@ -20,7 +20,7 @@
   padding: 0;
   position: absolute;
   margin: 30px 0;
-  background-color: #212121;
+  background: var(--black);
   border-radius: 5px;
 }
 
@@ -33,12 +33,16 @@
   cursor: pointer;
   text-decoration: none;
   font-weight: 600;
-  color: #efefef;
+  color: var(--white);
 }
 
 .nav-item:hover {
-  color: #212121;
+  color: var(--black);
   transition: 0.3s;
+}
+
+.icon-wrapper svg path {
+  color: var(--white);
 }
 
 .nav-sub-item:hover {
@@ -74,7 +78,7 @@
 .menu-btn {
   background: none;
   border: none;
-  color: #efefef;
+  color: var(--white);
   cursor: pointer;
   display: none;
 }
@@ -96,7 +100,7 @@
 
 .mobile-item,
 .mobile-sub-item {
-  color: #efefef;
+  color: var(--white);
   text-decoration: none;
   font-weight: 600;
   padding: 10px;

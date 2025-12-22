@@ -19,7 +19,7 @@
 
 .p-contact {
     font-weight: 600;
-    color: #efefef;
+    color: var(--white);
     position: absolute;
     z-index: 1;
 }
@@ -27,7 +27,7 @@
 .email-button {
     border: none;
     background: none;
-    color: #efefef;
+    color: var(--white);
     font-weight: 600;
     cursor: pointer;
 }

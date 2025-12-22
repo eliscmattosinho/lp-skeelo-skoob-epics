@@ -14,7 +14,7 @@ function EpicContext({ context }) {
     return (
         <div className="epic-section epic-context">
             <div id='epic-context-content'>
-                <h3 className='epic-section-title'>Contexto</h3>
+                <h2 className='epic-section-title'>Contexto</h2>
                 <div className='epic-section-body'>
                     <p className="epic-context-text">{context || "Contexto não disponível"}</p>
                 </div>

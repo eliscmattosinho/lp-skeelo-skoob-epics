@@ -58,7 +58,7 @@
     font-size: 18px;
     white-space: nowrap;
     font-weight: 600;
-    color: #efefef;
+    color: var(--white);
 }
 
 .range-tag {
@@ -94,7 +94,7 @@
     display: block;
     max-width: 230px;
     height: auto;
-    border: 2px solid #212121;
+    border: 2px solid var(--black);
     border-radius: 10px;
     box-shadow: 6px 6px 12px rgba(33, 33, 33, 0.604);
 }
@@ -135,7 +135,7 @@
     width: 5px;
     height: 5px;
     border-radius: 20px;
-    background: #212121;
+    background: var(--black);
     backdrop-filter: blur(35px);
 }
 
@@ -167,15 +167,15 @@
 
 .frame-infos-action .frame-info-title {
     font-weight: 500;
-    color: #efefef;
+    color: var(--white);
 }
 
 .frame-info-title {
     max-width: 180px;
 }
 
-.frame-infos-action svg {
-    color: #efefef;
+.frame-infos-action svg path {
+    color: var(--white);
 }
 
 .hide {

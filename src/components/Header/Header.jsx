@@ -36,7 +36,7 @@ function Header() {
     <div className="header-bar">
       <header id="header" className="content">
         <div className="logo-container">
-          <h3 className="logo-icon">
+          <h3 className="logo-icon w-600">
             <a href="./">Proposta</a>
           </h3>
         </div>

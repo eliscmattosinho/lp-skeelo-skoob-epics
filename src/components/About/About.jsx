@@ -8,12 +8,12 @@ function About() {
     return (
         <div id="bg-green-top" className="content-block">
             <section id="sobre" className="content">
-                <article className="content-blocks">
+                <article className="section-group">
                     <div className="title-container">
                         <h4 className="subtitle">
                             Ecossistema de leitura digital
                         </h4>
-                        <h2 className="title">Skeelo-Skoob</h2>
+                        <h1 className="title">Skeelo-Skoob</h1>
                     </div>
 
                     <div className="center">

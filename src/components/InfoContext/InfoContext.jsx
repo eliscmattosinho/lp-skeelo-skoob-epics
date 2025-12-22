@@ -34,7 +34,7 @@ function Contexto() {
                             {contextLinks.map(({ label, url, className }) => (
                                 <button
                                     key={label}
-                                    className={`btn ${className} text-white`}
+                                    className={`btn ${className}`}
                                     onClick={() => window.open(url, "_blank", "noreferrer")}
                                 >
                                     {label}

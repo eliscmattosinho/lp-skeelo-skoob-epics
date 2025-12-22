@@ -22,7 +22,7 @@ function Contact() {
     return (
         <div id="bg-green-bottom" className="content-block">
             <div id="contato" className="content">
-                <div className="content-blocks">
+                <div className="section-group">
                     <div className="title-container">
                         <div className='contact-block'>
                             <h3 className="section-title">Contato</h3>

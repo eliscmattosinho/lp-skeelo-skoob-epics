@@ -1,16 +1,19 @@
+#elementos * {
+    color: var(--white);
+}
+
 .section-elements {
     display: flex;
 }
 
-.content-block-elements {
-    background-color: #212121;
-    min-height: 590px;
+.section-bg {
+    background: var(--black);
 }
 
-.epic-block,
+.element-container,
 .title-summary,
-.p-element {
-    color: #efefef;
+.element-text {
+    color: var(--white);
 }
 
 .element {
@@ -26,7 +29,7 @@ details {
     overflow: hidden;
 }
 
-.p-element {
+.element-text {
     text-align: center;
     max-width: 100px;
     margin-top: 10px;
@@ -44,16 +47,24 @@ details summary::-webkit-details-marker {
     transform: rotate(180deg);
 }
 
-.p-element {
+.element-text {
     max-height: 0;
-    overflow: hidden;
     opacity: 0;
-    transition: max-height 0.4s ease, opacity 0.4s ease;
+    transform: translateY(-6px);
+    overflow: hidden;
+
+    transition: all 0.3s ease-in-out;
+
+    margin-top: 10px;
+    text-align: center;
+    max-width: 100px;
+    line-height: 1.4;
 }
 
-.toggle-section.expanded .p-element {
-    max-height: 500px;
+.element-text.expanded {
+    max-height: 200px;
     opacity: 1;
+    transform: translateY(0);
 }
 
 .title-summary {
@@ -68,7 +79,7 @@ details summary::-webkit-details-marker {
     width: 100%;
     border: none;
     padding: 0;
-    color: #efefef;
+    color: var(--white);
 }
 
 .title-summary svg {
@@ -89,28 +100,37 @@ summary:hover {
     cursor: pointer;
 }
 
-.epic-block {
+.element-container {
     display: flex;
     align-items: center;
-    background: #2DA44A;
+    background: #2da44a;
     padding: 0 20px;
     border-radius: 0px 200px 200px 0px;
     width: 650px;
     margin-top: 30px;
     max-width: 100%;
     height: auto;
+    overflow: hidden;
 }
 
-.epic-image {
+.element-title {
+    font-weight: 600;
+    font-size: 18px;
+    max-width: 150px;
+    text-align: center;
+}
+
+.element-img {
     width: auto;
     height: 220px;
     top: -6px;
     position: relative;
-    transform: matrix(-0.07, -1, -1, 0.07, 0, 0);
+    transform: matrix(-0.08, -1.5, -1, 0.15, 0, 0);
     align-self: stretch;
+    filter: drop-shadow(-3px -3px 6px rgba(0, 0, 0, 0.5));
 }
 
-.epic-content {
+.element-content {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -120,30 +140,48 @@ summary:hover {
 }
 
 .img-container-elements {
+    position: relative;
     display: flex;
     justify-content: center;
     align-items: center;
     width: 100px;
     height: 100px;
-    border: 3px solid #2DA44A;
+    border: 3px solid #2da44a;
     border-radius: 50%;
     margin-bottom: 10px;
+    overflow: visible;
+    z-index: 1;
+}
+
+.img-container-elements::before {
+    content: "";
+    position: absolute;
+    inset: -8px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(0, 214, 54, 0.777), transparent 90%);
+    opacity: 0;
+    transform: scale(0.85);
+    transition:
+        opacity 0.25s ease-out,
+        transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+    pointer-events: none;
+    z-index: -1;
+}
+
+.element.active .img-container-elements::before {
+    opacity: 0.6;
+    transform: scale(1);
 }
 
 .img-container-elements img {
     max-width: 85%;
     max-height: 85%;
     object-fit: contain;
+
+    animation: float 3.5s ease-in-out infinite;
 }
 
-#block-elements {
-    display: flex;
-    flex-direction: row;
-    align-items: flex-start;
-    justify-content: center;
-}
-
-.block-elements.content-section {
+.element-group.content-section {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
@@ -152,15 +190,59 @@ summary:hover {
     margin: 40px auto;
 }
 
+@keyframes float-up {
+    0% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-6px);
+    }
+
+    100% {
+        transform: translateY(0);
+    }
+}
+
+@keyframes float-down {
+    0% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(6px);
+    }
+
+    100% {
+        transform: translateY(0);
+    }
+}
+
+.element:nth-child(odd) .img-container-elements img {
+    animation: float-up 3.5s ease-in-out infinite;
+}
+
+.element:nth-child(even) .img-container-elements img {
+    animation: float-down 3.5s ease-in-out infinite;
+}
+
 @media (min-width: 320px) and (max-width: 768px) {
-    .epic-block {
+    .element-container {
         max-width: 100%;
         padding: 20px;
     }
-    .epic-image {
+
+    .element-img {
         display: none;
     }
-    .epic-content {
+
+    .element-content {
         padding: 10px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .img-container-elements img {
+        animation: none;
     }
 }

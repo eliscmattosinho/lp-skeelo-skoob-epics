@@ -14,7 +14,7 @@
 
 .p-footer {
     font-weight: 600;
-    color: #efefef;
+    color: var(--white);
     margin: 10px 0;
 }
 
@@ -24,7 +24,7 @@
 
 .btn-p-state {
     padding: 10px 20px;
-    border: 1px solid #efefef;
+    border: 1px solid var(--white);
     border-radius: 40px;
     font-weight: 600;
     cursor: pointer;
@@ -48,7 +48,7 @@
     left: 0;
     width: 100%;
     height: 100%;
-    background: #212121;
+    background: var(--black);
     border-radius: 40px;
     z-index: -1;
 }

@@ -6,7 +6,7 @@
     box-shadow: 0 4px 10px rgba(20, 20, 20, 0.2);
     z-index: 1000;
 
-    background-color: #efefef;
+    background-color: var(--white);
     margin: 0 auto;
     padding: 20px;
     max-width: 450px;
@@ -25,14 +25,14 @@
     justify-content: space-between;
     align-items: center;
     flex-wrap: nowrap;
-    background-color: #212121;
+    background: var(--black);
     margin: 20px 0;
     padding: 20px;
     border-radius: 10px;
 }
 
 .modal-title {
-    color: #efefef;
+    color: var(--white);
     font-size: 16px;
     text-align: center;
 }

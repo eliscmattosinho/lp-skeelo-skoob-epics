@@ -20,6 +20,7 @@
 .btn-skeelo,
 .btn-publishnews {
     text-transform: uppercase;
+    color: var(--white);
     transition: transform 0.3s ease-in-out;
 }
 
@@ -41,9 +42,9 @@
 img.skoob,
 img.skeelo,
 img.pokemon {
-    background: #efefef;
-    width: 80px;
-    height: 80px;
+    background: var(--white);
+    width: 70px;
+    height: 70px;
 }
 
 .img-group::before {
@@ -117,7 +118,7 @@ img.pokemon {
         justify-content: center;
         align-items: center;
         width: 100%;
-        gap: 1rem;
+        gap: 3rem;
     }
 
     .context-section {
