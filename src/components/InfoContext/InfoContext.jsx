@@ -5,7 +5,7 @@ import "./InfoContext.css";
 
 function Contexto() {
     return (
-        <div id="contexto" className="content-block">
+        <div id="contexto" className="content-container">
             <div className="context-section content-section">
                 <article className="grid content-group">
                     <div className="article-content">

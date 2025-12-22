@@ -1,12 +1,15 @@
 import React, { useState, useEffect, useRef } from 'react';
+
 import { CiLock } from "react-icons/ci";
 import { IoIosCloseCircleOutline } from "react-icons/io";
-import './Epic.css';
-import EpicDetails from "@/components/EpicDetails/EpicDetails";
-import { handleEpicDetails, restoreEpicElements, addMediaQueryListeners } from "@/js/EpicDinamicDetails";
-import { initAutoScroll } from "@/js/DinamicEpics";
 
+import './Epic.css';
+
+import { handleEpicDetails, restoreEpicElements, addMediaQueryListeners } from "@/js/EpicDinamicDetails";
 import { enableDragScroll } from "@/js/DragScroll";
+
+import Range from "@/components/Range/Range";
+import EpicDetails from "@/components/EpicDetails/EpicDetails";
 
 function Epic({ logo, title, description, mocImage, rangeItems, epics, theme }) {
     const [selectedEpics, setSelectedEpics] = useState({});
@@ -48,10 +51,6 @@ function Epic({ logo, title, description, mocImage, rangeItems, epics, theme }) 
         return () => { };
     }, []);
 
-    useEffect(() => {
-        initAutoScroll();
-    }, []);
-
     const framesRef = useRef(null);
     const ref = useRef(null);
 
@@ -67,9 +66,9 @@ function Epic({ logo, title, description, mocImage, rangeItems, epics, theme }) 
     }, []);
 
     return (
-        <div id={`${theme}`} className="content-block">
-            <div className="content-section">
-                <div className="content epic-content-mockups">
+        <section className="epic-container content-section">
+            <article id={`${theme}`}>
+                <div className="epic-content-mockups">
                     <div className="epics-content">
                         <div className="first-col-epic">
                             <div className="epic-block-title">
@@ -78,7 +77,7 @@ function Epic({ logo, title, description, mocImage, rangeItems, epics, theme }) 
                                     <img src={logo} alt={`${title} logo`} />
                                 </span>
                             </div>
-                            <div className="block-p-epic text-blocks">
+                            <div className="block-p-epic text-group">
                                 {description.map((para, index) => (
                                     <p className={`p-${theme}`} key={index}>{para}</p>
                                 ))}
@@ -89,11 +88,11 @@ function Epic({ logo, title, description, mocImage, rangeItems, epics, theme }) 
                         </div>
                     </div>
 
-                    <div className={`range ${theme}-range`}>
-                        {rangeItems.map((item, index) => (
-                            <p className={`range-tag`} key={index}>{item}</p>
-                        ))}
-                    </div>
+                    <Range
+                        items={rangeItems}
+                        theme={theme}
+                        speed={1.8}
+                    />
 
                     <div className={`epic-section-mockups ${theme}`}>
                         {isEpicVisible && (
@@ -105,9 +104,7 @@ function Epic({ logo, title, description, mocImage, rangeItems, epics, theme }) 
                                 <IoIosCloseCircleOutline />
                             </span>
                         )}
-
                         {showTitle && <h2 className="epic-title epic-section-title">{selectedTitle}</h2>}
-
                         <div ref={ref} id={`${theme}`} className="mockups-stack drag-scroll">
                             <div ref={framesRef} className={`frames-block ${theme}`}>
                                 {epics.map((epic, index) => (
@@ -122,11 +119,8 @@ function Epic({ logo, title, description, mocImage, rangeItems, epics, theme }) 
                                                 src={epic.image}
                                                 alt={`frame ${epic.title}`}
                                             />
-
                                             <span className={`hide-epic hide-${theme}-epic`}></span>
-
                                             <span className="cam-point"></span>
-
                                             <div className="frame-infos-action">
                                                 <h4 className="frame-info-title">{epic.title || epic.titulo_epico}</h4>
                                                 <CiLock />
@@ -156,8 +150,8 @@ function Epic({ logo, title, description, mocImage, rangeItems, epics, theme }) 
                         </div>
                     </div>
                 </div>
-            </div>
-        </div>
+            </article>
+        </section>
     );
 }
 

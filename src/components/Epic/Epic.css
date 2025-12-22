@@ -1,3 +1,9 @@
+.epic-container {
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+}
+
 .epics-content {
     display: flex;
     flex-direction: row;
@@ -43,28 +49,6 @@
 .span-image {
     display: block;
     width: 10%;
-}
-
-.range {
-    display: flex;
-    flex-wrap: nowrap;
-    gap: 3rem;
-    width: 100%;
-    margin: 0 auto;
-    overflow: hidden;
-}
-
-.range p {
-    font-size: 18px;
-    white-space: nowrap;
-    font-weight: 600;
-    color: var(--white);
-}
-
-.range-tag {
-    min-width: 100px;
-    flex: 0 0 auto;
-    text-align: center;
 }
 
 .frames-block {

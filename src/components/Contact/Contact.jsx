@@ -20,7 +20,7 @@ function Contact() {
     };
 
     return (
-        <div id="bg-green-bottom" className="content-block">
+        <div id="bg-green-bottom" className="content-container">
             <div id="contato" className="content">
                 <div className="section-group">
                     <div className="title-container">

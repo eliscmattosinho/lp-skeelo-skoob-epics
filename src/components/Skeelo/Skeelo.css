@@ -4,9 +4,7 @@
 }
 
 .skeelo-range {
-    padding: 10px 20px;
     background: linear-gradient(90deg, #2DA44A 18.03%, #113E1C 76.53%);
-    box-shadow: 0px 10px 4px rgba(0, 0, 0, 0.25);
 }
 
 .frames-block::-webkit-scrollbar {

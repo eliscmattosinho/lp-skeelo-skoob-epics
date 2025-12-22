@@ -6,7 +6,7 @@ import booksImage from "@/assets/image-icons/books.svg";
 
 function About() {
     return (
-        <div id="bg-green-top" className="content-block">
+        <div id="bg-green-top" className="content-container">
             <section id="sobre" className="content">
                 <article className="section-group">
                     <div className="title-container">
