@@ -1,14 +1,18 @@
 import { useState, useEffect } from "react";
-import { MdOutlineMenu, MdClose } from "react-icons/md";
+import { IoCloseOutline } from "react-icons/io5";
+import { CiMenuBurger } from "react-icons/ci";
 
+import { useScreen } from "@/context/ScreenContext";
 import Nav from "./Nav";
-import { navItems } from "./navItems";
+import { contextNav } from "@/config/contextNav";
+
 import "./Header.css";
 
 function Header() {
+  const { isMobile } = useScreen();
+
   const [isSubmenuVisible, setSubmenuVisible] = useState(false);
   const [timeoutId, setTimeoutId] = useState(null);
-  const [isMobile, setIsMobile] = useState(window.innerWidth <= 480);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const handleMouseEnter = () => {
@@ -22,51 +26,48 @@ function Header() {
   };
 
   useEffect(() => {
-    const handleResize = () => {
-      const mobile = window.innerWidth <= 480;
-      setIsMobile(mobile);
-      if (!mobile) setIsMenuOpen(false);
-    };
-
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
-  }, []);
+    if (!isMobile) setIsMenuOpen(false);
+  }, [isMobile]);
 
   return (
-    <div className="header-bar">
-      <header id="header" className="content">
-        <div className="logo-container">
-          <h3 className="logo-icon w-600">
-            <a href="./">Proposta</a>
-          </h3>
-        </div>
+    <header className="nav-bar">
+      <nav id="nav" aria-label="Navegação principal">
+        <h2 className="w-600">
+          <a href="/">Proposta</a>
+        </h2>
 
         {isMobile ? (
           <button
-            className="menu-btn"
+            className="btn-menu"
             onClick={() => setIsMenuOpen(!isMenuOpen)}
+            aria-label="Abrir menu"
+            aria-expanded={isMenuOpen}
           >
-            {isMenuOpen ? <MdClose size={32} /> : <MdOutlineMenu size={32} />}
+            {isMenuOpen ? (
+              <IoCloseOutline className="menu-icon" size={25} />
+            ) : (
+              <CiMenuBurger className="menu-icon" size={25} />
+            )}
           </button>
         ) : (
-          <nav className="nav-items">
+          <div className="web-items">
             <Nav
-              items={navItems}
+              items={contextNav}
               isMobile={false}
               isSubmenuVisible={isSubmenuVisible}
               onMouseEnter={handleMouseEnter}
               onMouseLeave={handleMouseLeave}
             />
-          </nav>
+          </div>
         )}
 
         {isMobile && isMenuOpen && (
-          <header id="mobile-menu">
-            <Nav items={navItems} isMobile />
-          </header>
+          <div id="mobile-menu">
+            <Nav items={contextNav} isMobile />
+          </div>
         )}
-      </header>
-    </div>
+      </nav>
+    </header>
   );
 }
 

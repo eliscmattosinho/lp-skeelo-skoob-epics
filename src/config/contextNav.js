@@ -1,7 +1,7 @@
-export const navItems = [
+export const contextNav = [
     {
         label: "Sobre",
-        href: "#sobre",
+        href: "",
         children: [
             { label: "Contexto", href: "#contexto" },
             { label: "Elementos", href: "#elementos" },

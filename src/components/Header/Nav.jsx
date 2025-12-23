@@ -1,5 +1,7 @@
 import { IoIosArrowDown, IoIosArrowUp } from "react-icons/io";
 
+import "./Nav.css"
+
 function Nav({
   items,
   isMobile,
@@ -17,13 +19,13 @@ function Nav({
           return (
             <div
               key={item.label}
-              id="sub-items"
+              id="submenu"
               onMouseEnter={!isMobile ? onMouseEnter : undefined}
               onMouseLeave={!isMobile ? onMouseLeave : undefined}
             >
               <a
                 href={item.href}
-                className={isMobile ? "mobile-item" : "nav-item"}
+                className={isMobile ? "mobile-item" : "web-item"}
               >
                 {item.label}
 
@@ -39,16 +41,16 @@ function Nav({
               </a>
 
               {(isMobile || isSubmenuVisible) && (
-                <ul className={isMobile ? "mobile-sub-menu" : "sub-items"}>
+                <ul className={isMobile ? "mobile-submenu" : "submenu"}>
                   {item.children.map((child) => (
                     <li
                       key={child.label}
-                      className={isMobile ? "mobile-sub-menu-item" : undefined}
+                      className={isMobile ? "mobile-subitem" : undefined}
                     >
                       <a
                         href={child.href}
                         className={
-                          isMobile ? "mobile-sub-item" : "nav-sub-item"
+                          isMobile ? "mobile-subitem" : "web-subitem"
                         }
                       >
                         {child.label}
@@ -65,7 +67,7 @@ function Nav({
           <a
             key={item.label}
             href={item.href}
-            className={isMobile ? "mobile-item" : "nav-item"}
+            className={isMobile ? "mobile-item" : "web-item"}
           >
             {item.label}
           </a>
