@@ -1,62 +1,48 @@
-.btn-group {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-}
-
-.btn-skoob {
-    background-color: #2c7fa3;
-}
-
-.btn-skeelo {
-    background-color: #2da44a;
-}
-
-.btn-publishnews {
-    background-color: #113e1c;
-}
-
-.btn-skoob,
-.btn-skeelo,
-.btn-publishnews {
-    text-transform: uppercase;
-    color: var(--white);
-    transition: transform 0.3s ease-in-out;
-}
-
-.btn-skoob:hover,
-.btn-skeelo:hover,
-.btn-publishnews:hover {
-    transform: scale(1.1);
-}
-
-.img-group {
+.context-section {
     display: flex;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
     gap: 2rem;
-    position: relative;
 }
 
-img.skoob,
-img.skeelo,
-img.pokemon {
-    background: var(--white);
-    width: 70px;
-    height: 70px;
+.context-section .text-group {
+    max-width: 600px;
 }
 
 .img-group::before {
     content: "";
     position: absolute;
-    width: 4px;
-    background: linear-gradient(180deg, #2da44a 0%, #3dd6b3 50%, #2c7fa3 100%);
-    top: 0;
-    bottom: 0;
+    background: var(--thematic-item);
+    box-shadow: var(--item-shadow);
+
+    height: 4px;
+    width: 80%;
+    top: 50%;
     left: 50%;
-    transform: translateX(-50%);
-    box-shadow: 6px 6px 6px rgba(33, 33, 33, 0.251);
+    transform: translate(-50%, -50%);
+}
+
+.btn-group {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.img-group {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 2rem;
+    position: relative;
+    margin-top: 1rem;
+}
+
+img.skoob {
+    background: var(--white);
 }
 
 .img-circle-container {
@@ -64,65 +50,76 @@ img.pokemon {
     display: inline-block;
     padding: 4px;
     border-radius: 50%;
-    background: linear-gradient(90deg, #2da44a 0%, #3dd6b3 50%, #2c7fa3 100%);
+    background: var(--thematic-item);
+
+    width: 80px;
+    aspect-ratio: 1 / 1;
+    border-radius: 50%;
+    overflow: hidden;
 
     z-index: 1;
-    box-shadow: 6px 6px 6px rgba(0, 0, 0, 0.25);
+    box-shadow: var(--item-shadow);
+    animation: float 3s ease-in-out infinite;
 }
 
 .img-circle-container .img {
-    display: block;
+    display: flex;
     border-radius: 50%;
-    transition: transform 0.3s ease-in-out;
+
+    width: 100%;
+    height: 100%;
+    object-fit: fill;
     cursor: zoom-in;
+
+    transition: transform 0.3s ease-in-out;
 }
 
 .img-circle-container .img:hover {
     transform: scale(1.2);
 }
 
-.text-group {
-    max-width: 600px;
+.btn-skoob {
+    background-color: var(--blue);
 }
 
-.img-group .img-circle-container {
-    animation: float 3s ease-in-out infinite;
+.btn-skeelo {
+    background-color: var(--light-green);
 }
 
-@media (min-width: 320px) and (max-width: 768px) {
-    .btn-group,
+.btn-publishnews {
+    background-color: var(--dark-green);
+}
+
+.btn-skoob,
+.btn-skeelo,
+.btn-publishnews {
+    text-transform: uppercase;
+    color: var(--white);
+}
+
+@media (min-width: 768px) {
     .img-group {
         display: flex;
-        flex-direction: row;
-        margin: 0 auto;
-        justify-content: space-between;
-    }
-
-    .img-group {
-        gap: 4rem;
-        margin-top: 1rem;
-    }
-
-    .img-group::before {
-        height: 4px;
-        width: 80%;
-        background: linear-gradient(90deg, #2da44a 0%, #3dd6b3 50%, #2c7fa3 100%);
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
     }
 
     .btn-group {
         display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
-        align-items: center;
-        width: 100%;
-        gap: 3rem;
+        flex-direction: row;
+        justify-content: space-between;
+    }
+
+    .img-group::before {
+        transform: translate(-50%, -50%) rotate(90deg);
     }
 
     .context-section {
-        padding: 0 30px;
+        display: grid;
+        grid-template-columns: 2fr 1fr;
+        align-items: center;
+        gap: 10px;
     }
 }
 
