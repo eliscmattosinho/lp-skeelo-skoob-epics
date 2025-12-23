@@ -150,17 +150,17 @@ function EpicDetails({ productName, epicId, epicTitle }) {
 
     const previousButtonRef = useRef(null);
     const nextButtonRef = useRef(null);
-    const navItemsRef = useRef([]);
+    const contextNavRef = useRef([]);
     const { isOpen, modalData, openModal, closeModal } = useModal();
 
     const currentEpic = data.find(epic => epic.identificador === epicId);
 
     useLayoutEffect(() => {
         const navElements = document.querySelectorAll('.block-elements-nav');
-        navItemsRef.current = Array.from(navElements);
+        contextNavRef.current = Array.from(navElements);
 
-        if (previousButtonRef.current && nextButtonRef.current && navItemsRef.current.length > 0) {
-            initializeNavigation(previousButtonRef.current, nextButtonRef.current, navItemsRef.current, currentBlock, currentEpic);
+        if (previousButtonRef.current && nextButtonRef.current && contextNavRef.current.length > 0) {
+            initializeNavigation(previousButtonRef.current, nextButtonRef.current, contextNavRef.current, currentBlock, currentEpic);
         }
     }, [data, currentBlock, currentEpic]);
 

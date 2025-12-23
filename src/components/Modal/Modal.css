@@ -13,7 +13,7 @@
     border-radius: 10px;
 }
 
-.close-icon-modal {
+.btn-close-modal {
     display: flex;
     flex-direction: row;
     justify-content: flex-end;
@@ -33,7 +33,6 @@
 
 .modal-title {
     color: var(--white);
-    font-size: 16px;
     text-align: center;
 }
 
@@ -50,17 +49,13 @@
     padding: 6px;
 }
 .modal-content .epic-section-title {
-    font-size: 18px;
     font-weight: 700;
 }
 .modal-content .epic-expand-container h4 {
     font-weight: 700;
 }
-.modal-content .epic-expand-container p, .modal-content .epic-expand-container li {
-    font-size: 14px;
-}
+
 .modal-content .epic-section-title {
-    font-size: 15px;
     text-align: center;
     margin-bottom: 10px;
 }
@@ -87,7 +82,7 @@ body.modal-open {
 .modal-container {
     opacity: 0;
     visibility: hidden;
-    transition: opacity 0.3s ease, visibility 0.3s ease;
+    transition: opacity 0.3s ease, visibility 0.3s ease-in-out;
 }
 
 .modal-container.open {
@@ -97,7 +92,7 @@ body.modal-open {
 
 .modal-block {
     transform: scale(0.8);
-    transition: transform 0.3s ease;
+    transition: transform 0.3s ease-in-out;
 }
 
 .modal-container.open .modal-block {
@@ -119,10 +114,6 @@ body.modal-open {
         display: none;
     }
 
-    .modal-title {
-        font-size: 14px;
-    }
-
     .modal-content {
         margin: 10px 0;
     }
@@ -142,8 +133,5 @@ body.modal-open {
 @media (min-width: 768px) {
     .modal-header {
         justify-content: space-around;
-    }
-    .modal-title {
-        font-size: 20px;
     }
 }

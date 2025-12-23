@@ -43,15 +43,17 @@ function Skeelo() {
     }
 
     return (
-        <Epic
-            logo={skeeLogo}
-            title="Skeelo"
-            description={skeeloDescription}
-            mocImage={skeeloMoc}
-            rangeItems={skeeloRangeItems}
-            epics={skeeloEpics}
-            theme="skeelo"
-        />
+        <section className="section-container">
+            <Epic
+                logo={skeeLogo}
+                title="Skeelo"
+                description={skeeloDescription}
+                mocImage={skeeloMoc}
+                rangeItems={skeeloRangeItems}
+                epics={skeeloEpics}
+                theme="skeelo"
+            />
+        </section>
     );
 }
 

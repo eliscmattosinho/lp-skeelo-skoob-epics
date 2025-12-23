@@ -34,7 +34,7 @@ function Modal({ isOpen, onClose, title, productName, contentType, contentData }
 
     return (
         <div className={`modal-container ${isOpen ? 'open' : ''}`}>
-            <span className="close-icon close-icon-modal" onClick={onClose}>
+            <span className="btn-close btn-close-modal" onClick={onClose}>
                 <IoIosCloseCircleOutline />
             </span>
             <div className="modal-block">

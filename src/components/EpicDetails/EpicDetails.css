@@ -35,7 +35,6 @@
 
 .nav-icon {
     cursor: pointer;
-    font-size: 25px;
     z-index: 1;
 }
 
@@ -47,17 +46,14 @@
 }
 
 h3.epic-section-title {
-    font-size: 16px;
     margin-bottom: 10px;
 }
 
 h5.metric-title {
     font-weight: 600;
-    font-size: 14px;
 }
 
 .user-story-title {
-    font-size: 14px;
     margin-bottom: 5px;
 }
 
@@ -106,7 +102,7 @@ h5.metric-title {
     background: linear-gradient(270deg, #144921 3.95%, #30AF4F 96.05%);
 }
 .btn-skoob {
-    background: linear-gradient(270deg, #055568 3.95%, #2C7FA3 96.05%);
+    background: linear-gradient(270deg, #055568 3.95%, #2896EA 96.05%);
 }
 
 .epic-expand-container {
@@ -136,7 +132,6 @@ ul, ol  {
 }
 
 .epic-context-text, .user-story-content p, .user-story-content ol li, .dod-details ul li {
-    font-size: 14px;
     text-align: justify;
 }
 
@@ -210,7 +205,6 @@ ul, ol  {
 
 .metric-value {
     font-weight: 600;
-    font-size: 18px;
 }
 
 .hide {
@@ -234,10 +228,6 @@ ul, ol  {
 @media (min-width: 480px) and (max-width: 768px) {
     .navigation-controls {
         gap: 19rem;
-    }
-
-    .nav-icon {
-        font-size: 20px;
     }
 
     .epic-buttons-container {

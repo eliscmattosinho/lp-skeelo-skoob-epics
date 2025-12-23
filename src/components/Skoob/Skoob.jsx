@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import Epic from '@/components/Epic/Epic';
 import './Skoob.css';
-import skoobLogo from '@/assets/image-icons/skoob-icon.png';
+import skoobLogo from '@/assets/image-icons/skoob-logo.svg';
 import skeeloMoc from '@/assets/image-icons/skoob-epics.png';
 import skoobEpicOne from '@/assets/image-icons/skoob-epi-1.png';
 import skoobEpicTwo from '@/assets/image-icons/skoob-epi-2.png';
@@ -29,7 +29,7 @@ function Skoob() {
             ...epic,
             image: epicImages[index] || null
         }));
-        
+
         setSkoobEpics(epicsWithImages);
     }, [epicData]);
 
@@ -38,15 +38,17 @@ function Skoob() {
     }
 
     return (
-        <Epic
-            logo={skoobLogo}
-            title="Skoob"
-            description={skoobDescription}
-            mocImage={skeeloMoc}
-            rangeItems={skoobRangeItems}
-            epics={skoobEpics}
-            theme="skoob"
-        />
+        <section className="section-container">
+            <Epic
+                logo={skoobLogo}
+                title="Skoob"
+                description={skoobDescription}
+                mocImage={skeeloMoc}
+                rangeItems={skoobRangeItems}
+                epics={skoobEpics}
+                theme="skoob"
+            />
+        </section>
     );
 }
 

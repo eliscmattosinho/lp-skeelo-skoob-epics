@@ -1,18 +1,11 @@
 .skoob-title {
-    font-size: 40px;
-    color: #2C7FA3;
+    color: #2896EA;
 }
 
 .skoob-range {
-    background: linear-gradient(90deg, #2C7FA3 18.03%, #10303D 76.53%);
+    background: linear-gradient(90deg, #2896EA 18.03%, #10303D 76.53%);
 }
 
 .hide-skoob-epic {
     background: rgba(44, 127, 163, 0.5);
-}
-
-@media (min-width: 320px) and (max-width: 768px) {
-    .skoob-title {
-        font-size: 30px;
-    }
 }

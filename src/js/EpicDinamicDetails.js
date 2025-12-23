@@ -28,7 +28,7 @@ const hideElementsWithDelay = (themeSection, epicId, theme) => {
     if (!epicFrame) return;
 
     // Esconde elementos com animação
-    ['hide', 'frame-infos-action'].forEach(cls => {
+    ['hide', 'frame-action'].forEach(cls => {
         const element = epicFrame.querySelector(`.${cls}-${theme}-epic`) || epicFrame.querySelector(`.${cls}`);
         if (element) {
             applyAnimation(element, () => {
@@ -87,7 +87,7 @@ const applyTransitions = (epicId, theme) => {
             epicDetails.style.opacity = '1';
         }, 10);
 
-        const iconClose = document.querySelector(`#${theme}-close.close-icon.invisible`);
+        const iconClose = document.querySelector(`#${theme}-close.btn-close.invisible`);
         if (iconClose) {
             iconClose.classList.remove('invisible');
         }
@@ -108,7 +108,7 @@ export const restoreEpicElements = (theme) => {
 
     const epicFrames = themeSection.querySelectorAll('.mockup-frame');
     epicFrames.forEach(epicFrame => {
-        ['hide', 'frame-infos-action'].forEach(cls => {
+        ['hide', 'frame-action'].forEach(cls => {
             const element = epicFrame.querySelector(`.${cls}-${theme}-epic`) || epicFrame.querySelector(`.${cls}`);
             if (element) {
                 Object.assign(element.style, {
