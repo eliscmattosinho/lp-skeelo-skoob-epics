@@ -1,13 +1,16 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { ScreenProvider } from "@/context/ScreenContext";
 import LandingPage from "@/pages/LandingPage";
 
 function App() {
   return (
-    <Router basename="/lp-skeelo-skoob-epics">
-      <Routes>
-        <Route path="/" element={<LandingPage />} />
-      </Routes>
-    </Router>
+    <ScreenProvider>
+      <Router basename="/lp-skeelo-skoob-epics">
+        <Routes>
+          <Route path="/" element={<LandingPage />} />
+        </Routes>
+      </Router>
+    </ScreenProvider>
   );
 }
 
