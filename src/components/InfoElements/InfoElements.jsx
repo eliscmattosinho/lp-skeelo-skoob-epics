@@ -32,7 +32,7 @@ const items = [
         id: "dod",
         title: "DoD",
         img: dodImage,
-        text: "Definição de pronto, critérios para o item ser considerado concluído.",
+        text: "A definição de pronto reúne critérios para um item ser considerado concluído.",
     },
 ];
 
@@ -61,8 +61,8 @@ function InfoElements() {
     }, []);
 
     return (
-        <section id="elementos" className="section-container section-bg">
-            <div ref={containerRef} className="section-elements content-group">
+        <section id="elementos" className="section-bg">
+            <div ref={containerRef} className="article-content">
                 <article className="element-container">
                     <img
                         className="element-img"
@@ -92,7 +92,7 @@ function InfoElements() {
                     </div>
                 </article>
 
-                <section className="element-group content-section">
+                <section className="element-group section-container">
                     {items.map(({ id, title, img, text }) => {
                         const isOpen = expanded === id;
 
