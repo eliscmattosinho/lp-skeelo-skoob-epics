@@ -1,61 +1,92 @@
-.title {
-    background-image: linear-gradient(90deg, #2DA44A 0%, #3DD6B3 50%, #2C7FA3 100%);
-    color: transparent;
-    background-clip: text;
-    font-size: 5rem;
-}
-
 #bg-green-top {
-    margin-right: 20px;
-    margin-left: 20px;
-    padding: 60px;
+    margin: 0 10px;
+    padding: 30px;
+    border-radius: 30px 30px 0 0;
 
-    background: linear-gradient(180deg, rgba(61, 214, 179, 0.2) 0%, rgba(91, 220, 191, 0.168839) 35.76%, rgba(121, 227, 203, 0.137677) 71.53%, rgba(255, 255, 255, 0) 100%);
+    background: var(--film-top);
 }
 
-.center {
+.lp-title {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 2rem;
+}
+
+.title {
+    font-size: clamp(2.5rem, calc(2.5rem + 2.5vw), 5rem);
+    line-height: 1;
+}
+
+.title-gradient {
+    display: inline;
+    line-height: inherit;
+    box-decoration-break: clone;
+    -webkit-box-decoration-break: clone;
+
+    background-image: var(--thematic-item);
+
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+
+    color: transparent;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.img-container {
+    overflow: hidden;
+    line-height: 0;
+}
+
+.books {
+    display: block;
+    filter: drop-shadow(3px 3px 3px rgba(33, 33, 33, 0.30));
+    padding: 10px 10px 0 10px;
+}
+
+.hero-content {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 5rem;
-}
-
-.typing-container {
-    font-size: 1.2rem;
-}
-
-.subtitle {
-    margin-bottom: -20px;
+    gap: 3rem;
 }
 
 .blinking-cursor {
-  animation: blink 1s step-end infinite;
+    animation: blink 1s step-end infinite;
 }
 
 @media (max-width: 480px) {
     .center {
-        gap:2rem;
+        gap: 2rem;
     }
 
     .typing-container {
         text-align: center;
     }
+}
 
-    .title {
-        font-size: 3rem;
-    }
-
-    .subtitle, .typing-container p {
-        font-size: 0.8rem;
-        margin-bottom: 0px;
-    }
-
+@media (min-width: 768px) {
     #bg-green-top {
-        padding: 30px;
+        padding: 60px;
+        margin: 0 20px;
+        border-radius: 60px 60px 0 0;
+    }
+
+    .typing-container {
+        white-space: nowrap;
     }
 }
 
 @keyframes blink {
-  from, to { opacity: 0; }
-  50% { opacity: 1; }
+
+    from,
+    to {
+        opacity: 0;
+    }
+
+    50% {
+        opacity: 1;
+    }
 }

@@ -6,26 +6,29 @@ import booksImage from "@/assets/image-icons/books.svg";
 
 function About() {
     return (
-        <div id="bg-green-top" className="content-container">
-            <section id="sobre" className="content">
-                <article className="section-group">
-                    <div className="title-container">
-                        <h4 className="subtitle">
+        <div id="bg-green-top">
+            <section id="sobre" className="section-container">
+                <article className="article-content">
+                    <div className="title-container lp-title">
+                        <h3 className="subtitle">
                             Ecossistema de leitura digital
-                        </h4>
-                        <h1 className="title">Skeelo-Skoob</h1>
+                        </h3>
+                        <h1 className="title">
+                            <span className="title-gradient">Skeelo-Skoob</span>
+                        </h1>
                     </div>
 
-                    <div className="center">
+                    <div className="hero-content">
                         <div className="typing-container">
                             <TypingEffect
-                                text="A mudança no mercado literário começa aqui."
+                                text={`A mudança no mercado literário começa aqui. \u{1F4DA}`}
                                 speed={60}
                             />
                         </div>
                         <figure className="img-container">
                             <img
                                 src={booksImage}
+                                className="books"
                                 loading="eager"
                                 alt="Ilustração de livros verdes empilhados."
                             />
