@@ -1,9 +1,8 @@
 import { useState } from "react";
 import "./Contact.css";
 
-import contactCardBlue from '@/assets/image-icons/contact-card-blue.svg';
-import contactCardRed from '@/assets/image-icons/contact-card-red.svg';
-import contactCardDark from '@/assets/image-icons/contact-card.svg';
+import TypingEffect from "@/js/TypingEffect";
+import Envelope from "@/components/Letter/Envelope";
 
 function Contact() {
     const email = "eliscmattosinho@gmail.com";
@@ -20,58 +19,65 @@ function Contact() {
     };
 
     return (
-        <div id="bg-green-bottom" className="content-container">
-            <div id="contato" className="content">
-                <div className="section-group">
+        <div id="bg-green-bottom">
+            <section id="contato" className="section-container">
+                <article className="article-content">
                     <div className="title-container">
-                        <div className='contact-block'>
-                            <h3 className="section-title">Contato</h3>
-                            <h4 className="subtitle">Quer saber onde me encontrar?</h4>
-                        </div>
+                        <h2 className="section-title">
+                            Contato
+                        </h2>
+                        <h3 className="subtitle">
+                            <TypingEffect
+                                text={`Quer saber onde me encontrar? \u{2728}`}
+                                speed={60}
+                            />
+                        </h3>
                     </div>
 
-                    <div className="contact-card-block">
-                        <div className="block-contact">
-                            <p className="p-contact">
-                                <a
-                                    href="https://www.linkedin.com/in/eliscmattosinho/"
-                                    target="_blank"
-                                    rel="noreferrer"
-                                >
-                                    LinkedIn
-                                </a>
-                            </p>
-                            <img className="img-contact" src={contactCardBlue} alt="" />
-                        </div>
+                    <div className="envelope-group">
+                        <Envelope theme="linkedin">
+                            <button
+                                type="button"
+                                className="btn-contact"
+                                onClick={() =>
+                                    window.open(
+                                        "https://www.linkedin.com/in/eliscmattosinho/",
+                                        "_blank",
+                                        "noreferrer"
+                                    )
+                                }
+                            >
+                                LinkedIn
+                            </button>
+                        </Envelope>
 
-                        <div className="block-contact">
-                            <p className="p-contact">
-                                <button
-                                    type="button"
-                                    onClick={copiarEmail}
-                                    className="email-button"
-                                >
-                                    {copiado ? "Copiado!" : "E-mail"}
-                                </button>
-                            </p>
-                            <img className="img-contact" src={contactCardRed} alt="" />
-                        </div>
+                        <Envelope theme="email">
+                            <button
+                                type="button"
+                                className="btn-contact"
+                                onClick={copiarEmail}>
+                                {copiado ? "Copiado!" : "E-mail"}
+                            </button>
+                        </Envelope>
 
-                        <div className="block-contact">
-                            <p className="p-contact">
-                                <a
-                                    href="https://github.com/eliscmattosinho"
-                                    target="_blank"
-                                    rel="noreferrer"
-                                >
-                                    GitHub
-                                </a>
-                            </p>
-                            <img className="img-contact" src={contactCardDark} alt="" />
-                        </div>
+                        <Envelope theme="github">
+                            <button
+                                type="button"
+                                className="btn-contact"
+                                onClick={() =>
+                                    window.open(
+                                        "https://github.com/eliscmattosinho",
+                                        "_blank",
+                                        "noreferrer"
+                                    )
+                                }
+                            >
+                                GitHub
+                            </button>
+                        </Envelope>
                     </div>
-                </div>
-            </div>
+                </article>
+            </section>
         </div>
     );
 }
