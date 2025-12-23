@@ -1,7 +1,7 @@
-import { useEffect, useReducer } from "react";
+import { useEffect, useReducer, useMemo } from "react";
 
 const initialState = {
-  displayedText: "",
+  displayedChars: [], // armazenamos como array
   index: 0,
   phase: "typing", // typing | deleting
 };
@@ -11,14 +11,14 @@ function reducer(state, action) {
     case "TYPE_NEXT":
       return {
         ...state,
-        displayedText: state.displayedText + action.char,
+        displayedChars: [...state.displayedChars, action.char],
         index: state.index + 1,
       };
 
     case "DELETE_PREV":
       return {
         ...state,
-        displayedText: state.displayedText.slice(0, -1),
+        displayedChars: state.displayedChars.slice(0, -1),
       };
 
     case "SET_PHASE":
@@ -28,7 +28,7 @@ function reducer(state, action) {
       };
 
     case "RESET":
-      return initialState;
+      return { displayedChars: [], index: 0, phase: "typing" };
 
     default:
       return state;
@@ -37,18 +37,17 @@ function reducer(state, action) {
 
 function TypingEffect({ text, speed = 100, deleteSpeed = 50, pause = 1500 }) {
   const [state, dispatch] = useReducer(reducer, initialState);
-  const { displayedText, index, phase } = state;
+  const { displayedChars, index, phase } = state;
+
+  const chars = useMemo(() => Array.from(text), [text]); // caracteres completos
 
   useEffect(() => {
     let timeout;
 
     if (phase === "typing") {
-      if (index < text.length) {
+      if (index < chars.length) {
         timeout = setTimeout(() => {
-          dispatch({
-            type: "TYPE_NEXT",
-            char: text.charAt(index),
-          });
+          dispatch({ type: "TYPE_NEXT", char: chars[index] });
         }, speed);
       } else {
         timeout = setTimeout(() => {
@@ -58,7 +57,7 @@ function TypingEffect({ text, speed = 100, deleteSpeed = 50, pause = 1500 }) {
     }
 
     if (phase === "deleting") {
-      if (displayedText.length > 0) {
+      if (displayedChars.length > 0) {
         timeout = setTimeout(() => {
           dispatch({ type: "DELETE_PREV" });
         }, deleteSpeed);
@@ -68,11 +67,11 @@ function TypingEffect({ text, speed = 100, deleteSpeed = 50, pause = 1500 }) {
     }
 
     return () => clearTimeout(timeout);
-  }, [phase, index, displayedText, text, speed, deleteSpeed, pause]);
+  }, [phase, index, displayedChars, chars, speed, deleteSpeed, pause]);
 
   return (
     <p className="p-typing">
-      {displayedText}
+      {displayedChars.join("")} {/* reconstruímos a string */}
       <span className="blinking-cursor" aria-hidden="true">
         |
       </span>

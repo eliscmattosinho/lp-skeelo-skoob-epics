@@ -14,7 +14,7 @@ import Footer from "@/components/Footer/Footer";
 
 const LandingPage = () => {
   return (
-    <div>
+    <div className="lp-structure">
       <Header />
       <About />
       <InfoContext />

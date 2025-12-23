@@ -1,9 +1,9 @@
-export function initializeNavigation(previousButton, nextButton, navItems, currentBlock, currentEpic) {
+export function initializeNavigation(previousButton, nextButton, contextNav, currentBlock, currentEpic) {
     let currentIndex = currentBlock;
 
     function updateNavigation() {
         // Verifica os blocos do épico específico
-        const epicBlocks = navItems.filter(item => item.dataset.epicId === currentEpic.identificador);
+        const epicBlocks = contextNav.filter(item => item.dataset.epicId === currentEpic.identificador);
 
         // Atualiza visibilidade dos blocos
         epicBlocks.forEach((item, index) => {
@@ -37,7 +37,7 @@ export function initializeNavigation(previousButton, nextButton, navItems, curre
     });
 
     nextButton.addEventListener('click', () => {
-        if (currentIndex < navItems.length - 1) {
+        if (currentIndex < contextNav.length - 1) {
             currentIndex++;
             updateNavigation();
         }
