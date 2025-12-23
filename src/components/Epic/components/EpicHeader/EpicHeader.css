@@ -1,0 +1,58 @@
+.epic-header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    flex-wrap: nowrap;
+    gap: 2rem;
+}
+
+.epic-about {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.epic-title-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 5px;
+}
+
+.title-logo {
+    display: block;
+    width: 30px;
+    height: auto;
+}
+
+.epic-description {
+    width: 400px;
+}
+
+.group-mockup {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.mockup-img {
+    width: 70%;
+    height: auto;
+}
+
+@media (min-width: 320px) and (max-width: 768px) {
+    .epic-header {
+        justify-content: flex-start;
+    }
+
+    .epic-description {
+        display: flex;
+        flex-direction: column;
+        width: 90%;
+    }
+
+    .group-mockup {
+        display: none;
+    }
+}

@@ -1,0 +1,86 @@
+.frame-container {
+    position: relative;
+    display: inline-block;
+}
+
+.img-frame {
+    display: block;
+    max-width: 230px;
+    height: auto;
+    border: 2px solid var(--black);
+    border-radius: 10px;
+    box-shadow: 6px 6px 12px rgba(33, 33, 33, 0.604);
+}
+
+.hide-epic {
+    z-index: 2;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 99%;
+    height: 99%;
+    border-radius: 10px;
+    backdrop-filter: blur(35px);
+}
+
+.cam-point,
+.frame-action {
+    position: absolute;
+    z-index: 3;
+}
+
+.cam-point {
+    top: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 5px;
+    height: 5px;
+    border-radius: 20px;
+    background: var(--black);
+    backdrop-filter: blur(35px);
+}
+
+.frame-action {
+    position: absolute;
+    width: 90%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    box-sizing: border-box;
+    z-index: 2;
+}
+
+.frame-action .frame-title {
+    font-weight: 500;
+    color: var(--white);
+}
+
+.frame-action svg path {
+    color: var(--white);
+}
+
+.frame-title {
+    max-width: 180px;
+}
+
+.btn.btn-unlock {
+    font-weight: 500;
+    transition: transform 0.3s ease-in-out;
+}
+
+.btn.btn-unlock:hover {
+    transform: scale(1.1);
+}
+
+@media (min-width: 320px) and (max-width: 768px) {
+        .mockup-frame {
+        max-width: 200px;
+    }
+}
