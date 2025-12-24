@@ -1,86 +1,80 @@
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import "./Range.css";
 
-function Range({ items, theme, speed = 1.1 }) {
-    const containerRef = useRef(null);
-    const animationRef = useRef(null);
-    const measureRef = useRef(null);
+function Range({ items, theme, speed = 200, rowGap = 32 }) {
+  const containerRef = useRef(null);
+  const trackRef = useRef(null);
+  const firstRowRef = useRef(null);
+  const rafRef = useRef(null);
 
-    const [repeatCount, setRepeatCount] = useState(2);
+  const offsetRef = useRef(0);
+  const [trackItems, setTrackItems] = useState([]);
 
-    // Mede a largura real de uma sequência de items
-    useEffect(() => {
-        if (!measureRef.current || !containerRef.current) return;
+  // Ajusta duplicação para preencher toda a largura do container
+  useEffect(() => {
+    if (!containerRef.current || !firstRowRef.current) return;
 
-        const containerWidth = containerRef.current.clientWidth;
-        const contentWidth = measureRef.current.scrollWidth;
+    const containerWidth = containerRef.current.offsetWidth;
+    const firstRowWidth = firstRowRef.current.scrollWidth + rowGap;
 
-        if (contentWidth === 0) return;
+    const repeatCount = Math.ceil(containerWidth / firstRowWidth) + 2;
 
-        const minWidth = containerWidth * 2;
-        const neededRepeats = Math.ceil(minWidth / contentWidth);
+    const newTrackItems = [];
+    for (let i = 0; i < repeatCount; i++) {
+      newTrackItems.push(...items);
+    }
+    setTrackItems(newTrackItems);
+  }, [items, rowGap]);
 
-        setRepeatCount(Math.max(2, neededRepeats));
-    }, [items]);
+  // Animação contínua
+  useEffect(() => {
+    if (!trackItems.length || !firstRowRef.current) return;
 
-    const loopItems = useMemo(() => {
-        return Array.from({ length: repeatCount })
-            .flatMap(() => items);
-    }, [items, repeatCount]);
+    let lastTime = performance.now();
 
-    useEffect(() => {
-        const container = containerRef.current;
-        if (!container) return;
+    const animate = (now) => {
+      const delta = now - lastTime;
+      lastTime = now;
 
-        let lastTime = 0;
-        const fps = 60;
-        const frameDuration = 1000 / fps;
+      offsetRef.current += (speed * delta) / 1000;
 
-        const autoScroll = (time) => {
-            if (time - lastTime >= frameDuration) {
-                container.scrollLeft += speed;
-                lastTime = time;
+      const rowWidth = firstRowRef.current.scrollWidth + rowGap;
 
-                const resetPoint = container.scrollWidth / repeatCount;
-                if (container.scrollLeft >= resetPoint) {
-                    container.scrollLeft -= resetPoint;
-                }
-            }
+      if (offsetRef.current >= rowWidth) {
+        offsetRef.current -= rowWidth;
+      }
 
-            animationRef.current = requestAnimationFrame(autoScroll);
-        };
+      if (trackRef.current) {
+        trackRef.current.style.transform = `translate3d(${-offsetRef.current}px, 0, 0)`;
+      }
 
-        animationRef.current = requestAnimationFrame(autoScroll);
+      rafRef.current = requestAnimationFrame(animate);
+    };
 
-        return () => cancelAnimationFrame(animationRef.current);
-    }, [speed, repeatCount]);
+    rafRef.current = requestAnimationFrame(animate);
+    return () => cancelAnimationFrame(rafRef.current);
+  }, [trackItems, rowGap, speed]);
 
-    return (
-        <div ref={containerRef} className={`range ${theme}-range`}>
-            {/* elemento invisível apenas para medição */}
-            <div
-                ref={measureRef}
-                style={{
-                    position: "absolute",
-                    visibility: "hidden",
-                    whiteSpace: "nowrap",
-                    pointerEvents: "none",
-                }}
-            >
-                {items.map((item, index) => (
-                    <p className="range-tag" key={`measure-${index}`}>
-                        {item}
-                    </p>
-                ))}
-            </div>
-
-            {loopItems.map((item, index) => (
-                <p className="range-tag" key={`${item}-${index}`}>
-                    {item}
-                </p>
-            ))}
+  return (
+    <div ref={containerRef} className={`range ${theme}-range`}>
+      <div ref={trackRef} className="range-track">
+        <div className="range-row" ref={firstRowRef}>
+          {trackItems.map((item, i) => (
+            <p className="range-tag" key={i}>{item}</p>
+          ))}
         </div>
-    );
+
+        {/* gambs fila invisível como espaçador */}
+        <div className="range-row spacer" style={{ width: `${rowGap}px` }} />
+
+        <div className="range-row">
+          {trackItems.map((item, i) => (
+            <p className="range-tag" key={i}>{item}</p>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
 }
 
 export default Range;
