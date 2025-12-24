@@ -1,58 +1,52 @@
-.epic-header {
+.product-header {
     display: flex;
     flex-direction: row;
-    justify-content: space-around;
+    justify-content: flex-start;
     align-items: center;
     flex-wrap: nowrap;
     gap: 2rem;
 }
 
-.epic-about {
+.product-about {
     display: flex;
     flex-direction: column;
     gap: 1rem;
+    width: 100%;
 }
 
-.epic-title-container {
+.product-branding {
     display: flex;
     flex-direction: row;
     align-items: center;
     gap: 5px;
 }
 
-.title-logo {
+.product-title {
+    font-size: var(--font-lg);
+}
+
+.product-icon {
     display: block;
-    width: 30px;
+    width: 26px;
     height: auto;
 }
 
-.epic-description {
-    width: 400px;
+.img-mockups {
+    display: none;
 }
 
-.group-mockup {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.mockup-img {
-    width: 70%;
-    height: auto;
-}
-
-@media (min-width: 320px) and (max-width: 768px) {
-    .epic-header {
-        justify-content: flex-start;
+@media (min-width: 768px) {
+    .product-about {
+        width: 100%;
+        max-width: 450px;
     }
 
-    .epic-description {
+    .img-mockups {
         display: flex;
-        flex-direction: column;
-        width: 90%;
+        justify-content: center;
+        align-items: center;
+        width: 70%;
+        height: auto;
     }
 
-    .group-mockup {
-        display: none;
-    }
 }
