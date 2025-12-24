@@ -23,8 +23,8 @@
   --text-black: #454545;
 
   --font-sm: clamp(0.875rem, calc(0.8rem + 0.3vw), 1rem);
-  --font-md: clamp(1rem, calc(0.9rem + 0.5vw), 1.25rem);
-  --font-lg: clamp(1.25rem, calc(1.1rem + 0.8vw), 1.75rem);
+  --font-md: clamp(1.125rem, calc(1rem + 0.6vw), 1.4rem);
+  --font-lg: clamp(1.5rem, calc(1.3rem + 1vw), 2rem);
 }
 
 /* GENERAL STRUCTURE */
@@ -57,7 +57,8 @@
 }
 
 /* ELEMENTS */
-h2, h3 {
+h2,
+h3 {
   font-size: var(--font-md);
 }
 
@@ -66,7 +67,7 @@ button {
   background: none;
   font-size: var(--font-sm);
   font-weight: 600;
-  
+
   transition: all 0.3s ease-in-out;
 }
 
@@ -87,7 +88,11 @@ a {
 
 .btn-close path {
   color: var(--red);
+}
+
+.btn-close:hover {
   cursor: pointer;
+  transform: scale(1.1);
 }
 
 p {
@@ -145,4 +150,8 @@ img {
 
 .w-600 {
   font-weight: 600;
+}
+
+.hide {
+  display: none;
 }

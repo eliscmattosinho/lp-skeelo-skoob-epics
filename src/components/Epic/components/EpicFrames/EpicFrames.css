@@ -12,6 +12,13 @@
     box-shadow: 6px 6px 12px rgba(33, 33, 33, 0.604);
 }
 
+.mockup-frame {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
 .hide-epic {
     z-index: 2;
     position: absolute;

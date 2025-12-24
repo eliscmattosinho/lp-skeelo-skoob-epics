@@ -6,8 +6,8 @@ import Range from "@/components/Range/Range";
 import EpicFrames from "./components/EpicFrames/EpicFrames";
 import EpicDetails from "@/components/EpicDetails/EpicDetails";
 
-import { useEpicState } from "./hooks/useEpicState";
-import { useEpicDrag } from "./hooks/useEpicDrag";
+import { useEpicState } from "./hooks/useEpicState.ts";
+import { useEpicDrag } from "./hooks/useEpicDrag.ts";
 
 import "./Epic.css";
 
@@ -18,30 +18,35 @@ function Epic(props) {
 
     return (
         <article id={theme} className="article-content">
-            <div className="epic-content-mockups">
+            <div className="epic-product">
                 <EpicHeader {...props} />
 
                 <Range
                     items={rangeItems}
                     theme={theme}
-                    speed={1.8}
+                    speed={80}
                 />
 
-                <div className={`epic-section-mockups ${theme}`}>
+                <div className={`mockup-group ${theme} ${epic.isEpicVisible ? 'open' : ''}`}>
                     {epic.isEpicVisible && (
-                        <span className="btn-close" onClick={epic.resetEpic}>
-                            <IoIosCloseCircleOutline />
-                        </span>
+                        <div className="btn-container">
+                            <button
+                                type="button"
+                                className="btn-close"
+                                onClick={epic.resetEpic}>
+                                <IoIosCloseCircleOutline size={25} />
+                            </button>
+                        </div>
                     )}
 
                     {epic.showTitle && (
-                        <h2 className="epic-title epic-section-title">
+                        <h2 className="epic-title w-600">
                             {epic.selectedTitle}
                         </h2>
                     )}
 
-                    <div ref={drag.containerRef} className="mockups-stack drag-scroll">
-                        <div ref={drag.framesRef} className={`frames-block ${theme}`}>
+                    <div className={`mockup-stack ${epic.isEpicVisible ? 'details' : ''}`}>
+                        <div ref={drag.dragRef} className={`frame-group ${theme} drag-scroll`}>
                             <EpicFrames
                                 epics={epics}
                                 theme={theme}
@@ -51,7 +56,7 @@ function Epic(props) {
                             />
                         </div>
 
-                        <div className={`block-elements-details ${epic.isEpicVisible ? "" : "hide"}`}>
+                        <div className={`details-container ${epic.isEpicVisible ? "" : "hide"}`}>
                             {epic.selectedEpics[theme] && (
                                 <EpicDetails
                                     productName={theme}

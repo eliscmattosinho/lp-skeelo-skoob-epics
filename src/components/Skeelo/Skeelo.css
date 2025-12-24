@@ -6,13 +6,6 @@
     background: linear-gradient(90deg, #00D281 18.03%, #113E1C 76.53%);
 }
 
-.frames-block::-webkit-scrollbar {
-    color: #113E1C;
-    height: 8px;
-    background-color: transparent;
-    border-radius: 5px;
-}
-
 .hide-skeelo-epic {
     background: rgba(20, 73, 33, 0.5);
 }

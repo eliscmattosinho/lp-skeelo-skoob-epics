@@ -256,7 +256,7 @@ ul, ol  {
         gap: 17rem;
     }
 
-    .mockups-stack::-webkit-scrollbar {
+    .mockup-stack::-webkit-scrollbar {
         display: none;
     }
 }

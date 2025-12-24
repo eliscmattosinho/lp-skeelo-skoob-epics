@@ -1,125 +1,73 @@
-.epic-container {
+.epic-product {
     display: flex;
     flex-direction: column;
-    gap: 3rem;
-}
-
-.drag-scroll {
-    cursor: grab;
-    touch-action: pan-y;
-}
-
-.drag-scroll.grabbing {
-    cursor: grabbing;
-}
-
-.drag-scroll.dragging {
-    user-select: none;
-}
-
-.epic-content-mockups {
-    display: flex;
-    flex-direction: column;
-    gap: 3rem;
-}
-
-.frames-block {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-    align-items: center;
-    flex-wrap: nowrap;
-    overflow-x: auto;
-    margin: 20px auto;
-    padding: 40px 20px;
-    gap: 1rem;
-}
-
-.frames-block::-webkit-scrollbar-thumb {
-    background-color: #c7c7c7;
-    border-radius: 25px;
-}
-
-.frames-block::-webkit-scrollbar {
-    height: 8px;
-    background-color: transparent;
-    border-radius: 5px;
-}
-
-.mockup-frame {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: relative;
-}
-
-.hide {
-    display: none;
-}
-.invisible {
-    visibility: hidden;
-}
-
-.btn-close {
-    display: flex;
-    justify-content: flex-end;
-}
-
-.epic-title.epic-section-title {
-    text-align: center;
-}
-
-.mockups-stack {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: nowrap;
-    align-items: center;
-    justify-content: space-around;
     gap: 2rem;
 }
 
-.frames-block {
+.mockup-group.open {
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    gap: 1rem;
+}
+
+.btn-container {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+.mockup-stack {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.mockup-stack.details {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+}
+
+/* FRAME COMPONENT */
+.frame-group {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    overflow-x: hidden;
+    flex-wrap: nowrap;
+    gap: 4rem;
+    padding: 20px 30px;
     cursor: grab;
 }
 
-.frames-block.dragging {
-    cursor: grabbing;
-    user-select: none;
+.drag-scroll {
+  cursor: grab;
+  touch-action: pan-x;
 }
 
-@media (min-width: 320px) and (max-width: 768px) {
-    .frames-block {
+.drag-scroll.dragging {
+  cursor: grabbing;
+  user-select: none;
+}
+
+
+@media (min-width: 768px) {
+    .frame-group {
+        gap: 2rem;
+    }
+
+    .mockup-stack.details {
+        display: flex;
+        flex-direction: row;
         gap: 3rem;
-        padding: 20px 30px;
     }
-
-    .epic-title.epic-section-title {
-        margin-top: 10px;
-    }
-
-    .mockups-stack {
-        flex-direction: column;
-        overflow: hidden;
-        overflow-x: auto;
-        gap: 1rem;
-    }
-
-    .mockups-stack::-webkit-scrollbar {
-        height: 8px;
-        background-color: transparent;
-        border-radius: 5px;
-    }
-    .mockups-stack::-webkit-scrollbar-thumb {
-        background-color: #c7c7c7;
-        border-radius: 25px;
-    }
-}
-
-/* CSS para EpicDinamicDetails */
-.frames-block {
-    justify-content: flex-start;
-}
-
-.frames-block::-webkit-scrollbar {
-    width: 8px;
 }
