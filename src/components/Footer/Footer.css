@@ -27,15 +27,15 @@
     text-decoration: underline;
     text-decoration-thickness: 2px;
     text-underline-offset: 3px;
-    text-decoration-color: var(--dark-green);
-    color: var(--dark-green);
-    white-space: nowrap;
+    text-decoration-color: var(--blue);
+    color: var(--white);
 
     transition: transform 0.3s ease-in-out;
 }
 
 .notion-link:hover {
-    transform: scale(1.1);
+    text-decoration-color: var(--blue);
+    color: var(--blue);
 }
 
 .footer-text {
