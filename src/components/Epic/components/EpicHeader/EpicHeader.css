@@ -35,6 +35,23 @@
     display: none;
 }
 
+/* MAGNIFIER */
+.img-magnifier-container {
+    position: relative;
+}
+
+.img-magnifier-glass {
+    position: absolute;
+    border: 2px solid #000;
+    border-radius: 50%;
+    width: 80px;
+    height: 80px;
+    cursor: none;
+    pointer-events: none;
+    z-index: 10;
+    background-repeat: no-repeat;
+}
+
 @media (min-width: 768px) {
     .product-about {
         width: 100%;
