@@ -1,6 +1,6 @@
 import React from "react";
 
-import Header from "@/components/Header/Header";
+import Header from "@/components/Header/Nav";
 import About from "@/components/About/About";
 
 import InfoContext from "@/components/InfoContext/InfoContext";

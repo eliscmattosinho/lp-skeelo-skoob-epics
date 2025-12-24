@@ -1,79 +1,73 @@
-import { IoIosArrowDown, IoIosArrowUp } from "react-icons/io";
+import { useState, useEffect } from "react";
+import { IoCloseOutline } from "react-icons/io5";
+import { CiMenuBurger } from "react-icons/ci";
 
-import "./Nav.css"
+import { useScreen } from "@/context/ScreenContext";
+import NavItems from "./NavItems";
+import { contextNav } from "@/config/contextNav";
 
-function Nav({
-  items,
-  isMobile,
-  isSubmenuVisible,
-  onMouseEnter,
-  onMouseLeave,
-}) {
+import "./Nav.css";
+
+function Nav() {
+  const { isMobile } = useScreen();
+
+  const [isSubmenuVisible, setSubmenuVisible] = useState(false);
+  const [timeoutId, setTimeoutId] = useState(null);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  const handleMouseEnter = () => {
+    setSubmenuVisible(true);
+    if (timeoutId) clearTimeout(timeoutId);
+  };
+
+  const handleMouseLeave = () => {
+    const id = setTimeout(() => setSubmenuVisible(false), 300);
+    setTimeoutId(id);
+  };
+
+  useEffect(() => {
+    if (!isMobile) setIsMenuOpen(false);
+  }, [isMobile]);
+
   return (
-    <>
-      {items.map((item) => {
-        const hasChildren = Boolean(item.children);
+    <header className="nav-bar">
+      <nav id="nav" aria-label="Navegação principal">
+        <h2 className="w-600">
+          <a href="/">Proposta</a>
+        </h2>
 
-        // SOBRE (com submenu)
-        if (hasChildren) {
-          return (
-            <div
-              key={item.label}
-              id="submenu"
-              onMouseEnter={!isMobile ? onMouseEnter : undefined}
-              onMouseLeave={!isMobile ? onMouseLeave : undefined}
-            >
-              <a
-                href={item.href}
-                className={isMobile ? "mobile-item" : "web-item"}
-              >
-                {item.label}
-
-                {!isMobile && (
-                  <span className="icon-wrapper">
-                    {isSubmenuVisible ? (
-                      <IoIosArrowUp />
-                    ) : (
-                      <IoIosArrowDown />
-                    )}
-                  </span>
-                )}
-              </a>
-
-              {(isMobile || isSubmenuVisible) && (
-                <ul className={isMobile ? "mobile-submenu" : "submenu"}>
-                  {item.children.map((child) => (
-                    <li
-                      key={child.label}
-                      className={isMobile ? "mobile-subitem" : undefined}
-                    >
-                      <a
-                        href={child.href}
-                        className={
-                          isMobile ? "mobile-subitem" : "web-subitem"
-                        }
-                      >
-                        {child.label}
-                      </a>
-                    </li>
-                  ))}
-                </ul>
-              )}
-            </div>
-          );
-        }
-
-        return (
-          <a
-            key={item.label}
-            href={item.href}
-            className={isMobile ? "mobile-item" : "web-item"}
+        {isMobile ? (
+          <button
+            className="btn-menu"
+            onClick={() => setIsMenuOpen(!isMenuOpen)}
+            aria-label="Abrir menu"
+            aria-expanded={isMenuOpen}
           >
-            {item.label}
-          </a>
-        );
-      })}
-    </>
+            {isMenuOpen ? (
+              <IoCloseOutline className="menu-icon" size={25} />
+            ) : (
+              <CiMenuBurger className="menu-icon" size={25} />
+            )}
+          </button>
+        ) : (
+          <div className="web-items">
+            <NavItems
+              items={contextNav}
+              isMobile={false}
+              isSubmenuVisible={isSubmenuVisible}
+              onMouseEnter={handleMouseEnter}
+              onMouseLeave={handleMouseLeave}
+            />
+          </div>
+        )}
+
+        {isMobile && isMenuOpen && (
+          <div id="mobile-menu">
+            <NavItems items={contextNav} isMobile />
+          </div>
+        )}
+      </nav>
+    </header>
   );
 }
 
