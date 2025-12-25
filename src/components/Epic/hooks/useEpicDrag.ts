@@ -3,96 +3,106 @@ import { useEffect, useRef } from "react";
 const DRAG_THRESHOLD = 6;
 
 export function useEpicDrag() {
-  const dragRef = useRef<HTMLDivElement | null>(null);
+    const dragRef = useRef<HTMLDivElement | null>(null);
 
-  useEffect(() => {
-    const el = dragRef.current;
-    if (!el) return;
+    useEffect(() => {
+        const el = dragRef.current;
+        if (!el) return;
 
-    let isDown = false;
-    let didDrag = false;
-    let startX = 0;
-    let scrollStart = 0;
-    let activePointerId: number | null = null;
+        let isDown = false;
+        let didDrag = false;
+        let startX = 0;
+        let scrollStart = 0;
+        let activePointerId: number | null = null;
 
-    const isInteractive = (target: EventTarget | null) => {
-      if (!(target instanceof HTMLElement)) return false;
-      return !!target.closest(
-        "button, a, input, textarea, select, [role='button']"
-      );
-    };
+        const isInteractive = (target: EventTarget | null) => {
+            if (!(target instanceof HTMLElement)) return false;
+            return !!target.closest(
+                "button, a, input, textarea, select, [role='button']"
+            );
+        };
 
-    const resetDrag = () => {
-      isDown = false;
-      didDrag = false;
-      activePointerId = null;
-      el.classList.remove("dragging");
-    };
+        const resetDrag = () => {
+            isDown = false;
+            didDrag = false;
+            activePointerId = null;
+            el.classList.remove("dragging");
+        };
 
-    const onPointerDown = (e: PointerEvent) => {
-      if (e.pointerType === "mouse" && e.button !== 0) return;
-      if (isInteractive(e.target)) return;
+        const onPointerDown = (e: PointerEvent) => {
+            if (e.pointerType === "mouse" && e.button !== 0) return;
 
-      isDown = true;
-      didDrag = false;
-      activePointerId = e.pointerId;
+            // não inicia drag se o alvo for interativo
+            if (isInteractive(e.target)) return;
 
-      startX = e.clientX;
-      scrollStart = el.scrollLeft;
+            isDown = true;
+            didDrag = false;
+            activePointerId = e.pointerId;
 
-      el.setPointerCapture(e.pointerId);
-    };
+            startX = e.clientX;
+            scrollStart = el.scrollLeft;
 
-    const onPointerMove = (e: PointerEvent) => {
-      if (!isDown || e.pointerId !== activePointerId) return;
+            el.setPointerCapture(e.pointerId);
+        };
 
-      const dx = e.clientX - startX;
+        const onPointerMove = (e: PointerEvent) => {
+            if (!isDown || e.pointerId !== activePointerId) return;
 
-      if (!didDrag) {
-        if (Math.abs(dx) < DRAG_THRESHOLD) return;
-        didDrag = true;
-        el.classList.add("dragging");
-      }
+            const dx = e.clientX - startX;
 
-      el.scrollLeft = scrollStart - dx;
-    };
+            if (!didDrag) {
+                if (Math.abs(dx) < DRAG_THRESHOLD) return;
+                didDrag = true;
+                el.classList.add("dragging");
+            }
 
-    const onPointerUp = (e?: PointerEvent) => {
-      if (activePointerId != null) {
-        try {
-          el.releasePointerCapture(activePointerId);
-        } catch {}
-      }
-      resetDrag();
-    };
+            el.scrollLeft = scrollStart - dx;
 
-    const onClickCapture = (e: MouseEvent) => {
-      if (!didDrag) return;
-      e.preventDefault();
-      e.stopPropagation();
-    };
+            // @todo: evitar scroll vertical da página no touch?
+            if (e.pointerType === "touch") {
+                e.preventDefault();
+            }
+        };
 
-    el.addEventListener("pointerdown", onPointerDown);
-    el.addEventListener("pointermove", onPointerMove);
-    el.addEventListener("pointerup", onPointerUp);
-    el.addEventListener("pointercancel", onPointerUp);
-    el.addEventListener("click", onClickCapture, true);
+        const onPointerUp = () => {
+            if (activePointerId != null) {
+                try {
+                    el.releasePointerCapture(activePointerId);
+                } catch { }
+            }
+            resetDrag();
+        };
 
-    // fallback global
-    window.addEventListener("pointerup", onPointerUp);
-    window.addEventListener("blur", resetDrag);
+        /**
+         * Cancela o click SOMENTE se houve drag real
+         */
+        const onClickCapture = (e: MouseEvent) => {
+            if (!didDrag) return;
+            e.preventDefault();
+            e.stopPropagation();
+        };
 
-    return () => {
-      el.removeEventListener("pointerdown", onPointerDown);
-      el.removeEventListener("pointermove", onPointerMove);
-      el.removeEventListener("pointerup", onPointerUp);
-      el.removeEventListener("pointercancel", onPointerUp);
-      el.removeEventListener("click", onClickCapture, true);
+        el.addEventListener("pointerdown", onPointerDown);
+        el.addEventListener("pointermove", onPointerMove, { passive: false });
+        el.addEventListener("pointerup", onPointerUp);
+        el.addEventListener("pointercancel", onPointerUp);
+        el.addEventListener("click", onClickCapture, true);
 
-      window.removeEventListener("pointerup", onPointerUp);
-      window.removeEventListener("blur", resetDrag);
-    };
-  }, []);
+        // fallback global
+        window.addEventListener("pointerup", onPointerUp);
+        window.addEventListener("blur", resetDrag);
 
-  return { dragRef };
+        return () => {
+            el.removeEventListener("pointerdown", onPointerDown);
+            el.removeEventListener("pointermove", onPointerMove);
+            el.removeEventListener("pointerup", onPointerUp);
+            el.removeEventListener("pointercancel", onPointerUp);
+            el.removeEventListener("click", onClickCapture, true);
+
+            window.removeEventListener("pointerup", onPointerUp);
+            window.removeEventListener("blur", resetDrag);
+        };
+    }, []);
+
+    return { dragRef };
 }

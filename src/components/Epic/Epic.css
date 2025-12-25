@@ -42,29 +42,38 @@
     flex-direction: row;
     justify-content: space-around;
     align-items: center;
-    overflow-x: hidden;
     flex-wrap: nowrap;
-    gap: 4rem;
-    padding: 20px 30px;
+    gap: 2rem;
+    padding: 30px;
     cursor: grab;
+
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    touch-action: pan-x;
+    contain: content;
+
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+
+.frame-group::-webkit-scrollbar {
+    display: none;
 }
 
 .drag-scroll {
-  cursor: grab;
-  touch-action: pan-x;
+    cursor: grab;
+    -webkit-user-drag: none;
+    -webkit-tap-highlight-color: transparent;
 }
 
 .drag-scroll.dragging {
-  cursor: grabbing;
-  user-select: none;
+    cursor: grabbing;
+    user-select: none;
+    -webkit-user-drag: none;
+    -webkit-tap-highlight-color: transparent;
 }
 
-
 @media (min-width: 768px) {
-    .frame-group {
-        gap: 2rem;
-    }
-
     .mockup-stack.details {
         display: flex;
         flex-direction: row;
