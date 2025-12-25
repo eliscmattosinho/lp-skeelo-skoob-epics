@@ -2,14 +2,14 @@ import { useEffect, useState } from 'react';
 import Epic from '@/components/Epic/Epic';
 import './Skeelo.css';
 
-import skeeLogo from '@/assets/image-icons/skee-icon.png';
+import skeeLogo from '@/assets/images/skee-icon.png';
 
-import skeeloMoc from '@/assets/image-icons/skeelo-epics.png';
+import skeeloMoc from '@/assets/images/skeelo-epics.png';
 
-import skeeEpicOne from '@/assets/image-icons/skee-epi-1.png';
-import skeeEpicTwo from '@/assets/image-icons/skee-epi-2.png';
-import skeeEpicThree from '@/assets/image-icons/skee-epi-3.png';
-import skeeEpicFour from '@/assets/image-icons/skee-epi-4.png';
+import skeeEpicOne from '@/assets/images/skee-epi-1.png';
+import skeeEpicTwo from '@/assets/images/skee-epi-2.png';
+import skeeEpicThree from '@/assets/images/skee-epi-3.png';
+import skeeEpicFour from '@/assets/images/skee-epi-4.png';
 
 import { useEpicDetails } from '@/hooks/useEpicDetails';
 

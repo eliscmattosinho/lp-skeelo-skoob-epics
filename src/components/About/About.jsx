@@ -2,7 +2,7 @@ import "./About.css";
 
 import TypingEffect from "@/js/TypingEffect";
 
-import booksImage from "@/assets/image-icons/books.svg";
+import booksImage from "@/assets/images/books.svg";
 
 function About() {
     return (

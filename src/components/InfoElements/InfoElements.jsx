@@ -1,11 +1,11 @@
 import { useState, useRef, useEffect } from "react";
 import { IoIosArrowDown } from "react-icons/io";
 
-import epicsImage from "@/assets/image-icons/epics-image.svg";
-import contextImage from "@/assets/image-icons/context-svg.svg";
-import usImage from "@/assets/image-icons/us-svg.svg";
-import metricsImage from "@/assets/image-icons/metrics-svg.svg";
-import dodImage from "@/assets/image-icons/dod-svg.svg";
+import epicsImage from "@/assets/images/epics-image.svg";
+import contextImage from "@/assets/images/context-svg.svg";
+import usImage from "@/assets/images/us-svg.svg";
+import metricsImage from "@/assets/images/metrics-svg.svg";
+import dodImage from "@/assets/images/dod-svg.svg";
 
 import "./InfoElements.css";
 

@@ -1,6 +1,6 @@
-import skoobLogo from "@/assets/image-icons/skoob-logo.svg";
-import skeeloLogo from "@/assets/image-icons/skeelo-logo.svg";
-import pokemonSurprise from "@/assets/image-icons/pokemon-surprise.jpg";
+import skoobLogo from "@/assets/images/skoob-logo.svg";
+import skeeloLogo from "@/assets/images/skeelo-logo.svg";
+import pokemonSurprise from "@/assets/images/pokemon-surprise.jpg";
 
 export const contextImages = [
     {
