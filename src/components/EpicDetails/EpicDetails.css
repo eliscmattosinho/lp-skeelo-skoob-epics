@@ -6,10 +6,6 @@
     position: relative;
 }
 
-.block-elements-nav.hide {
-    display: none;
-}
-
 #block-elements {
     display: flex;
     flex-direction: row;
@@ -205,10 +201,6 @@ ul, ol  {
 
 .metric-value {
     font-weight: 600;
-}
-
-.hide {
-    display: none;
 }
 
 @media (min-width: 320px) and (max-width: 480px) {
