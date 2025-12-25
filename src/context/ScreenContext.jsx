@@ -3,34 +3,44 @@ import { createContext, useContext, useEffect, useState } from "react";
 const ScreenContext = createContext(null);
 
 const MOBILE_BREAKPOINT = 768;
-const mediaQuery = `(max-width: ${MOBILE_BREAKPOINT - 1}px)`;
 
 export function ScreenProvider({ children }) {
   const getState = () => {
-    const mql = window.matchMedia(mediaQuery);
+    const width = window.innerWidth;
+
+    const isMobile = window.matchMedia(
+      `(max-width: ${MOBILE_BREAKPOINT - 1}px)`
+    ).matches;
+
+    const isTouch = window.matchMedia("(pointer: coarse)").matches;
 
     return {
-      width: window.innerWidth,
-      isMobile: mql.matches,
+      width,
+      isMobile,
+      isTouch,
     };
   };
 
   const [state, setState] = useState(getState);
 
   useEffect(() => {
-    const mql = window.matchMedia(mediaQuery);
+    const mqlMobile = window.matchMedia(
+      `(max-width: ${MOBILE_BREAKPOINT - 1}px)`
+    );
+    const mqlPointer = window.matchMedia("(pointer: coarse)");
 
     const handleChange = () => {
-      setState({
-        width: window.innerWidth,
-        isMobile: mql.matches,
-      });
+      setState(getState());
     };
 
-    mql.addEventListener("change", handleChange);
+    mqlMobile.addEventListener("change", handleChange);
+    mqlPointer.addEventListener("change", handleChange);
+    window.addEventListener("resize", handleChange);
 
     return () => {
-      mql.removeEventListener("change", handleChange);
+      mqlMobile.removeEventListener("change", handleChange);
+      mqlPointer.removeEventListener("change", handleChange);
+      window.removeEventListener("resize", handleChange);
     };
   }, []);
 
