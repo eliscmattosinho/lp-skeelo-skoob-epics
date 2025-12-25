@@ -52,6 +52,7 @@ export default function EpicFrames({
                             className="btn-unlock"
                             type="button"
                             {...bind}
+                            draggable="false"
                         >
                             <MdLockOutline size={20} />
                         </button>

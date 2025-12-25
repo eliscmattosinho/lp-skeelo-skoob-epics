@@ -1,6 +1,17 @@
 type Theme = string;
 type EpicId = string;
-//@todo: amanhã
+
+const canAnimate = (element: HTMLElement): boolean => {
+  const styles = window.getComputedStyle(element);
+
+  return (
+    styles.display !== "none" &&
+    styles.visibility !== "hidden" &&
+    styles.opacity !== "0" &&
+    !element.classList.contains("hide")
+  );
+};
+
 export const handleEpicDetails = (epicId: EpicId, theme: Theme): void => {
   const mockupSection = document.querySelector<HTMLElement>(
     `.mockup-group.${theme}`
@@ -40,19 +51,42 @@ const hideElementsWithDelay = (
       epicFrame.querySelector<HTMLElement>(`.${cls}-${theme}-epic`) ||
       epicFrame.querySelector<HTMLElement>(`.${cls}`);
 
-    if (element) {
-      applyAnimation(element, () => {
-        element.classList.add("hide");
-      });
-    }
+    if (!element || element.dataset.animating === "true") return;
+
+    element.dataset.animating = "true";
+
+    applyAnimation(element, () => {
+      element.classList.add("hide");
+      element.dataset.animating = "false";
+    });
   });
 };
 
-const applyAnimation = (element: HTMLElement, callback: () => void): void => {
+const applyAnimation = (
+  element: HTMLElement,
+  callback: () => void
+): void => {
+  if (!canAnimate(element)) {
+    callback();
+    return;
+  }
+
   element.style.transition = "opacity 0.5s ease-out";
   element.style.opacity = "0";
 
-  element.addEventListener("transitionend", () => callback(), { once: true });
+  let finished = false;
+
+  const onEnd = () => {
+    if (finished) return;
+    finished = true;
+    element.removeEventListener("transitionend", onEnd);
+    callback();
+  };
+
+  element.addEventListener("transitionend", onEnd);
+
+  // Fallback preventivo
+  setTimeout(onEnd, 600);
 };
 
 const applyTransitions = (epicId: EpicId, theme: Theme): void => {
@@ -105,6 +139,13 @@ export const restoreEpicElements = (theme: Theme): void => {
     return;
   }
 
+  const mockupSection = document.querySelector<HTMLElement>(
+    `.mockup-group.${theme}`
+  );
+  if (mockupSection) {
+    mockupSection.style.margin = "0";
+  }
+
   themeSection
     .querySelectorAll<HTMLElement>(".mockup-frame")
     .forEach((epicFrame) => {
@@ -113,14 +154,18 @@ export const restoreEpicElements = (theme: Theme): void => {
           epicFrame.querySelector<HTMLElement>(`.${cls}-${theme}-epic`) ||
           epicFrame.querySelector<HTMLElement>(`.${cls}`);
 
-        if (element) {
-          element.classList.remove("hide");
+        if (!element) return;
 
-          Object.assign(element.style, {
-            opacity: "1",
-            transition: "opacity 0.5s ease-in-out",
-          });
+        if (element.classList.contains("hide")) {
+          element.classList.remove("hide");
         }
+
+        Object.assign(element.style, {
+          opacity: "1",
+          transition: "opacity 0.5s ease-in-out",
+        });
+
+        delete element.dataset.animating;
       });
 
       Object.assign(epicFrame.style, {

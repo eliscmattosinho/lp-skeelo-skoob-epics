@@ -97,12 +97,14 @@ a {
 
 p {
   font-size: var(--font-sm);
+  cursor: text;
 }
 
 img {
   display: block;
   max-width: 100%;
   height: auto;
+  -webkit-user-drag: none;
 }
 
 /* COMPONENTS */
