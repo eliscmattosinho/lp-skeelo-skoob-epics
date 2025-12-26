@@ -1,0 +1,135 @@
+.metric-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    width: 100%;
+}
+
+.metric-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: start;
+    text-align: center;
+    gap: 1rem;
+}
+
+.metric-container > * {
+    flex: 1 1 0;
+}
+
+.metric-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.metric-title {
+    font-size: var(--font-sm);
+    font-weight: 600;
+}
+
+/* HOLOGRAPHIC V-SHAPED PROJECTION */
+.value-container {
+    position: relative;
+    width: 50px;
+    height: 40px;
+    padding: 10px;
+    overflow: hidden;
+    isolation: isolate;
+
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+
+    border-radius: 0 0 6px 6px;
+
+    --scan-speed: 3.2s;
+    --flicker-speed: 2s;
+}
+
+.value-container::before {
+    content: "";
+    position: absolute;
+    inset: -40% -80%;
+    pointer-events: none;
+
+    background: linear-gradient(
+        180deg,
+        transparent,
+        rgba(var(--holo-color), 0.15) 35%,
+        rgba(var(--holo-color), 0.55) 50%,
+        rgba(var(--holo-color), 0.15) 65%,
+        transparent
+    );
+
+    animation: holo-projection var(--scan-speed) linear infinite;
+    mix-blend-mode: screen;
+}
+
+/* SCANLINES / INTERFERÊNCIA */
+.value-container::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+
+    opacity: 0.35;
+    animation: holo-flicker var(--flicker-speed) infinite;
+    mix-blend-mode: screen;
+}
+
+.metric-value {
+    position: relative;
+    z-index: 2;
+    font-weight: 600;
+    text-shadow:
+        0 0 6px rgba(var(--holo-color), 0.6),
+        0 0 14px rgba(var(--holo-color), 0.4);
+}
+
+.metric-value-skoob {
+    color: rgb(3, 48, 68);
+}
+
+.metric-value-skeelo {
+    color: rgb(1, 67, 24);
+}
+
+/* VARIAÇÕES DE COR */
+.value-container-skeelo {
+    --holo-color: 90, 220, 120;
+    background: linear-gradient(
+        180deg,
+        transparent 100%,
+        rgba(90, 220, 120, 0.25) 50%,
+        rgba(36, 145, 72, 0.6) 0%
+    );
+}
+
+.value-container-skoob {
+    --holo-color: 80, 190, 230;
+    background: linear-gradient(
+        180deg,
+        transparent 100%,
+        rgba(80, 190, 230, 0.25) 50%,
+        rgba(24, 98, 147, 0.6) 0%
+    );
+}
+
+@keyframes holo-projection {
+    from { transform: translateY(40%); }
+    to   { transform: translateY(-40%); }
+}
+
+@keyframes holo-flicker {
+    0%   { opacity: 0.32; }
+    25%  { opacity: 0.42; }
+    50%  { opacity: 0.28; }
+    75%  { opacity: 0.38; }
+    100% { opacity: 0.34; }
+}

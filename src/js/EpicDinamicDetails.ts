@@ -90,7 +90,7 @@ const applyAnimation = (
 };
 
 const applyTransitions = (epicId: EpicId, theme: Theme): void => {
-  const epicDetails = document.querySelector<HTMLElement>(".details-container");
+  const epicDetails = document.querySelector<HTMLElement>(".epic-details");
   const themeSection = document.querySelector<HTMLElement>(
     `#${theme} .mockup-stack`
   );
