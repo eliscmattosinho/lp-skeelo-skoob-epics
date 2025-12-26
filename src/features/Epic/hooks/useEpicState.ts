@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { handleEpicDetails, restoreEpicElements } from "@/js/EpicDinamicDetails";
+import { handleEpicDetails, restoreEpicElements } from "@/ts/EpicDinamicDetails";
 
 type Theme = string;
 type EpicId = string;
