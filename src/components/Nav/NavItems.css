@@ -48,6 +48,10 @@
 }
 
 /* MOBILE */
+#mobile-menu #submenu .mobile-item {
+  display: flex;
+}
+
 .mobile-item,
 .mobile-subitem {
   font-weight: 600;
@@ -61,12 +65,29 @@
   background-clip: text;
 }
 
-.mobile-subitem {
-  list-style-type: none;
+li.mobile-subitem {
+  list-style: none;
+  position: relative;
+  padding-left: 20px;
+}
+
+/* bolinha customizada */
+li.mobile-subitem::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.6em;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--thematic-item);
 }
 
 .mobile-submenu {
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  margin-left: 20px;
   gap: 10px;
 }

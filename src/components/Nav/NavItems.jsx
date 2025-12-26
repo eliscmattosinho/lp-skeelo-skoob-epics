@@ -1,6 +1,7 @@
+import { useState } from "react";
 import { IoIosArrowDown, IoIosArrowUp } from "react-icons/io";
 
-import "./NavItems.css"
+import "./NavItems.css";
 
 function NavItems({
   items,
@@ -8,13 +9,29 @@ function NavItems({
   isSubmenuVisible,
   onMouseEnter,
   onMouseLeave,
+  onItemClick,
 }) {
+  // controla qual submenu mobile está aberto
+  const [openMobileSubmenu, setOpenMobileSubmenu] = useState(null);
+
+  const handleMobileToggle = (label, hasChildren, event) => {
+    if (!isMobile || !hasChildren) return;
+
+    // impede navegação no item pai
+    event.preventDefault();
+
+    setOpenMobileSubmenu((prev) =>
+      prev === label ? null : label
+    );
+  };
+
   return (
     <>
       {items.map((item) => {
         const hasChildren = Boolean(item.children);
+        const isMobileSubmenuOpen = openMobileSubmenu === item.label;
 
-        // SOBRE (com submenu)
+        // Item com submenu
         if (hasChildren) {
           return (
             <div
@@ -26,21 +43,26 @@ function NavItems({
               <a
                 href={item.href}
                 className={isMobile ? "mobile-item" : "web-item"}
+                onClick={(e) =>
+                  handleMobileToggle(item.label, hasChildren, e)
+                }
               >
                 {item.label}
 
-                {!isMobile && (
-                  <span className="icon-wrapper">
-                    {isSubmenuVisible ? (
-                      <IoIosArrowUp />
-                    ) : (
-                      <IoIosArrowDown />
-                    )}
-                  </span>
-                )}
+                <span className="icon-wrapper">
+                  {isMobile ? (
+                    isMobileSubmenuOpen ? <IoIosArrowUp /> : <IoIosArrowDown />
+                  ) : isSubmenuVisible ? (
+                    <IoIosArrowUp />
+                  ) : (
+                    <IoIosArrowDown />
+                  )}
+                </span>
               </a>
 
-              {(isMobile || isSubmenuVisible) && (
+              {/* Submenu */}
+              {(!isMobile && isSubmenuVisible) ||
+                (isMobile && isMobileSubmenuOpen) ? (
                 <ul className={isMobile ? "mobile-submenu" : "submenu"}>
                   {item.children.map((child) => (
                     <li
@@ -52,22 +74,34 @@ function NavItems({
                         className={
                           isMobile ? "mobile-subitem" : "web-subitem"
                         }
+                        onClick={() => {
+                          if (isMobile && onItemClick) {
+                            onItemClick();
+                            setOpenMobileSubmenu(null);
+                          }
+                        }}
                       >
                         {child.label}
                       </a>
                     </li>
                   ))}
                 </ul>
-              )}
+              ) : null}
             </div>
           );
         }
 
+        // Item simples
         return (
           <a
             key={item.label}
             href={item.href}
             className={isMobile ? "mobile-item" : "web-item"}
+            onClick={() => {
+              if (isMobile && onItemClick) {
+                onItemClick();
+              }
+            }}
           >
             {item.label}
           </a>
