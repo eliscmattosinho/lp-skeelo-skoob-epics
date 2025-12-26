@@ -24,7 +24,7 @@ function Epic(props) {
                 <Range
                     items={rangeItems}
                     theme={theme}
-                    speed={80}
+                    speed={60}
                 />
 
                 <div className={`mockup-group ${theme} ${epic.isEpicVisible ? 'open' : ''}`}>
@@ -56,7 +56,7 @@ function Epic(props) {
                             />
                         </div>
 
-                        <div className={`details-container ${epic.isEpicVisible ? "" : "hide"}`}>
+                        <div className={`epic-details ${epic.isEpicVisible ? "" : "hide"}`}>
                             {epic.selectedEpics[theme] && (
                                 <EpicDetails
                                     productName={theme}

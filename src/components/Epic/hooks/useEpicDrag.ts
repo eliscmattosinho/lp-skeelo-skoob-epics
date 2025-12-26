@@ -57,11 +57,6 @@ export function useEpicDrag() {
             }
 
             el.scrollLeft = scrollStart - dx;
-
-            // @todo: evitar scroll vertical da página no touch?
-            if (e.pointerType === "touch") {
-                e.preventDefault();
-            }
         };
 
         const onPointerUp = () => {
