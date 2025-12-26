@@ -28,42 +28,36 @@ function EpicDetails({ productName, epicId, epicTitle }) {
     }
 
     const blocks = [
-        {
-            key: 'overview',
-            component: <EpicOverview context={currentEpic.contexto} />
-        },
-        {
-            key: 'stories',
-            component: (
-                <UserStories
-                    stories={currentEpic.historias_de_usuario}
-                    productName={productName}
-                    epicTitle={epicTitle}
-                    openModal={openModal}
-                />
-            )
-        },
-        {
-            key: 'dod',
-            component: (
-                <DoD
-                    doneCriteria={currentEpic.criterios_de_aceitacao}
-                    productName={productName}
-                    epicTitle={epicTitle}
-                    openModal={openModal}
-                />
-            )
-        },
-        {
-            key: 'metrics',
-            component: (
-                <Metrics
-                    metrics={currentEpic.metricas}
-                    productName={productName}
-                />
-            )
-        }
+        <EpicOverview key="overview" context={currentEpic.contexto} />,
+        (
+            <UserStories
+                key="stories"
+                stories={currentEpic.historias_de_usuario}
+                productName={productName}
+                epicTitle={epicTitle}
+                openModal={openModal}
+            />
+        ),
+        (
+            <DoD
+                key="dod"
+                doneCriteria={currentEpic.criterios_de_aceitacao}
+                productName={productName}
+                epicTitle={epicTitle}
+                openModal={openModal}
+            />
+        ),
+        (
+            <Metrics
+                key="metrics"
+                metrics={currentEpic.metricas}
+                productName={productName}
+            />
+        )
     ];
+
+    const isFirst = currentBlock === 0;
+    const isLast = currentBlock === blocks.length - 1;
 
     return (
         <div
@@ -71,38 +65,37 @@ function EpicDetails({ productName, epicId, epicTitle }) {
             className="details-container"
         >
             <div className="details-content">
-                {blocks.map((block, index) => {
-                    const isActive = index === currentBlock;
-                    const isFirst = index === 0;
-                    const isLast = index === blocks.length - 1;
+                <div className="details-nav">
+                    {blocks[currentBlock]}
 
-                    return (
-                        <div
-                            key={block.key}
-                            className={`details-nav ${isActive ? '' : 'hide'}`}
+                    <div className="details-navigation">
+                        <button
+                            type="button"
+                            className={`nav-icon nav-previous ${isFirst ? 'hidden' : ''}`}
+                            disabled={isFirst}
+                            onClick={() => {
+                                if (!isFirst) {
+                                    setCurrentBlock(prev => prev - 1);
+                                }
+                            }}
                         >
-                            {block.component}
+                            <GrPrevious />
+                        </button>
 
-                            <div className="details-navigation">
-                                <button
-                                    type="button"
-                                    className={`nav-icon nav-previous ${isFirst ? 'hidden' : ''}`}
-                                    onClick={() => setCurrentBlock(prev => prev - 1)}
-                                >
-                                    <GrPrevious />
-                                </button>
-
-                                <button
-                                    type="button"
-                                    className={`nav-icon nav-next ${isLast ? 'hidden' : ''}`}
-                                    onClick={() => setCurrentBlock(prev => prev + 1)}
-                                >
-                                    <GrNext />
-                                </button>
-                            </div>
-                        </div>
-                    );
-                })}
+                        <button
+                            type="button"
+                            className={`nav-icon nav-next ${isLast ? 'hidden' : ''}`}
+                            disabled={isLast}
+                            onClick={() => {
+                                if (!isLast) {
+                                    setCurrentBlock(prev => prev + 1);
+                                }
+                            }}
+                        >
+                            <GrNext />
+                        </button>
+                    </div>
+                </div>
             </div>
 
             <Modal
