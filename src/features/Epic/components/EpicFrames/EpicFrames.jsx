@@ -1,6 +1,6 @@
 import { MdLockOutline } from "react-icons/md";
 import { useHoldSwipeUnlock } from "./useHoldSwipeUnlock";
-import { useScreen } from "@/context/ScreenContext";
+import { useScreen } from "@/contexts/ScreenContext";
 
 import "./EpicFrames.css";
 

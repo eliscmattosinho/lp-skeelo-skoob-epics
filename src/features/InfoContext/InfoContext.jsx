@@ -1,5 +1,5 @@
-import { contextLinks } from "@/config/contextLinks";
-import { contextImages } from "@/config/contextImages";
+import { contextLinks } from "@/constants/links";
+import { contextImages } from "@/constants/images";
 
 import "./InfoContext.css";
 

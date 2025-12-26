@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import Epic from '@/components/Epic/Epic';
+import Epic from '@/features/Epic/Epic';
 import './Skeelo.css';
 
 import skeeLogo from '@/assets/images/skee-icon.png';

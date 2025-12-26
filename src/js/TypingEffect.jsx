@@ -1,7 +1,7 @@
 import { useEffect, useReducer, useMemo } from "react";
 
 const initialState = {
-  displayedChars: [], // armazenamos como array
+  displayedChars: [],
   index: 0,
   phase: "typing", // typing | deleting
 };
@@ -39,7 +39,7 @@ function TypingEffect({ text, speed = 100, deleteSpeed = 50, pause = 1500 }) {
   const [state, dispatch] = useReducer(reducer, initialState);
   const { displayedChars, index, phase } = state;
 
-  const chars = useMemo(() => Array.from(text), [text]); // caracteres completos
+  const chars = useMemo(() => Array.from(text), [text]);
 
   useEffect(() => {
     let timeout;
@@ -71,7 +71,7 @@ function TypingEffect({ text, speed = 100, deleteSpeed = 50, pause = 1500 }) {
 
   return (
     <p className="p-typing">
-      {displayedChars.join("")} {/* reconstruímos a string */}
+      {displayedChars.join("")}
       <span className="blinking-cursor" aria-hidden="true">
         |
       </span>

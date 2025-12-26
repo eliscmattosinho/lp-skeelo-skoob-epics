@@ -2,9 +2,9 @@ import { useState, useEffect, useRef } from "react";
 import { IoCloseOutline } from "react-icons/io5";
 import { CiMenuBurger } from "react-icons/ci";
 
-import { useScreen } from "@/context/ScreenContext";
+import { useScreen } from "@/contexts/ScreenContext";
 import NavItems from "./NavItems";
-import { contextNav } from "@/config/contextNav";
+import { contextNav } from "@/constants/navigation";
 
 import "./Nav.css";
 

@@ -1,10 +1,10 @@
-import "./About.css";
+import "./Hero.css";
 
 import TypingEffect from "@/js/TypingEffect";
 
 import booksImage from "@/assets/images/books.svg";
 
-function About() {
+function Hero() {
     return (
         <div id="bg-green-top">
             <section id="sobre" className="section-container">
@@ -40,4 +40,4 @@ function About() {
     );
 }
 
-export default About;
+export default Hero;

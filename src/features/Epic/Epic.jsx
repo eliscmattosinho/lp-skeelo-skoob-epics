@@ -4,7 +4,7 @@ import EpicHeader from "./components/EpicHeader/EpicHeader";
 import Range from "@/components/Range/Range";
 
 import EpicFrames from "./components/EpicFrames/EpicFrames";
-import EpicDetails from "@/components/EpicDetails/EpicDetails";
+import EpicDetails from "@/features/Epic/components/EpicDetails/EpicDetails";
 
 import { useEpicState } from "./hooks/useEpicState.ts";
 import { useEpicDrag } from "./hooks/useEpicDrag.ts";

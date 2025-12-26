@@ -3,7 +3,7 @@ import React, { useRef, useState } from "react";
 import "./UserStories.css";
 
 import ExpandContent from "./ExpandContent";
-import { useEpicDrag } from "@/components/Epic/hooks/useEpicDrag";
+import { useEpicDrag } from "@/features/Epic/hooks/useEpicDrag";
 
 function UserStories({ stories = [], productName, openModal, epicTitle }) {
     const [activeStoryIndex, setActiveStoryIndex] = useState(0);

@@ -2,7 +2,7 @@ import { useState } from "react";
 import "./Contact.css";
 
 import TypingEffect from "@/js/TypingEffect";
-import Envelope from "@/components/Letter/Envelope";
+import Envelope from "@/components/Envelope/Envelope";
 
 function Contact() {
     const email = "eliscmattosinho@gmail.com";

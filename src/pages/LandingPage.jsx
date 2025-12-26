@@ -1,22 +1,22 @@
 import React from "react";
 
-import Header from "@/components/Nav/Nav";
-import About from "@/components/About/About";
+import Header from "@/features/Nav/Nav";
+import Hero from "@/features/Hero/Hero";
 
-import InfoContext from "@/components/InfoContext/InfoContext";
-import InfoElements from "@/components/InfoElements/InfoElements";
+import InfoContext from "@/features/InfoContext/InfoContext";
+import InfoElements from "@/features/InfoElements/InfoElements";
 
-import Skeelo from "@/components/Skeelo/Skeelo";
-import Skoob from "@/components/Skoob/Skoob";
+import Skeelo from "@/features/Skeelo/Skeelo";
+import Skoob from "@/features/Skoob/Skoob";
 
-import Contact from "@/components/Contact/Contact";
-import Footer from "@/components/Footer/Footer";
+import Contact from "@/features/Contact/Contact";
+import Footer from "@/features/Footer/Footer";
 
 const LandingPage = () => {
   return (
     <div className="lp-structure">
       <Header />
-      <About />
+      <Hero />
       <InfoContext />
       <InfoElements />
       <Skeelo />
