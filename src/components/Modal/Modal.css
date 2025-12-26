@@ -43,22 +43,6 @@
 .modal-content {
     margin: 30px 10px;
 }
-.modal-content .epic-expand-container {
-    box-shadow: none;
-    border-radius: 0;
-    padding: 6px;
-}
-.modal-content .epic-section-title {
-    font-weight: 700;
-}
-.modal-content .epic-expand-container h4 {
-    font-weight: 700;
-}
-
-.modal-content .epic-section-title {
-    text-align: center;
-    margin-bottom: 10px;
-}
 
 .overlay {
     position: fixed;

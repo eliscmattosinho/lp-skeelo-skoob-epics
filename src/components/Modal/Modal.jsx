@@ -1,12 +1,11 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect } from 'react';
 import './Modal.css';
-import { IoIosCloseCircleOutline } from "react-icons/io";
-import { initializeUserStoryNavigation } from '@/js/EpicDinamicElements';
+import { IoIosCloseCircleOutline } from 'react-icons/io';
 
-import USSkeelo from "@/assets/modal/us-modal-skeelo.svg";
-import DoDSkeelo from "@/assets/modal/dod-modal-skeelo.svg";
-import USSkoob from "@/assets/modal/us-modal-skoob.svg";
-import DoDSkoob from "@/assets/modal/dod-modal-skoob.svg";
+import USSkeelo from '@/assets/modal/us-modal-skeelo.svg';
+import DoDSkeelo from '@/assets/modal/dod-modal-skeelo.svg';
+import USSkoob from '@/assets/modal/us-modal-skoob.svg';
+import DoDSkoob from '@/assets/modal/dod-modal-skoob.svg';
 
 const imageMap = {
     skeelo: {
@@ -19,34 +18,42 @@ const imageMap = {
     }
 };
 
-function Modal({ isOpen, onClose, title, productName, contentType, contentData }) {
-    const modalContentRef = useRef(null);
-
-    /**
-    * Efeito que inicializa a navegação entre user stories dentro do modal
-    * sempre que ele for aberto ou receber novo conteúdo.
-    */
+function Modal({
+    isOpen,
+    onClose,
+    title,
+    productName,
+    contentType,
+    contentData
+}) {
     useEffect(() => {
-        if (isOpen && modalContentRef.current) {
-            initializeUserStoryNavigation(modalContentRef.current);
-        }
-    }, [isOpen, contentData]);
+        document.body.classList.toggle('modal-open', isOpen);
+        return () => document.body.classList.remove('modal-open');
+    }, [isOpen]);
+
+    if (!isOpen) return null;
 
     return (
-        <div className={`modal-container ${isOpen ? 'open' : ''}`}>
+        <div className="modal-container open">
             <span className="btn-close btn-close-modal" onClick={onClose}>
                 <IoIosCloseCircleOutline />
             </span>
+
             <div className="modal-block">
                 <div className="modal-header">
-                    <img className='modal-image' src={imageMap[productName]?.[contentType]} alt='' />
+                    {imageMap[productName]?.[contentType] && (
+                        <img
+                            className="modal-image"
+                            src={imageMap[productName][contentType]}
+                            alt=""
+                        />
+                    )}
                     <h2 className="modal-title">{title}</h2>
                 </div>
-                <div
-                    ref={modalContentRef}
-                    className="modal-content"
-                    dangerouslySetInnerHTML={{ __html: contentData }}
-                />
+
+                <div className="modal-content">
+                    {contentData}
+                </div>
             </div>
         </div>
     );

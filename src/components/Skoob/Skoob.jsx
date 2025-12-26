@@ -1,8 +1,10 @@
 import { useEffect, useState } from 'react';
 import Epic from '@/components/Epic/Epic';
 import './Skoob.css';
+
 import skoobLogo from '@/assets/images/skoob-logo.svg';
 import skeeloMoc from '@/assets/images/skoob-epics.png';
+
 import skoobEpicOne from '@/assets/images/skoob-epi-1.png';
 import skoobEpicTwo from '@/assets/images/skoob-epi-2.png';
 import skoobEpicThree from '@/assets/images/skoob-epi-3.png';
@@ -10,30 +12,39 @@ import skoobEpicThree from '@/assets/images/skoob-epi-3.png';
 import { useEpicDetails } from '@/hooks/useEpicDetails';
 
 const skoobDescription = [
-    "O Skoob é uma rede social literária com funcionalidades de gerenciamento de leituras que permite aos leitores compartilharem opiniões e descobrir novos livros."
+    'O Skoob é uma rede social literária com funcionalidades de gerenciamento de leituras que permite aos leitores compartilharem opiniões e descobrir novos livros.'
 ];
 
-const skoobRangeItems = ["Net Promoter Score", "Engajamento", "Alcance", "Fidelidade", "Satisfação"];
+const skoobRangeItems = [
+    'Net Promoter Score',
+    'Engajamento',
+    'Alcance',
+    'Fidelidade',
+    'Satisfação'
+];
 
-const epicImages = [skoobEpicOne, skoobEpicTwo, skoobEpicThree];
+const epicImages = [
+    skoobEpicOne,
+    skoobEpicTwo,
+    skoobEpicThree
+];
 
 function Skoob() {
     const [skoobEpics, setSkoobEpics] = useState(null);
-    const epicData = useEpicDetails("skoob");
+    const { epics, isLoading } = useEpicDetails('skoob');
 
     useEffect(() => {
+        if (!epics || epics.length === 0) return;
 
-        if (!epicData || epicData.length === 0) return;
-
-        const epicsWithImages = epicData.map((epic, index) => ({
+        const epicsWithImages = epics.map((epic, index) => ({
             ...epic,
             image: epicImages[index] || null
         }));
 
         setSkoobEpics(epicsWithImages);
-    }, [epicData]);
+    }, [epics]);
 
-    if (skoobEpics === null) {
+    if (isLoading || skoobEpics === null) {
         return <p>Carregando epics...</p>;
     }
 
