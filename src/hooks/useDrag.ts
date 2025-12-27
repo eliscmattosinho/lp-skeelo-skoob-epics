@@ -9,7 +9,7 @@ export function useDrag(enabled: boolean = true) {
     const el = dragRef.current;
     if (!el) return;
 
-    // permite scroll vertical da página em touch
+    // permite scroll vertical em touch
     el.style.touchAction = enabled ? "pan-y" : "auto";
 
     if (!enabled) return;
@@ -20,6 +20,9 @@ export function useDrag(enabled: boolean = true) {
     let scrollStart = 0;
     let activePointerId: number | null = null;
 
+    /**
+     * Elementos interativos NÃO devem iniciar drag
+     */
     const isInteractive = (target: EventTarget | null) => {
       if (!(target instanceof HTMLElement)) return false;
       return !!target.closest(
@@ -46,6 +49,10 @@ export function useDrag(enabled: boolean = true) {
 
     const onPointerDown = (e: PointerEvent) => {
       if (e.pointerType === "mouse" && e.button !== 0) return;
+
+      /**
+       * Clique em botão NÃO inicia drag
+       */
       if (isInteractive(e.target)) return;
 
       isDown = true;
@@ -63,21 +70,15 @@ export function useDrag(enabled: boolean = true) {
 
       const dx = e.clientX - startX;
 
-      // Só começa drag se realmente for horizontal
+      // Só inicia drag após threshold horizontal
       if (!didDrag) {
         if (Math.abs(dx) < DRAG_THRESHOLD) return;
         didDrag = true;
         el.classList.add("dragging");
       }
 
-      /**
-       * Só previne default quando o drag horizontal já começou.
-       * scroll vertical da página continua funcionando.
-       */
-      if (didDrag && e.pointerType === "touch") {
-        e.preventDefault();
-      }
-
+      // A partir daqui, impede scroll da página
+      e.preventDefault();
       el.scrollLeft = scrollStart - dx;
     };
 
@@ -90,6 +91,9 @@ export function useDrag(enabled: boolean = true) {
       resetDrag();
     };
 
+    /**
+     * Cancela click SOMENTE se houve drag real
+     */
     const onClickCapture = (e: MouseEvent) => {
       if (!didDrag) return;
       e.preventDefault();

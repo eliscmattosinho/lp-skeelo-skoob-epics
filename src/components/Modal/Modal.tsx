@@ -52,25 +52,34 @@ const Modal: React.FC<ModalProps> = ({
   const imageSrc = imageMap[productName]?.[contentType];
 
   return (
-    <div className="modal-container open">
-      <button
-        type="button"
-        className="btn-close btn-close-modal"
-        onClick={onClose}
-      >
-        <IoIosCloseCircleOutline />
-      </button>
+    <>
+      <div className="overlay open" onClick={onClose} />
 
-      <div className="modal-block">
-        <div className="modal-header">
-          {imageSrc && <img className="modal-image" src={imageSrc} alt="" />}
-          <h2 className="modal-title">{title}</h2>
+      <div className="modal-container open">
+        <button
+          type="button"
+          className="btn-close btn-close-modal"
+          onClick={onClose}
+        >
+          <IoIosCloseCircleOutline size={22} />
+        </button>
+
+        <div className="modal-content">
+          <div className="modal-header">
+            {imageSrc && (
+              <div className="img-container modal-img">
+                <img className="img-modal" src={imageSrc} alt="" />
+              </div>
+            )}
+            <h2 className="modal-title">{title}</h2>
+          </div>
+
           <h3 className="modal-epic-title">{epicTitle}</h3>
-        </div>
 
-        <div className="modal-content">{contentData}</div>
+          <div className="modal-inner">{contentData}</div>
+        </div>
       </div>
-    </div>
+    </>
   );
 };
 

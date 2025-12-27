@@ -42,16 +42,6 @@
     box-shadow: var(--on-focus)
 }
 
-.expand-container::-webkit-scrollbar {
-    background: none;
-    width: 6px;
-}
-
-.expand-container::-webkit-scrollbar-thumb {
-    background: var(--gray);
-    border-radius: 6px;
-}
-
 ol {
     display: flex;
     flex-direction: column;

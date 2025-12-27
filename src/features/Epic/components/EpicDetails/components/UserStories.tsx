@@ -5,6 +5,8 @@ import { useDrag } from "@/hooks/useDrag";
 import { Historia } from "@/hooks/useEpicDetails";
 import { ProductName, ContentType } from "@/components/Modal/Modal";
 
+// @TODO: deep link?
+
 interface UserStoriesProps {
   stories?: Historia[];
   productName: ProductName;
@@ -17,6 +19,7 @@ interface UserStoriesProps {
     contentNode: React.ReactNode
   ) => void;
   isModalView?: boolean;
+  initialStoryIndex?: number;
 }
 
 const UserStories: React.FC<UserStoriesProps> = ({
@@ -25,12 +28,15 @@ const UserStories: React.FC<UserStoriesProps> = ({
   epicTitle,
   openModal,
   isModalView = false,
+  initialStoryIndex = 0,
 }) => {
-  const [activeStoryIndex, setActiveStoryIndex] = useState(0);
+  const [activeStoryIndex, setActiveStoryIndex] = useState(initialStoryIndex);
   const { dragRef } = useDrag();
   const btnRefs = useRef<HTMLButtonElement[]>([]);
 
-  if (!stories.length) return <p>Nenhuma história de usuário disponível.</p>;
+  if (!stories.length) {
+    return <p>Nenhuma história de usuário disponível.</p>;
+  }
 
   const activeStory = stories[activeStoryIndex];
 
@@ -38,82 +44,101 @@ const UserStories: React.FC<UserStoriesProps> = ({
     setActiveStoryIndex(index);
 
     const btn = btnRefs.current[index];
-    if (btn) {
-      btn.scrollIntoView({
+    const container = dragRef.current;
+
+    if (!btn || !container) return;
+
+    const btnRect = btn.getBoundingClientRect();
+    const containerRect = container.getBoundingClientRect();
+
+    const isHiddenLeft = btnRect.left < containerRect.left;
+    const isHiddenRight = btnRect.right > containerRect.right;
+
+    if (isHiddenLeft || isHiddenRight) {
+      container.scrollTo({
+        left:
+          btn.offsetLeft -
+          container.clientWidth / 2 +
+          btn.clientWidth / 2,
         behavior: "smooth",
-        inline: "center",
-        block: "nearest",
       });
     }
   };
 
-  const modalContent = (
-    <div className="us-content-modal">
-      {stories.map((story) => (
-        <div key={story.numero} className="user-story-modal">
-          <h4>{story.titulo}</h4>
-          <p>{story.user_storie}</p>
-          {story.criterios_de_aceitacao?.length > 0 && (
-            <ul>
-              {story.criterios_de_aceitacao.map((c, i) => (
-                <li key={i}>{c}</li>
-              ))}
-            </ul>
-          )}
-        </div>
+  const buttons = (
+    <div ref={dragRef} className="us-btn-group">
+      {stories.map((story, index) => (
+        <button
+          key={story.numero ?? index}
+          type="button"
+          ref={(el) => {
+            if (el) btnRefs.current[index] = el;
+          }}
+          className={`btn-us btn-us-${productName} ${index === activeStoryIndex ? "active" : ""
+            }`}
+          onClick={() => handleSelectStory(index)}
+        >
+          US{story.numero}
+        </button>
       ))}
     </div>
   );
 
-  if (isModalView) return modalContent;
+  const content = (
+    <div className="us-content">
+      <div className="us-overview">
+        <h4 className="us-title">{activeStory.titulo}</h4>
+        <p className="us-description">{activeStory.user_storie}</p>
+      </div>
+
+      <div className="us-criteria">
+        <h4 className="us-title">Critérios de aceitação</h4>
+        <ol className="criteria-list">
+          {(activeStory.criterios_de_aceitacao || []).map((c, i) => (
+            <li key={i}>{c}</li>
+          ))}
+        </ol>
+      </div>
+    </div>
+  );
+
+  if (isModalView) {
+    return (
+      <div className="us-modal-wrapper">
+        {buttons}
+        {content}
+      </div>
+    );
+  }
 
   return (
     <div className="detail-container">
       <div className="detail-content">
         <h3 className="detail-title">Histórias de usuário</h3>
 
-        <div ref={dragRef} className="us-btn-group">
-          {stories.map((story, index) => (
-            <button
-              key={story.numero ?? index}
-              type="button"
-              ref={(el) => {
-                if (el) btnRefs.current[index] = el;
-              }}
-              className={`btn-us btn-us-${productName} ${index === activeStoryIndex ? "active" : ""
-                }`}
-              onClick={() => handleSelectStory(index)}
-            >
-              US{story.numero}
-            </button>
-          ))}
-        </div>
+        {buttons}
 
-        {openModal && (
+        {openModal ? (
           <ExpandContent
             productName={productName}
             epicTitle={epicTitle}
             modalTitle="Histórias de usuário"
             modalKey="userStories"
-            modalContent={modalContent}
+            modalContent={
+              <UserStories
+                stories={stories}
+                productName={productName}
+                epicTitle={epicTitle}
+                isModalView
+                initialStoryIndex={activeStoryIndex}
+              />
+            }
             openModal={openModal}
           >
-            <div className="us-content">
-              <div className="us-overview">
-                <h4 className="us-title">{activeStory.titulo}</h4>
-                <p className="us-description">{activeStory.user_storie}</p>
-              </div>
-
-              <div className="us-criteria">
-                <h4 className="us-title">Critérios de aceitação</h4>
-                <ol className="criteria-list">
-                  {(activeStory.criterios_de_aceitacao || []).map((c, i) => (
-                    <li key={i}>{c}</li>
-                  ))}
-                </ol>
-              </div>
-            </div>
+            {content}
           </ExpandContent>
+        ) : (
+          content
         )}
       </div>
     </div>
