@@ -1,11 +1,11 @@
 import { useState, useRef, useEffect } from 'react';
 import { IoIosArrowDown } from 'react-icons/io';
 
-import epicsImage from '@/assets/images/epics-image.svg';
-import contextImage from '@/assets/images/context-svg.svg';
-import usImage from '@/assets/images/us-svg.svg';
-import metricsImage from '@/assets/images/metrics-svg.svg';
-import dodImage from '@/assets/images/dod-svg.svg';
+import epicsImage from '@/assets/img/pieces.svg';
+import contextImage from '@/assets/img/elements/context.svg';
+import usImage from '@/assets/img/elements/us.svg';
+import metricsImage from '@/assets/img/elements/metrics.svg';
+import dodImage from '@/assets/img/elements/dod.svg';
 
 import './InfoElements.css';
 
@@ -43,7 +43,7 @@ export default function InfoElements() {
   }, []);
 
   return (
-    <section id="elementos" className="section-bg">
+    <section id="elements" className="section-bg">
       <div ref={containerRef} className="article-content">
         <article className="element-container">
           <img className="element-img" src={epicsImage} alt="Ilustração representando épicos" />

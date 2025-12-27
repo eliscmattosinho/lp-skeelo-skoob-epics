@@ -2,10 +2,10 @@ import React, { useEffect, ReactNode } from "react";
 import "./Modal.css";
 import { IoIosCloseCircleOutline } from "react-icons/io";
 
-import USSkeelo from "@/assets/modal/us-modal-skeelo.svg";
-import DoDSkeelo from "@/assets/modal/dod-modal-skeelo.svg";
-import USSkoob from "@/assets/modal/us-modal-skoob.svg";
-import DoDSkoob from "@/assets/modal/dod-modal-skoob.svg";
+import USSkeelo from "@/assets/img/modal/us-modal-skeelo.svg";
+import DoDSkeelo from "@/assets/img/modal/dod-modal-skeelo.svg";
+import USSkoob from "@/assets/img/modal/us-modal-skoob.svg";
+import DoDSkoob from "@/assets/img/modal/dod-modal-skoob.svg";
 
 export type ProductName = "skeelo" | "skoob";
 export type ContentType = "userStories" | "definitionOfDone";
@@ -71,7 +71,7 @@ const Modal: React.FC<ModalProps> = ({
                 <img className="img-modal" src={imageSrc} alt="" />
               </div>
             )}
-            <h2 className="modal-title">{title}</h2>
+            <h3 className="modal-title">{title}</h3>
           </div>
 
           <h3 className="modal-epic-title">{epicTitle}</h3>

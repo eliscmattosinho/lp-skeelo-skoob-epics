@@ -2,15 +2,16 @@ import { useEffect, useState } from 'react';
 import Epic from '@/features/Epic/Epic';
 import './Skeelo.css';
 
-import skeeLogo from '@/assets/images/skee-icon.png';
-import skeeloMoc from '@/assets/images/skeelo-epics.png';
+import skeeLogo from '@/assets/img/skeelo/skee-icon.svg';
+import skeeloMoc from '@/assets/img/skeelo/skeelo-epics.png';
 
-import skeeEpicOne from '@/assets/images/skee-epi-1.png';
-import skeeEpicTwo from '@/assets/images/skee-epi-2.png';
-import skeeEpicThree from '@/assets/images/skee-epi-3.png';
-import skeeEpicFour from '@/assets/images/skee-epi-4.png';
+import skeeEpicOne from '@/assets/img/skeelo/epics/skee-epi-1.png';
+import skeeEpicTwo from '@/assets/img/skeelo/epics/skee-epi-2.png';
+import skeeEpicThree from '@/assets/img/skeelo/epics/skee-epi-3.png';
+import skeeEpicFour from '@/assets/img/skeelo/epics/skee-epi-4.png';
 
-import { useEpicDetails, Epic as EpicDomain } from '@/hooks/useEpicDetails';
+import { useEpicDetails } from '@/features/Epic/hooks/useEpicDetails';
+import { Epic as EpicDomain } from '@/features/Epic/domain/models';
 
 type EpicWithImage = EpicDomain & {
     image?: string | null;
@@ -56,7 +57,7 @@ function Skeelo() {
     }
 
     return (
-        <section className="section-container">
+        <section id="skeelo" className="section-container">
             <Epic
                 logo={skeeLogo}
                 title="Skeelo"

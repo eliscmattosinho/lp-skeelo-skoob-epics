@@ -2,7 +2,7 @@ import "./Hero.css";
 
 import TypingEffect from "@/ts/TypingEffect";
 
-import booksImage from "@/assets/images/books.svg";
+import booksImage from "@/assets/img/books.svg";
 
 export default function Hero() {
     return (

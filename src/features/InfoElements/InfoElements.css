@@ -1,4 +1,4 @@
-#elementos * {
+#elements * {
     color: var(--white);
 }
 
@@ -68,9 +68,9 @@
     background:
         linear-gradient(#212121, #212121) padding-box,
         linear-gradient(135deg,
-            #2896EA 25%,
+            #1DA1F2 25%,
             #212121 50%,
-            #00D281 75%) border-box;
+            #00C38C 75%) border-box;
 }
 
 .img-container-elements::before {
@@ -89,8 +89,8 @@
 }
 
 .img-container-elements img {
-    max-width: 85%;
-    max-height: 85%;
+    max-width: 80%;
+    max-height: 80%;
     object-fit: contain;
 }
 

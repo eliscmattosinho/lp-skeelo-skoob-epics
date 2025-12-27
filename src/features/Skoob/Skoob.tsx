@@ -2,14 +2,15 @@ import { useEffect, useState } from 'react';
 import EpicComponent from '@/features/Epic/Epic';
 import './Skoob.css';
 
-import skoobLogo from '@/assets/images/skoob-logo.svg';
-import skeeloMoc from '@/assets/images/skoob-epics.png';
+import skoobLogo from '@/assets/img/skoob/skoob-logo.svg';
+import skeeloMoc from '@/assets/img/skoob/skoob-epics.png';
 
-import skoobEpicOne from '@/assets/images/skoob-epi-1.png';
-import skoobEpicTwo from '@/assets/images/skoob-epi-2.png';
-import skoobEpicThree from '@/assets/images/skoob-epi-3.png';
+import skoobEpicOne from '@/assets/img/skoob/epics/skoob-epi-1.png';
+import skoobEpicTwo from '@/assets/img/skoob/epics/skoob-epi-2.png';
+import skoobEpicThree from '@/assets/img/skoob/epics/skoob-epi-3.png';
 
-import { useEpicDetails, Epic } from '@/hooks/useEpicDetails';
+import { useEpicDetails } from '@/features/Epic/hooks/useEpicDetails';
+import { Epic } from '@/features/Epic/domain/models';
 
 type EpicWithImage = Epic & {
   image?: string | null;
@@ -53,7 +54,7 @@ function Skoob() {
   }
 
   return (
-    <section className="section-container">
+    <section id="skoob" className="section-container">
       <EpicComponent
         logo={skoobLogo}
         title="Skoob"

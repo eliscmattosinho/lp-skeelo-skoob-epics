@@ -4,9 +4,9 @@ interface ContextImage {
   readonly alt: string;
 }
 
-import skoobLogo from "@/assets/images/skoob-logo.svg";
-import skeeloLogo from "@/assets/images/skeelo-logo.svg";
-import pokemonSurprise from "@/assets/images/pokemon-surprise.jpg";
+import skoobLogo from "@/assets/img/skoob/skoob-logo.svg";
+import skeeloLogo from "@/assets/img/skeelo/skeelo-logo.svg";
+import pokemonSurprise from "@/assets/img/pokemon-surprise.jpg";
 
 export const contextImages: readonly ContextImage[] = [
   {

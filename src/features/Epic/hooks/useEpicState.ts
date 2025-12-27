@@ -24,6 +24,7 @@ export function useEpicState(theme: Theme): UseEpicStateReturn {
   const [showTitle, setShowTitle] = useState<boolean>(false);
 
   const selectEpic = (epicId: EpicId, epicTitle: string): void => {
+    // @todo: colocar no mapper e alterar o EpicDinamicDetails
     const number = epicId.replace("epico", "");
     const title = `Épico ${number} - ${epicTitle}`;
 
