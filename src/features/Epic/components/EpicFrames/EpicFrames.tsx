@@ -4,9 +4,9 @@ import EpicFrameItem from "./EpicFrameItem";
 import "./EpicFrames.css";
 
 export interface EpicFrame {
-  identificador: string;
+  epicId: string;
   title?: string;
-  titulo_epico?: string;
+  epicTitle?: string;
   image: string;
 }
 
@@ -31,7 +31,7 @@ const EpicFrames: React.FC<EpicFramesProps> = ({
     <>
       {epics.map((epic) => (
         <EpicFrameItem
-          key={epic.identificador}
+          key={epic.epicId}
           epic={epic}
           theme={theme}
           clicked={clicked}

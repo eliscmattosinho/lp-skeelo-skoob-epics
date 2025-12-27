@@ -2,8 +2,8 @@ import React from "react";
 import "./Metrics.css";
 
 interface Metric {
-  valor?: number | string;
-  titulo?: string;
+  value?: number | string;
+  title?: string;
 }
 
 interface MetricsProps {
@@ -21,14 +21,14 @@ const Metrics: React.FC<MetricsProps> = ({ metrics = [], productName }) => (
             <div key={i} className="metric-item">
               <div className={`value-container value-container-${productName}`}>
                 <p className={`metric-value metric-value-${productName}`}>
-                  {metric.valor !== undefined
-                    ? typeof metric.valor === "number"
-                      ? `+${metric.valor}`
-                      : metric.valor
+                  {metric.value !== undefined
+                    ? typeof metric.value === "number"
+                      ? `+${metric.value}`
+                      : metric.value
                     : null}
                 </p>
               </div>
-              <h5 className="metric-title">{metric.titulo || "Título não disponível"}</h5>
+              <h5 className="metric-title">{metric.title || "Título não disponível"}</h5>
             </div>
           ))}
         </div>

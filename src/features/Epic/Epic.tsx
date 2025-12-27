@@ -8,7 +8,7 @@ import EpicDetails from "@/features/Epic/components/EpicDetails/EpicDetails";
 import { useEpicState } from "./hooks/useEpicState";
 import { useDrag } from "@/hooks/useDrag";
 
-import { Epic as EpicDomain } from "@/hooks/useEpicDetails";
+import { Epic as EpicDomain } from "@/features/Epic/domain/models";
 import { ProductName } from "@/components/Modal/Modal";
 
 import "./Epic.css";
@@ -30,9 +30,9 @@ function Epic({ theme, rangeItems, epics, ...headerProps }: EpicProps) {
   const drag = useDrag(!epic.isEpicVisible);
 
   const epicsWithImage: EpicFrame[] = epics.map((e) => ({
-    identificador: e.identificador,
-    title: e.titulo_epico,
-    titulo_epico: e.titulo_epico,
+    epicId: e.epicId,
+    title: e.epicTitle,
+    epicTitle: e.epicTitle,
     image: e.image || "/path/to/default/image.png",
   }));
 
@@ -41,7 +41,7 @@ function Epic({ theme, rangeItems, epics, ...headerProps }: EpicProps) {
   };
 
   return (
-    <article id={theme} className="article-content">
+    <article className="article-content">
       <div className="epic-product">
         <EpicHeader theme={theme} {...headerProps} />
 

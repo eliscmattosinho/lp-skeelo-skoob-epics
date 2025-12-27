@@ -20,7 +20,7 @@ export function useHoldSwipeUnlock({
   const isHolding = useRef(false);
   const holdTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
 
-  /* ---------- TOUCH ---------- */
+  /* TOUCH */
 
   const onTouchStart = (e: React.TouchEvent<HTMLButtonElement>) => {
     if (!isTouch) return;
@@ -63,7 +63,7 @@ export function useHoldSwipeUnlock({
     isHolding.current = false;
   };
 
-  /* ---------- DESKTOP ---------- */
+  /* DESKTOP */
 
   const onClick = () => {
     if (!isTouch) {

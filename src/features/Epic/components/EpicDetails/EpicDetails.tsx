@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import { GrPrevious, GrNext } from "react-icons/gr";
 
-import { useEpicDetails, Epic as EpicType, Historia } from "@/hooks/useEpicDetails";
+import { useEpicDetails } from "@/features/Epic/hooks/useEpicDetails";
+import { Epic as EpicType, Story } from "@/features/Epic/domain/models";
 import { useModal } from "@/hooks/useModal";
 import Modal, { ProductName, ContentType } from "@/components/Modal/Modal";
 
@@ -30,7 +31,7 @@ const EpicDetails: React.FC<EpicDetailsProps> = ({
   if (isLoading) return <div>Carregando épicos...</div>;
   if (!currentEpic) return <div>Épico não encontrado.</div>;
 
-  const historias: Historia[] = currentEpic.historias_de_usuario ?? [];
+  const stories: Story[] = currentEpic.userStories ?? [];
 
   const handleOpenModal = (
     productName: ProductName,
@@ -49,17 +50,17 @@ const EpicDetails: React.FC<EpicDetailsProps> = ({
   };
 
   const blocks = [
-    <EpicOverview key="overview" context={currentEpic.contexto} />,
+    <EpicOverview key="overview" context={currentEpic.context} />,
     <UserStories
       key="stories"
-      stories={historias}
+      stories={stories}
       productName={productName}
       epicTitle={epicTitle}
       openModal={handleOpenModal}
     />,
     <DoD
       key="dod"
-      doneCriteria={currentEpic.criterios_de_aceitacao}
+      doneCriteria={currentEpic.definitionOfDone}
       productName={productName}
       epicTitle={epicTitle}
       openModal={handleOpenModal}
@@ -67,11 +68,11 @@ const EpicDetails: React.FC<EpicDetailsProps> = ({
     <Metrics
       key="metrics"
       metrics={
-        currentEpic.metricas?.map((m) => {
-          if (typeof m === "string" || typeof m === "number") return { valor: m };
+        currentEpic.metrics?.map((m) => {
+          if (typeof m === "string" || typeof m === "number") return { value: m };
           if (typeof m === "object" && m !== null)
-            return m as { valor?: string | number; titulo?: string };
-          return { valor: undefined };
+            return m as { value?: string | number; title?: string };
+          return { value: undefined };
         }) || []
       }
       productName={productName}
@@ -82,7 +83,7 @@ const EpicDetails: React.FC<EpicDetailsProps> = ({
   const isLast = currentBlock === blocks.length - 1;
 
   return (
-    <div id={currentEpic.identificador} className="details-container">
+    <div id={currentEpic.epicId} className="details-container">
       <div className="details-content">
         <div className="details-nav">
           {blocks[currentBlock]}

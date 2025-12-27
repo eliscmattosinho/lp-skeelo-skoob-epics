@@ -2,13 +2,13 @@ import React, { useRef, useState } from "react";
 import "./UserStories.css";
 import ExpandContent from "./ExpandContent";
 import { useDrag } from "@/hooks/useDrag";
-import { Historia } from "@/hooks/useEpicDetails";
+import { Story } from "@/features/Epic/domain/models";
 import { ProductName, ContentType } from "@/components/Modal/Modal";
 
 // @TODO: deep link?
 
 interface UserStoriesProps {
-  stories?: Historia[];
+  stories?: Story[];
   productName: ProductName;
   epicTitle: string;
   openModal?: (
@@ -69,7 +69,7 @@ const UserStories: React.FC<UserStoriesProps> = ({
     <div ref={dragRef} className="us-btn-group">
       {stories.map((story, index) => (
         <button
-          key={story.numero ?? index}
+          key={story.storyOrder ?? index}
           type="button"
           ref={(el) => {
             if (el) btnRefs.current[index] = el;
@@ -78,7 +78,7 @@ const UserStories: React.FC<UserStoriesProps> = ({
             }`}
           onClick={() => handleSelectStory(index)}
         >
-          US{story.numero}
+          US{story.storyOrder}
         </button>
       ))}
     </div>
@@ -87,14 +87,14 @@ const UserStories: React.FC<UserStoriesProps> = ({
   const content = (
     <div className="us-content">
       <div className="us-overview">
-        <h4 className="us-title">{activeStory.titulo}</h4>
-        <p className="us-description">{activeStory.user_storie}</p>
+        <h4 className="us-title">{activeStory.title}</h4>
+        <p className="us-description">{activeStory.userStory}</p>
       </div>
 
       <div className="us-criteria">
         <h4 className="us-title">Critérios de aceitação</h4>
         <ol className="criteria-list">
-          {(activeStory.criterios_de_aceitacao || []).map((c, i) => (
+          {(activeStory.acceptanceCriteria || []).map((c, i) => (
             <li key={i}>{c}</li>
           ))}
         </ol>

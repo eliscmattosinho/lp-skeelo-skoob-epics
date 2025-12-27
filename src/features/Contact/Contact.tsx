@@ -27,7 +27,7 @@ const Contact: React.FC = () => {
 
     return (
         <div id="bg-green-bottom">
-            <section id="contato" className="section-container">
+            <section id="contact" className="section-container">
                 <article className="article-content">
                     <div className="title-container">
                         <h2 className="section-title">Contato</h2>

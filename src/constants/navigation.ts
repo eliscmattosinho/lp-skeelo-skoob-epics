@@ -9,11 +9,11 @@ export const contextNav: readonly NavigationItem[] = [
         label: "Sobre",
         href: "",
         children: [
-            { label: "Contexto", href: "#contexto" },
-            { label: "Elementos", href: "#elementos" },
+            { label: "Contexto", href: "#context" },
+            { label: "Elementos", href: "#elements" },
         ],
     },
     { label: "Skeelo", href: "#skeelo" },
     { label: "Skoob", href: "#skoob" },
-    { label: "Contato", href: "#contato" },
+    { label: "Contato", href: "#contact" },
 ];

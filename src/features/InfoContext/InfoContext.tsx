@@ -17,7 +17,7 @@ interface ContextImage {
 
 export default function InfoContext() {
   return (
-    <section id="contexto" className="section-container">
+    <section id="context" className="section-container">
       <div className="context-section">
         <article className="article-content">
           <header className="title-group">
