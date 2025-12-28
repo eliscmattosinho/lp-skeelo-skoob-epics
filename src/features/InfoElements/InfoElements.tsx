@@ -68,7 +68,9 @@ export default function InfoElements() {
 
                 <button type="button" className="title-summary" aria-expanded={isOpen} onClick={() => toggle(id)}>
                   <h3 className="element-title">{title}</h3>
-                  <IoIosArrowDown className={`icon-toggle ${isOpen ? 'rotated' : ''}`} />
+                  <IoIosArrowDown
+                    className={`arrow-toggle ${isOpen ? 'is-open' : ''}`}
+                  />
                 </button>
 
                 <p className={`element-text ${isOpen ? 'expanded' : ''}`}>{text}</p>

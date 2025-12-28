@@ -1,5 +1,5 @@
-import { useState } from 'react';
-import { IoIosArrowDown, IoIosArrowUp } from 'react-icons/io';
+import { useState, useEffect } from 'react';
+import { IoIosArrowDown } from 'react-icons/io';
 
 import './NavItems.css';
 
@@ -36,6 +36,11 @@ function NavItems({
   const [openMobileSubmenu, setOpenMobileSubmenu] =
     useState<string | null>(null);
 
+  /* Sincroniza o estado do submenu mobile com o componente pai */
+  useEffect(() => {
+    onSubmenuToggle?.(Boolean(openMobileSubmenu));
+  }, [openMobileSubmenu, onSubmenuToggle]);
+
   const handleMobileToggle = (
     label: string,
     hasChildren: boolean,
@@ -45,11 +50,9 @@ function NavItems({
 
     event.preventDefault();
 
-    setOpenMobileSubmenu(prev => {
-      const next = prev === label ? null : label;
-      onSubmenuToggle?.(Boolean(next));
-      return next;
-    });
+    setOpenMobileSubmenu(prev =>
+      prev === label ? null : label
+    );
   };
 
   return (
@@ -76,26 +79,21 @@ function NavItems({
                 {item.label}
 
                 <span className="icon-wrapper">
-                  {isMobile ? (
-                    isMobileSubmenuOpen ? (
-                      <IoIosArrowUp />
-                    ) : (
-                      <IoIosArrowDown />
-                    )
-                  ) : isSubmenuVisible ? (
-                    <IoIosArrowUp />
-                  ) : (
-                    <IoIosArrowDown />
-                  )}
+                  <IoIosArrowDown
+                    className={`arrow-toggle ${(isMobile && isMobileSubmenuOpen) ||
+                        (!isMobile && isSubmenuVisible)
+                        ? 'is-open'
+                        : ''
+                      }`}
+                  />
                 </span>
               </a>
 
               {/* MOBILE */}
               {isMobile && (
                 <ul
-                  className={`mobile-submenu ${
-                    isMobileSubmenuOpen ? 'open' : ''
-                  }`}
+                  className={`mobile-submenu ${isMobileSubmenuOpen ? 'open' : ''
+                    }`}
                 >
                   {item.children.map(child => (
                     <li key={child.label} className="mobile-subitem">
@@ -106,7 +104,6 @@ function NavItems({
                           if (onItemClick) {
                             onItemClick();
                             setOpenMobileSubmenu(null);
-                            onSubmenuToggle?.(false);
                           }
                         }}
                       >
@@ -122,7 +119,10 @@ function NavItems({
                 <ul className="submenu">
                   {item.children.map(child => (
                     <li key={child.label}>
-                      <a href={child.href} className="web-subitem">
+                      <a
+                        href={child.href}
+                        className="web-subitem"
+                      >
                         {child.label}
                       </a>
                     </li>

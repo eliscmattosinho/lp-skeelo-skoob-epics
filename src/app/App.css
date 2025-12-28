@@ -159,6 +159,17 @@ img {
   text-align: justify;
 }
 
+/* Arrow toggle (global) */
+.arrow-toggle {
+  display: inline-flex;
+  align-items: center;
+  transition: transform 0.3s ease-in-out;
+}
+
+.arrow-toggle.is-open {
+  transform: rotate(180deg);
+}
+
 /* GENERAL SETTINGS */
 *::-webkit-scrollbar {
   background: none;

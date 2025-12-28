@@ -127,14 +127,6 @@
     font-weight: 600;
 }
 
-.icon-toggle {
-    transition: transform 0.3s ease-in-out;
-}
-
-.icon-toggle.rotated {
-    transform: rotate(180deg);
-}
-
 .element-text {
     max-height: 0;
     opacity: 0;
