@@ -1,7 +1,7 @@
 {
   "homepage": "https://eliscmattosinho.github.io/lp-skeelo-skoob-epics/",
   "name": "lp-skeelo-skoob",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "private": true,
   "scripts": {
     "dev": "vite",
