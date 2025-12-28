@@ -1,9 +1,4 @@
-import {
-  Epic,
-  EpicRaw,
-  Story,
-  StoryRaw,
-} from "./models";
+import { Epic, EpicRaw, Story, StoryRaw } from "./models";
 
 /* Story mappers */
 function mapStory(raw: StoryRaw): Story {
@@ -18,15 +13,12 @@ function mapStory(raw: StoryRaw): Story {
 function parseStories(stories: unknown): Story[] {
   if (!Array.isArray(stories)) return [];
 
-  return stories.flatMap(group => {
+  return stories.flatMap((group) => {
     if (typeof group !== "object" || group === null) return [];
 
-    return Object.values(group as Record<string, StoryRaw[]>)
-      .flatMap(storyArray =>
-        Array.isArray(storyArray)
-          ? storyArray.map(mapStory)
-          : []
-      );
+    return Object.values(group as Record<string, StoryRaw[]>).flatMap((arr) =>
+      Array.isArray(arr) ? arr.map(mapStory) : []
+    );
   });
 }
 

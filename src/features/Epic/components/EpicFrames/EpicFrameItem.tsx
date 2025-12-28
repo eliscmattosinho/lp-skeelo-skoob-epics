@@ -9,6 +9,7 @@ interface EpicFrameItemProps {
   selectedEpic: string | null;
   isTouch: boolean;
   onSelect: (id: string, title: string) => void;
+  registerEpicRef: (theme: string, epicId: string, el: HTMLDivElement | null) => void;
 }
 
 const EpicFrameItem: React.FC<EpicFrameItemProps> = ({
@@ -18,6 +19,7 @@ const EpicFrameItem: React.FC<EpicFrameItemProps> = ({
   selectedEpic,
   isTouch,
   onSelect,
+  registerEpicRef,
 }) => {
   const { btnRef, bind } = useHoldSwipeUnlock({
     isTouch,
@@ -27,9 +29,9 @@ const EpicFrameItem: React.FC<EpicFrameItemProps> = ({
 
   return (
     <div
-      id={epic.epicId}
-      className={`mockup-frame ${clicked && selectedEpic !== epic.epicId ? "hide" : ""
-        }`}
+      ref={(el) => registerEpicRef(theme, epic.epicId, el)}
+      data-epic-id={epic.epicId}
+      className={`mockup-frame ${clicked && selectedEpic !== epic.epicId ? "hide" : ""}`}
     >
       <div className="frame-container">
         <img
@@ -41,9 +43,7 @@ const EpicFrameItem: React.FC<EpicFrameItemProps> = ({
         <span className={`epic-overlay hide-${theme}-epic`} />
         <span className="cam-point" />
 
-        <h4 className="frame-title">
-          {epic.title || epic.epicTitle}
-        </h4>
+        <h4 className="frame-title">{epic.title || epic.epicTitle}</h4>
 
         <div className="frame-action">
           <button

@@ -16,6 +16,7 @@ interface EpicFramesProps {
   clicked: boolean;
   selectedEpic: string | null;
   onSelect: (id: string, title: string) => void;
+  registerEpicRef: (theme: string, epicId: string, el: HTMLDivElement | null) => void;
 }
 
 const EpicFrames: React.FC<EpicFramesProps> = ({
@@ -24,6 +25,7 @@ const EpicFrames: React.FC<EpicFramesProps> = ({
   clicked,
   selectedEpic,
   onSelect,
+  registerEpicRef,
 }) => {
   const { isTouch } = useScreen();
 
@@ -31,13 +33,14 @@ const EpicFrames: React.FC<EpicFramesProps> = ({
     <>
       {epics.map((epic) => (
         <EpicFrameItem
-          key={epic.epicId}
+          key={`${theme}-${epic.epicId}`}
           epic={epic}
           theme={theme}
           clicked={clicked}
           selectedEpic={selectedEpic}
           isTouch={isTouch}
           onSelect={onSelect}
+          registerEpicRef={registerEpicRef}
         />
       ))}
     </>

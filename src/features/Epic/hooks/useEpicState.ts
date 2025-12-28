@@ -16,30 +16,48 @@ interface UseEpicStateReturn {
   resetEpic: () => void;
 }
 
-export function useEpicState(theme: Theme): UseEpicStateReturn {
-  const [selectedEpics, setSelectedEpics] = useState<SelectedEpicsMap>({});
-  const [clicked, setClicked] = useState<boolean>(false);
-  const [isEpicVisible, setIsEpicVisible] = useState<boolean>(false);
-  const [selectedTitle, setSelectedTitle] = useState<string>("");
-  const [showTitle, setShowTitle] = useState<boolean>(false);
+interface DomAccessors {
+  getFrame: (theme: Theme, epicId: EpicId) => HTMLDivElement | null;
+  getStack: (theme: Theme) => HTMLDivElement | null;
+  getDetails: (theme: Theme) => HTMLDivElement | null;
+}
 
-  const selectEpic = (epicId: EpicId, epicTitle: string): void => {
-    // @todo: colocar no mapper e alterar o EpicDinamicDetails
-    const number = epicId.replace("epico", "");
-    const title = `Épico ${number} - ${epicTitle}`;
+export function useEpicState(theme: Theme) {
+  const [selectedEpics, setSelectedEpics] = useState<Record<Theme, EpicId | null>>({});
+  const [clicked, setClicked] = useState(false);
+  const [isEpicVisible, setIsEpicVisible] = useState(false);
+  const [selectedTitle, setSelectedTitle] = useState("");
+  const [showTitle, setShowTitle] = useState(false);
 
+  const selectEpic = (
+    epicId: EpicId,
+    epicTitle: string,
+    dom: DomAccessors,
+    enableDrag?: () => void
+  ) => {
     setClicked(true);
-    setSelectedEpics(prev => ({ ...prev, [theme]: epicId }));
-    setSelectedTitle(title);
+    setSelectedEpics((p) => ({ ...p, [theme]: epicId }));
+    setSelectedTitle(`Épico ${epicId} - ${epicTitle}`);
     setIsEpicVisible(true);
     setShowTitle(true);
 
-    handleEpicDetails(epicId, theme);
+    const frame = dom.getFrame(theme, epicId);
+    const stack = dom.getStack(theme);
+    const details = dom.getDetails(theme);
+
+    if (frame && stack && details) {
+      handleEpicDetails(frame, stack, details, theme, epicId, enableDrag);
+    }
   };
 
-  const resetEpic = (): void => {
-    restoreEpicElements(theme);
-    setSelectedEpics(prev => ({ ...prev, [theme]: null }));
+  const resetEpic = () => {
+    const epicId = selectedEpics[theme];
+
+    if (epicId) {
+      restoreEpicElements(theme, epicId);
+    }
+
+    setSelectedEpics((p) => ({ ...p, [theme]: null }));
     setSelectedTitle("");
     setIsEpicVisible(false);
     setClicked(false);
@@ -53,6 +71,6 @@ export function useEpicState(theme: Theme): UseEpicStateReturn {
     selectedTitle,
     showTitle,
     selectEpic,
-    resetEpic
+    resetEpic,
   };
 }

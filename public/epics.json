@@ -2,7 +2,7 @@
     "skeelo": {
         "epics": [
             {
-                "epic_id": "epico1",
+                "epic_id": "1",
                 "epic_title": "Visualização de livros relacionados",
                 "context": "Em um aplicativo de leitura digital, os usuários desejam saber se um livro faz parte de um conjunto (série ou coleção) e qual a sua ordem de lançamento, para planejar sua leitura e aquisição dos demais livros de forma organizada e prática.",
                 "user_stories": [
@@ -63,7 +63,7 @@
                 ]
             },
             {
-                "epic_id": "epico2",
+                "epic_id": "2",
                 "epic_title": "Alerta de promoção de livros",
                 "context": "Em um aplicativo de leitura digital, os usuários gostariam de serem alertados caso haja promoções de determinados livros da loja Skeelo, para que realizem as compras quando estiverem alinhadas às suas preferências.",
                 "user_stories": [
@@ -137,7 +137,7 @@
                 ]
             },
             {
-                "epic_id": "epico3",
+                "epic_id": "3",
                 "epic_title": "Lista de livros marcados para resgate",
                 "context": "Em um aplicativo de leitura digital, os usuários querem uma forma fácil de salvar livros que desejam resgatar depois, para que consigam resgatá-los com rapidez, sem procurá-los toda vez ou anotar os títulos de interesse em outro lugar para busca futura.",
                 "user_stories": [
@@ -209,7 +209,7 @@
                 ]
             },
             {
-                "epic_id": "epico4",
+                "epic_id": "4",
                 "epic_title": "Presentear",
                 "context": "Em um aplicativo de leitura digital, os usuários querem presentear uns aos outros ou futuros usuários, com livros digitais e/ou cupons, para ser um presente em uma data comemorativa ou momento especial, incentivarem a leitura e/ou compartilharem boas histórias.",
                 "user_stories": [
@@ -313,7 +313,7 @@
     "skoob": {
         "epics": [
             {
-                "epic_id": "epico1",
+                "epic_id": "1",
                 "epic_title": "Cadastrar/Alterar registro no app",
                 "context": "Em um aplicativo de leitura digital, os usuários querem cadastrar livros diretamente pelo app, para que tenham praticidade, sem precisar acessar outros dispositivos ou plataformas para isso.",
                 "user_stories": [
@@ -358,7 +358,7 @@
                 ]
             },
             {
-                "epic_id": "epico2",
+                "epic_id": "2",
                 "epic_title": "Leituras coletivas",
                 "context": "Em um aplicativo de leitura digital, os usuários querem criar e participar de leituras coletivas (LCs) diretamente pelo app, para terem um ambiente de discussão e interação sobre os livros lidos em grupo.",
                 "user_stories": [
@@ -444,7 +444,7 @@
                 ]
             },
             {
-                "epic_id": "epico3",
+                "epic_id": "3",
                 "epic_title": "Aviso de conteúdo",
                 "context": "Em um aplicativo de leitura digital, os usuários querem saber antecipadamente sobre temas sensíveis ou conteúdos que possam ser gatilhos para terem consciência da leitura antes de iniciarem ou presentearem alguém com o livro.",
                 "user_stories": [

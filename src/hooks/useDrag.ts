@@ -4,15 +4,17 @@ const DRAG_THRESHOLD = 6;
 
 export function useDrag(enabled: boolean = true) {
   const dragRef = useRef<HTMLDivElement | null>(null);
+  const enabledRef = useRef(enabled); // Para controlar habilitação dinamicamente
+  enabledRef.current = enabled;
 
   useEffect(() => {
     const el = dragRef.current;
     if (!el) return;
 
     // permite scroll vertical em touch
-    el.style.touchAction = enabled ? "pan-y" : "auto";
+    el.style.touchAction = enabledRef.current ? "pan-y" : "auto";
 
-    if (!enabled) return;
+    if (!enabledRef.current) return;
 
     let isDown = false;
     let didDrag = false;
@@ -86,7 +88,7 @@ export function useDrag(enabled: boolean = true) {
       if (activePointerId != null) {
         try {
           el.releasePointerCapture(activePointerId);
-        } catch { }
+        } catch {}
       }
       resetDrag();
     };
@@ -121,7 +123,14 @@ export function useDrag(enabled: boolean = true) {
       window.removeEventListener("pointerup", onPointerUp);
       window.removeEventListener("blur", resetDrag);
     };
-  }, [enabled]);
+  }, []);
 
-  return { dragRef };
+  // Função para habilitar drag dinamicamente
+  const enableDrag = () => {
+    const el = dragRef.current;
+    if (!el) return;
+    el.style.touchAction = "pan-y";
+  };
+
+  return { dragRef, enableDrag };
 }
