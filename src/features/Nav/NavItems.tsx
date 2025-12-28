@@ -21,6 +21,7 @@ interface NavItemsProps {
   onMouseEnter?: () => void;
   onMouseLeave?: () => void;
   onItemClick?: () => void;
+  onSubmenuToggle?: (open: boolean) => void;
 }
 
 function NavItems({
@@ -30,9 +31,10 @@ function NavItems({
   onMouseEnter,
   onMouseLeave,
   onItemClick,
+  onSubmenuToggle,
 }: NavItemsProps) {
-  // controla qual submenu mobile está aberto
-  const [openMobileSubmenu, setOpenMobileSubmenu] = useState<string | null>(null);
+  const [openMobileSubmenu, setOpenMobileSubmenu] =
+    useState<string | null>(null);
 
   const handleMobileToggle = (
     label: string,
@@ -43,18 +45,19 @@ function NavItems({
 
     event.preventDefault();
 
-    setOpenMobileSubmenu((prev) =>
-      prev === label ? null : label
-    );
+    setOpenMobileSubmenu(prev => {
+      const next = prev === label ? null : label;
+      onSubmenuToggle?.(Boolean(next));
+      return next;
+    });
   };
 
   return (
     <>
-      {items.map((item) => {
+      {items.map(item => {
         const hasChildren = Boolean(item.children);
         const isMobileSubmenuOpen = openMobileSubmenu === item.label;
 
-        // Item com submenu
         if (hasChildren && item.children) {
           return (
             <div
@@ -74,7 +77,11 @@ function NavItems({
 
                 <span className="icon-wrapper">
                   {isMobile ? (
-                    isMobileSubmenuOpen ? <IoIosArrowUp /> : <IoIosArrowDown />
+                    isMobileSubmenuOpen ? (
+                      <IoIosArrowUp />
+                    ) : (
+                      <IoIosArrowDown />
+                    )
                   ) : isSubmenuVisible ? (
                     <IoIosArrowUp />
                   ) : (
@@ -83,24 +90,23 @@ function NavItems({
                 </span>
               </a>
 
-              {/* Submenu */}
-              {(!isMobile && isSubmenuVisible) ||
-                (isMobile && isMobileSubmenuOpen) ? (
-                <ul className={isMobile ? 'mobile-submenu' : 'submenu'}>
-                  {item.children.map((child) => (
-                    <li
-                      key={child.label}
-                      className={isMobile ? 'mobile-subitem' : undefined}
-                    >
+              {/* MOBILE */}
+              {isMobile && (
+                <ul
+                  className={`mobile-submenu ${
+                    isMobileSubmenuOpen ? 'open' : ''
+                  }`}
+                >
+                  {item.children.map(child => (
+                    <li key={child.label} className="mobile-subitem">
                       <a
                         href={child.href}
-                        className={
-                          isMobile ? 'mobile-subitem' : 'web-subitem'
-                        }
+                        className="mobile-subitem"
                         onClick={() => {
-                          if (isMobile && onItemClick) {
+                          if (onItemClick) {
                             onItemClick();
                             setOpenMobileSubmenu(null);
+                            onSubmenuToggle?.(false);
                           }
                         }}
                       >
@@ -109,12 +115,24 @@ function NavItems({
                     </li>
                   ))}
                 </ul>
-              ) : null}
+              )}
+
+              {/* DESKTOP */}
+              {!isMobile && isSubmenuVisible && (
+                <ul className="submenu">
+                  {item.children.map(child => (
+                    <li key={child.label}>
+                      <a href={child.href} className="web-subitem">
+                        {child.label}
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              )}
             </div>
           );
         }
 
-        // Item simples
         return (
           <a
             key={item.label}

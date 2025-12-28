@@ -56,7 +56,7 @@ export default function InfoElements() {
           </div>
         </article>
 
-        <section className="element-group section-container">
+        <section className="element-group">
           {items.map(({ id, title, img, text }) => {
             const isOpen = expanded === id;
 

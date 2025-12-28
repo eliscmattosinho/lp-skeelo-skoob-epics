@@ -34,7 +34,7 @@
     max-width: 85vw;
 }
 
-.element-group.section-container {
+.element-group {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
@@ -49,7 +49,7 @@
     align-items: center;
     position: relative;
 
-    transition: all 0.3s ease;
+    transition: all 0.3s ease-in-out;
 }
 
 .img-container-elements {

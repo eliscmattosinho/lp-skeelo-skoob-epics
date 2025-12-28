@@ -14,7 +14,9 @@ function Nav() {
   const [isSubmenuVisible, setSubmenuVisible] = useState(false);
   const [timeoutId, setTimeoutId] =
     useState<ReturnType<typeof setTimeout> | null>(null);
+
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isMobileSubmenuOpen, setIsMobileSubmenuOpen] = useState(false);
 
   const menuRef = useRef<HTMLDivElement | null>(null);
 
@@ -30,28 +32,29 @@ function Nav() {
 
   const closeMenu = () => {
     setIsMenuOpen(false);
+    setIsMobileSubmenuOpen(false);
   };
 
-  // Fecha o menu ao sair do modo mobile
+  // Saiu do mobile
   useEffect(() => {
     if (!isMobile) {
       setIsMenuOpen(false);
+      setIsMobileSubmenuOpen(false);
     }
   }, [isMobile]);
 
-  // Fecha o menu ao clicar fora (blindado contra autoscroll)
+  // Click fora
   useEffect(() => {
     if (!isMenuOpen) return;
 
     function handleClickOutside(event: MouseEvent) {
-      // só botão esquerdo
       if (event.button !== 0) return;
 
       if (
         menuRef.current &&
         !menuRef.current.contains(event.target as Node)
       ) {
-        setIsMenuOpen(false);
+        closeMenu();
       }
     }
 
@@ -93,11 +96,16 @@ function Nav() {
         )}
 
         {isMobile && isMenuOpen && (
-          <div id="mobile-menu" ref={menuRef}>
+          <div
+            id="mobile-menu"
+            ref={menuRef}
+            className={isMobileSubmenuOpen ? 'expanded' : ''}
+          >
             <NavItems
               items={contextNav}
               isMobile
               onItemClick={closeMenu}
+              onSubmenuToggle={setIsMobileSubmenuOpen}
             />
           </div>
         )}

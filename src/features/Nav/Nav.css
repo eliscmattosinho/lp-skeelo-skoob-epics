@@ -28,13 +28,13 @@ nav a {
   color: var(--white);
 }
 
-/* Estilos do menu dropdown no mbile */
+/* MOBILE MENU */
 #mobile-menu {
   position: absolute;
   top: 70px;
   right: 10px;
 
-  background: rgba(20, 20, 20, 0.90);
+  background: rgba(20, 20, 20, 0.9);
   border-radius: 6px;
   box-shadow: var(--item-shadow);
 
@@ -43,6 +43,16 @@ nav a {
   align-items: flex-start;
   gap: 10px;
   padding: 20px;
+
+  width: 100px;
+  overflow: hidden;
+
+  transition:
+    width 0.3s ease-in-out;
+}
+
+#mobile-menu.expanded {
+  width: 160px;
 }
 
 @media (min-width: 768px) {

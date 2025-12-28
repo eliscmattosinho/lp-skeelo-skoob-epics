@@ -1,7 +1,6 @@
 /* WEB */
 .icon-wrapper {
   display: flex;
-  justify-content: center;
   align-items: center;
 }
 
@@ -17,7 +16,6 @@
 #submenu {
   display: flex;
   flex-direction: column;
-  gap: 10px;
 }
 
 .submenu {
@@ -57,12 +55,28 @@
   font-weight: 600;
 }
 
+/* hover gradiente */
 .mobile-item:hover,
 .mobile-subitem:hover,
 .web-subitem:hover {
   background-image: var(--thematic-item);
+
+  /* faz o gradiente escalar com o texto */
+  background-size: 200% 100%;
+  background-position: 0% 50%;
+  background-repeat: no-repeat;
+
   color: transparent;
   background-clip: text;
+  -webkit-background-clip: text;
+
+  transition: background-position 0.2s ease-in-out;
+}
+
+.mobile-item:hover,
+.mobile-subitem:hover,
+.web-subitem:hover {
+  background-position: 100% 50%;
 }
 
 li.mobile-subitem {
@@ -83,11 +97,27 @@ li.mobile-subitem::before {
   background: var(--thematic-item);
 }
 
+/* MOBILE submenu animado */
 .mobile-submenu {
+  overflow: hidden;
+  max-height: 0;
+  opacity: 0;
+  transform: translateY(-4px);
+
+  transition:
+    max-height 0.3s ease-in-out,
+    opacity 0.2s ease-in-out,
+    transform 0.3s ease-in-out;
+
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: flex-start;
-  margin-left: 20px;
   gap: 10px;
+  margin-left: 20px;
+}
+
+.mobile-submenu.open {
+  max-height: max-content;
+  opacity: 1;
+  margin-top: 10px;
+  transform: translateY(0);
 }
