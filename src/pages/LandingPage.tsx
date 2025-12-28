@@ -1,5 +1,7 @@
-import Header from '@/features/Nav/Nav';
+import Nav from '@/features/Nav/Nav';
 import Hero from '@/features/Hero/Hero';
+
+import LavaLampButton from '@/components/LavaLampButton';
 
 import InfoContext from '@/features/InfoContext/InfoContext';
 import InfoElements from '@/features/InfoElements/InfoElements';
@@ -13,7 +15,7 @@ import Footer from '@/features/Footer/Footer';
 function LandingPage() {
   return (
     <div className="lp-structure">
-      <Header />
+      <Nav />
       <Hero />
       <InfoContext />
       <InfoElements />
@@ -21,6 +23,8 @@ function LandingPage() {
       <Skoob />
       <Contact />
       <Footer />
+
+      <LavaLampButton />
     </div>
   );
 }
