@@ -1,0 +1,44 @@
+#bg-green-bottom {
+    margin: 0 10px;
+    padding: 0 30px;
+    border-radius: 0 0 20px 20px;
+
+    background: var(--film-bottom);
+}
+
+.btn-contact {
+    border: none;
+    background: none;
+    color: var(--text-black);
+    font-weight: 600;
+    cursor: pointer;
+
+    transition: all 0.3s ease-in-out;
+}
+
+.btn-contact:hover {
+    transform: scale(1.1);
+}
+
+.envelope-group {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 4rem;
+    margin-top: 1rem;
+}
+
+@media (min-width: 768px) {
+    #bg-green-bottom {
+        padding: 0 60px;
+        margin: 0 20px;
+        border-radius: 0 0 30px 30px;
+    }
+
+    .envelope-group {
+        flex-wrap: nowrap;
+        justify-content: space-around;
+        gap: 3rem;
+    }
+}

@@ -1,0 +1,70 @@
+#footer-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: var(--thematic-item);
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 0px;
+    padding: 60px;
+}
+
+.footer-container {
+    max-width: 350px;
+    margin-bottom: 2rem;
+}
+
+.footer-text {
+    margin: 10px 0;
+}
+
+#footer-content {
+    text-align: center;
+}
+
+.notion-link {
+    display: inline-block;
+    font-weight: 600;
+    text-decoration: underline;
+    text-decoration-thickness: 2px;
+    text-underline-offset: 3px;
+    text-decoration-color: var(--blue);
+    color: var(--white);
+
+    transition: transform 0.3s ease-in-out;
+}
+
+.notion-link:hover {
+    text-decoration-color: var(--blue);
+    color: var(--blue);
+}
+
+.footer-text {
+    color: var(--white);
+}
+
+#btn-project {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 40px;
+
+    background-color: var(--black);
+    border: 2px solid var(--white);
+
+    text-decoration: none;
+
+    transition: all 0.3s ease-in-out;
+}
+
+#btn-project:hover {
+    transform: scale(1.1);
+}
+
+/* TEXTO com gradiente */
+#btn-project span {
+    background: var(--thematic-item);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+

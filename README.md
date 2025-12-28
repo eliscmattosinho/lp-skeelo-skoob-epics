@@ -1,6 +1,6 @@
 # Skeelo-Skoob Epics
 
-![Banner 1](src/assets/readme-img/banner-1.png)
+![Banner 1](src/assets/readme/banner-1.png)
 
 ## Project Description
 
@@ -31,4 +31,4 @@ You can access the live landing page here:
 
 <br />
 
-![Banner 2](src/assets/readme-img/banner-2.png)
+![Banner 2](src/assets/readme/banner-2.png)

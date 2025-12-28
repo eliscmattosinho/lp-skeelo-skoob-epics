@@ -1,0 +1,40 @@
+import React from "react";
+import "./Metrics.css";
+
+interface Metric {
+  value?: number | string;
+  title?: string;
+}
+
+interface MetricsProps {
+  metrics?: Metric[];
+  productName: string;
+}
+
+const Metrics: React.FC<MetricsProps> = ({ metrics = [], productName }) => (
+  <div className="detail-container">
+    <div className="detail-content">
+      <div className="metric-content">
+        <h3 className="detail-title">Métricas e KPIs esperadas</h3>
+        <div className="metric-container">
+          {metrics.map((metric, i) => (
+            <div key={i} className="metric-item">
+              <div className={`value-container value-container-${productName}`}>
+                <p className={`metric-value metric-value-${productName}`}>
+                  {metric.value !== undefined
+                    ? typeof metric.value === "number"
+                      ? `+${metric.value}`
+                      : metric.value
+                    : null}
+                </p>
+              </div>
+              <h5 className="metric-title">{metric.title || "Título não disponível"}</h5>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </div>
+);
+
+export default Metrics;

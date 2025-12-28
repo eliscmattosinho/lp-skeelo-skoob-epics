@@ -1,0 +1,129 @@
+.envelope-wrapper {
+    display: flex;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.envelope {
+    position: relative;
+    width: 260px;
+    height: 170px;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    box-shadow: var(--item-shadow);
+}
+
+.envelope-wrapper:nth-child(odd) .envelope {
+  animation: float-up 6.5s ease-in-out infinite;
+}
+
+.envelope-wrapper:nth-child(even) .envelope {
+  animation: float-down 3.5s ease-in-out infinite;
+}
+
+/* fundo */
+.back {
+    position: absolute;
+    inset: 0;
+    background: var(--envelope-back);
+    border-radius: 6px;
+    z-index: 1;
+}
+
+/* papel - sempre acima do flap no estado aberto */
+.paper {
+    position: relative;
+    width: 90%;
+    min-height: 100%;
+    height: 0;
+    margin-bottom: 0;
+    background: #efefef;
+    border-radius: 4px;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.18);
+
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 60px;
+
+    transition: height 0.6s ease-in-out;
+    z-index: 3;
+}
+
+/* flap — atrás do papel ao abrir, acima ao fechar */
+.flap {
+    position: absolute;
+    inset: 0;
+    background: var(--envelope-flap);
+    clip-path: polygon(0 0, 50% 60%, 100% 0);
+    transform-origin: top;
+
+    transition:
+        transform 0.4s ease,
+        z-index 0s linear;
+    z-index: 2;
+}
+
+/* frente */
+.front {
+    position: absolute;
+    inset: 0;
+    background: var(--envelope-front);
+    clip-path: polygon(0 0, 50% 55%, 100% 0, 100% 100%, 0 100%);
+    z-index: 5;
+}
+
+/* estado aberto */
+.envelope-wrapper.open {
+    .paper {
+        height: 130%;
+    }
+
+    .flap {
+        transform: rotateX(180deg);
+        z-index: 2;
+        transition-delay: 0s;
+    }
+}
+
+/* estado fechado */
+.envelope-wrapper:not(.open) {
+    .paper {
+        height: 0;
+    }
+
+    .flap {
+        transform: rotateX(0deg);
+        z-index: 6;
+        transition-delay: 0.6s;
+    }
+}
+
+@keyframes float-up {
+    0% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-6px);
+    }
+
+    100% {
+        transform: translateY(0);
+    }
+}
+
+@keyframes float-down {
+    0% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(6px);
+    }
+
+    100% {
+        transform: translateY(0);
+    }
+}

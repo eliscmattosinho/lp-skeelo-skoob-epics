@@ -1,0 +1,123 @@
+/* WEB */
+.icon-wrapper {
+  display: flex;
+  align-items: center;
+}
+
+.icon-wrapper svg {
+  margin-top: 5px;
+  margin-left: 8px;
+}
+
+.icon-wrapper svg path {
+  color: var(--white);
+}
+
+#submenu {
+  display: flex;
+  flex-direction: column;
+}
+
+.submenu {
+  position: absolute;
+  background: rgba(20, 20, 20, 0.9);
+  list-style-type: none;
+  border-radius: 5px;
+  margin: 30px 0;
+}
+
+.submenu li {
+  margin: 20px 0;
+}
+
+.web-item,
+.web-subitem {
+  font-weight: 600;
+  transition: all 0.3s ease-in-out;
+}
+
+.web-item:hover {
+  color: var(--black);
+}
+
+.web-item {
+  display: flex;
+  align-items: center;
+}
+
+/* MOBILE */
+#mobile-menu #submenu .mobile-item {
+  display: flex;
+}
+
+.mobile-item,
+.mobile-subitem {
+  font-weight: 600;
+}
+
+/* hover gradiente */
+.mobile-item:hover,
+.mobile-subitem:hover,
+.web-subitem:hover {
+  background-image: var(--thematic-item);
+
+  /* faz o gradiente escalar com o texto */
+  background-size: 200% 100%;
+  background-position: 0% 50%;
+  background-repeat: no-repeat;
+
+  color: transparent;
+  background-clip: text;
+  -webkit-background-clip: text;
+
+  transition: background-position 0.2s ease-in-out;
+}
+
+.mobile-item:hover,
+.mobile-subitem:hover,
+.web-subitem:hover {
+  background-position: 100% 50%;
+}
+
+li.mobile-subitem {
+  list-style: none;
+  position: relative;
+  padding-left: 20px;
+}
+
+/* bolinha customizada */
+li.mobile-subitem::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.6em;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--thematic-item);
+}
+
+/* MOBILE submenu animado */
+.mobile-submenu {
+  overflow: hidden;
+  max-height: 0;
+  opacity: 0;
+  transform: translateY(-4px);
+
+  transition:
+    max-height 0.3s ease-in-out,
+    opacity 0.2s ease-in-out,
+    transform 0.3s ease-in-out;
+
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-left: 20px;
+}
+
+.mobile-submenu.open {
+  max-height: max-content;
+  opacity: 1;
+  margin-top: 10px;
+  transform: translateY(0);
+}

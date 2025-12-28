@@ -1,0 +1,89 @@
+.epic-product {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.mockup-group.open {
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    gap: 1rem;
+}
+
+.btn-container {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+.mockup-stack {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.mockup-stack.details {
+    width: 100%;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+}
+
+/* FRAME COMPONENT */
+.frame-group {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    flex-wrap: nowrap;
+    gap: 2rem;
+    padding: 20px 30px;
+    cursor: grab;
+
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    touch-action: pan-x;
+    contain: content;
+
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+
+.frame-group::-webkit-scrollbar {
+    display: none;
+}
+
+.drag-scroll {
+    cursor: grab;
+    -webkit-user-drag: none;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.drag-scroll.dragging {
+    cursor: grabbing;
+    user-select: none;
+    -webkit-user-drag: none;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.mockup-stack.details .epic-details {
+    width: 100%;
+    max-width: 350px;
+    padding: 20px 30px;
+}
+
+@media (min-width: 768px) {
+    .mockup-stack.details {
+        display: flex;
+        flex-direction: row;
+        gap: 3rem;
+    }
+}
