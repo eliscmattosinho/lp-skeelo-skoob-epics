@@ -4,7 +4,7 @@ const DRAG_THRESHOLD = 6;
 
 export function useDrag(enabled: boolean = true) {
   const dragRef = useRef<HTMLDivElement | null>(null);
-  const enabledRef = useRef(enabled); // Para controlar habilitação dinamicamente
+  const enabledRef = useRef(enabled);
   enabledRef.current = enabled;
 
   useEffect(() => {
@@ -13,7 +13,6 @@ export function useDrag(enabled: boolean = true) {
 
     // permite scroll vertical em touch
     el.style.touchAction = enabledRef.current ? "pan-y" : "auto";
-
     if (!enabledRef.current) return;
 
     let isDown = false;
@@ -25,28 +24,17 @@ export function useDrag(enabled: boolean = true) {
     /**
      * Elementos interativos NÃO devem iniciar drag
      */
-    const isInteractive = (target: EventTarget | null) => {
-      if (!(target instanceof HTMLElement)) return false;
-      return !!target.closest(
+    const isInteractive = (target: EventTarget | null) =>
+      target instanceof HTMLElement &&
+      !!target.closest(
         "button, a, input, textarea, select, [role='button']"
       );
-    };
 
     const resetDrag = () => {
       isDown = false;
       didDrag = false;
       activePointerId = null;
       el.classList.remove("dragging");
-    };
-
-    /**
-     * Bloqueia autoscroll do botão do meio
-     */
-    const onMouseDown = (e: MouseEvent) => {
-      if (e.button === 1) {
-        e.preventDefault();
-        e.stopPropagation();
-      }
     };
 
     const onPointerDown = (e: PointerEvent) => {
@@ -88,7 +76,7 @@ export function useDrag(enabled: boolean = true) {
       if (activePointerId != null) {
         try {
           el.releasePointerCapture(activePointerId);
-        } catch {}
+        } catch { }
       }
       resetDrag();
     };
@@ -102,7 +90,6 @@ export function useDrag(enabled: boolean = true) {
       e.stopPropagation();
     };
 
-    el.addEventListener("mousedown", onMouseDown);
     el.addEventListener("pointerdown", onPointerDown);
     el.addEventListener("pointermove", onPointerMove, { passive: false });
     el.addEventListener("pointerup", onPointerUp);
@@ -113,7 +100,6 @@ export function useDrag(enabled: boolean = true) {
     window.addEventListener("blur", resetDrag);
 
     return () => {
-      el.removeEventListener("mousedown", onMouseDown);
       el.removeEventListener("pointerdown", onPointerDown);
       el.removeEventListener("pointermove", onPointerMove);
       el.removeEventListener("pointerup", onPointerUp);
@@ -128,8 +114,7 @@ export function useDrag(enabled: boolean = true) {
   // Função para habilitar drag dinamicamente
   const enableDrag = () => {
     const el = dragRef.current;
-    if (!el) return;
-    el.style.touchAction = "pan-y";
+    if (el) el.style.touchAction = "pan-y";
   };
 
   return { dragRef, enableDrag };

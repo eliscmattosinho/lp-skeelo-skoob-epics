@@ -2,10 +2,9 @@ import React, { useRef, useState } from "react";
 import "./UserStories.css";
 import ExpandContent from "./ExpandContent";
 import { useDrag } from "@/hooks/useDrag";
+import { useAutoScroll } from "@/hooks/useAutoScroll";
 import { Story } from "@/features/Epic/domain/models";
 import { ProductName, ContentType } from "@/components/Modal/Modal";
-
-// @TODO: deep link?
 
 interface UserStoriesProps {
   stories?: Story[];
@@ -30,40 +29,24 @@ const UserStories: React.FC<UserStoriesProps> = ({
   isModalView = false,
   initialStoryIndex = 0,
 }) => {
-  const [activeStoryIndex, setActiveStoryIndex] = useState(initialStoryIndex);
+  const [activeStoryIndex, setActiveStoryIndex] =
+    useState(initialStoryIndex);
+
   const { dragRef } = useDrag();
   const btnRefs = useRef<HTMLButtonElement[]>([]);
+
+  useAutoScroll({
+    containerRef: dragRef,
+    itemRefs: btnRefs,
+    activeIndex: activeStoryIndex,
+    initialIndex: initialStoryIndex,
+  });
 
   if (!stories.length) {
     return <p>Nenhuma história de usuário disponível.</p>;
   }
 
   const activeStory = stories[activeStoryIndex];
-
-  const handleSelectStory = (index: number) => {
-    setActiveStoryIndex(index);
-
-    const btn = btnRefs.current[index];
-    const container = dragRef.current;
-
-    if (!btn || !container) return;
-
-    const btnRect = btn.getBoundingClientRect();
-    const containerRect = container.getBoundingClientRect();
-
-    const isHiddenLeft = btnRect.left < containerRect.left;
-    const isHiddenRight = btnRect.right > containerRect.right;
-
-    if (isHiddenLeft || isHiddenRight) {
-      container.scrollTo({
-        left:
-          btn.offsetLeft -
-          container.clientWidth / 2 +
-          btn.clientWidth / 2,
-        behavior: "smooth",
-      });
-    }
-  };
 
   const buttons = (
     <div ref={dragRef} className="us-btn-group">
@@ -76,7 +59,7 @@ const UserStories: React.FC<UserStoriesProps> = ({
           }}
           className={`btn-us btn-us-${productName} ${index === activeStoryIndex ? "active" : ""
             }`}
-          onClick={() => handleSelectStory(index)}
+          onClick={() => setActiveStoryIndex(index)}
         >
           US{story.storyOrder}
         </button>

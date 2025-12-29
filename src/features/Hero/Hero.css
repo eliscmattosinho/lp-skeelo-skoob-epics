@@ -9,8 +9,7 @@
 .lp-title {
     display: flex;
     flex-direction: column;
-    gap: 10px;
-    margin-bottom: 2rem;
+    margin-bottom: 3rem;
 }
 
 .title {
@@ -50,20 +49,27 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 3rem;
+    gap: 2rem;
 }
 
 .blinking-cursor {
     animation: blink 1s step-end infinite;
 }
 
-@media (max-width: 480px) {
-    .center {
-        gap: 2rem;
+.typing-container {
+    min-height: 3.2em;
+    display: flex;
+    align-items: center;
+    text-align: center;
+}
+
+@media (min-width: 480px) {
+    .lp-title {
+        margin-bottom: 4rem;
     }
 
-    .typing-container {
-        text-align: center;
+    .hero-content {
+        gap: 3rem;
     }
 }
 
@@ -75,7 +81,16 @@
     }
 
     .typing-container {
+        min-height: auto;
         white-space: nowrap;
+    }
+
+    .lp-title {
+        margin-bottom: 6rem;
+    }
+
+    .hero-content {
+        gap: 4rem;
     }
 }
 
