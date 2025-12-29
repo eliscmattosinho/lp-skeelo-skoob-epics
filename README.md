@@ -4,28 +4,29 @@
 
 ## Project Description
 
-An interactive landing page that showcases the epics of the Skeelo-Skoob ecosystem, making it easier to understand and track the project goals through a dynamic and visual interface.
+An interactive landing page that showcases the epics of the **Skeelo–Skoob digital reading ecosystem**, designed to make project goals easier to understand and track through a dynamic and visual interface.
 
-- Notion case: [Digital Reading Ecosystem | Notion](https://eliscmattosinho.notion.site/Ecossistema-de-leitura-digital-15432edc5fc5805a8ecfe3447f2d3d0b).
+- Notion case: [Digital Reading Ecosystem | Notion](https://eliscmattosinho.notion.site/Ecossistema-de-leitura-digital-15432edc5fc5805a8ecfe3447f2d3d0b)
 
 ## Screenshots
 
-- Project on Behance: [Skeelo-Skoob Epics | Behance](https://www.behance.net/gallery/231311471/Skeelo-Skoob-Epics-of-the-Digital-Reading-Ecosystem).
+- Project on Behance: [Skeelo-Skoob Epics | Behance](https://www.behance.net/gallery/231311471/Skeelo-Skoob-Epics-of-the-Digital-Reading-Ecosystem)
 
-## Technologies used
+## Technologies Used
 
-- React 19;
-- React Router Dom;
-- React Icons;
-- CSS3;
-- JavaScript (ES6+);
-- GitHub Pages (deployment).
+- React 19
+- React Router DOM 7
+- React Icons
+- Vite
+- Sass (SCSS)
+- JavaScript (ES6+)
+- GitHub Pages (deployment)
 
 ## Deployment
 
-This project aims to provide a clear and dynamic experience to visualize the Skeelo-Skoob epics, facilitating alignment among stakeholders.
+The project is configured to be deployed on **GitHub Pages** using the `gh-pages` package and Vite build output.
 
-You can access the live landing page here:
+Live version available at:
 
 - [Live Demo](https://eliscmattosinho.github.io/lp-skeelo-skoob-epics/)
 
