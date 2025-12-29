@@ -20,7 +20,7 @@ export function useHoldSwipeUnlock({
   const isHolding = useRef(false);
   const holdTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
 
-  /* TOUCH */
+  /* TOUCH HANDLERS */
 
   const onTouchStart = (e: React.TouchEvent<HTMLButtonElement>) => {
     if (!isTouch) return;
@@ -40,6 +40,7 @@ export function useHoldSwipeUnlock({
 
     deltaY.current = e.touches[0].clientY - startY.current;
 
+    // Apenas swipe para cima
     if (deltaY.current < 0) {
       btnRef.current.style.transform = `translateY(${deltaY.current}px)`;
     }
@@ -63,12 +64,11 @@ export function useHoldSwipeUnlock({
     isHolding.current = false;
   };
 
-  /* DESKTOP */
+  /* DESKTOP HANDLER */
 
   const onClick = () => {
-    if (!isTouch) {
-      onUnlock();
-    }
+    if (isTouch) return;
+    onUnlock();
   };
 
   return {
