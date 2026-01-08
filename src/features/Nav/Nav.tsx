@@ -1,67 +1,23 @@
-import { useState, useEffect, useRef } from 'react';
-import { IoCloseOutline } from 'react-icons/io5';
-import { CiMenuBurger } from 'react-icons/ci';
-
-import { useScreen } from '@/contexts/ScreenContext';
-import NavItems from './NavItems';
-import { contextNav } from '@/constants/navigation';
-
-import './Nav.css';
+import { IoCloseOutline } from "react-icons/io5";
+import { CiMenuBurger } from "react-icons/ci";
+import { useNav } from "./hooks/useNav";
+import { contextNav } from "@/constants/navigation";
+import NavItems from "./components/NavItems";
+import "./Nav.css";
 
 function Nav() {
-  const { isMobile } = useScreen();
-
-  const [isSubmenuVisible, setSubmenuVisible] = useState(false);
-  const [timeoutId, setTimeoutId] =
-    useState<ReturnType<typeof setTimeout> | null>(null);
-
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [isMobileSubmenuOpen, setIsMobileSubmenuOpen] = useState(false);
-
-  const menuRef = useRef<HTMLDivElement | null>(null);
-
-  const handleMouseEnter = () => {
-    setSubmenuVisible(true);
-    if (timeoutId) clearTimeout(timeoutId);
-  };
-
-  const handleMouseLeave = () => {
-    const id = setTimeout(() => setSubmenuVisible(false), 300);
-    setTimeoutId(id);
-  };
-
-  const closeMenu = () => {
-    setIsMenuOpen(false);
-    setIsMobileSubmenuOpen(false);
-  };
-
-  // Saiu do mobile
-  useEffect(() => {
-    if (!isMobile) {
-      setIsMenuOpen(false);
-      setIsMobileSubmenuOpen(false);
-    }
-  }, [isMobile]);
-
-  // Click fora
-  useEffect(() => {
-    if (!isMenuOpen) return;
-
-    function handleClickOutside(event: MouseEvent) {
-      if (event.button !== 0) return;
-
-      if (
-        menuRef.current &&
-        !menuRef.current.contains(event.target as Node)
-      ) {
-        closeMenu();
-      }
-    }
-
-    document.addEventListener('mousedown', handleClickOutside);
-    return () =>
-      document.removeEventListener('mousedown', handleClickOutside);
-  }, [isMenuOpen]);
+  const {
+    isMobile,
+    isMenuOpen,
+    isSubmenuVisible,
+    isMobileSubmenuOpen,
+    menuRef,
+    handleMouseEnter,
+    handleMouseLeave,
+    toggleMenu,
+    closeMenu,
+    setIsMobileSubmenuOpen,
+  } = useNav();
 
   return (
     <header className="nav-bar">
@@ -73,8 +29,8 @@ function Nav() {
         {isMobile ? (
           <button
             className="btn-menu"
-            onClick={() => setIsMenuOpen(prev => !prev)}
-            aria-label="Abrir menu"
+            onClick={toggleMenu}
+            aria-label={isMenuOpen ? "Fechar menu" : "Abrir menu"}
             aria-expanded={isMenuOpen}
           >
             {isMenuOpen ? (
@@ -99,7 +55,7 @@ function Nav() {
           <div
             id="mobile-menu"
             ref={menuRef}
-            className={isMobileSubmenuOpen ? 'expanded' : ''}
+            className={isMobileSubmenuOpen ? "expanded" : ""}
           >
             <NavItems
               items={contextNav}
