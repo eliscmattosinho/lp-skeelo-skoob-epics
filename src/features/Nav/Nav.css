@@ -1,20 +1,36 @@
+.btn-menu {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  outline: none;
+  width: 30px;
+  height: 30px;
+}
+
 .btn-menu svg path {
   color: var(--white);
 }
 
 .menu-icon {
   cursor: pointer;
-  transition: all 0.3s ease-in-out;
+  animation: icon-flip 0.3s ease-in-out forwards;
 }
 
 .menu-icon:hover {
   transform: scale(1.1);
+  transition: transform 0.2s ease-in-out;
 }
 
+/* NAV BAR */
 .nav-bar {
   padding: 20px 0;
   background: var(--thematic-item);
   box-shadow: var(--section-shadow);
+  position: relative;
 }
 
 #nav {
@@ -47,14 +63,14 @@ nav a {
   width: 100px;
   overflow: hidden;
 
-  transition:
-    width 0.3s ease-in-out;
+  transition: width 0.3s ease-in-out;
 }
 
 #mobile-menu.expanded {
   width: 160px;
 }
 
+/* MEDIA QUERIES (WEB) */
 @media (min-width: 768px) {
   .btn-menu {
     display: none;
@@ -70,5 +86,17 @@ nav a {
     display: flex;
     align-items: flex-start;
     margin: 0 20px;
+  }
+}
+
+@keyframes icon-flip {
+  0% {
+    opacity: 0;
+    transform: rotate(-90deg) scale(0.5);
+  }
+
+  100% {
+    opacity: 1;
+    transform: rotate(0deg) scale(1);
   }
 }
